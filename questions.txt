@@ -1,0 +1,6 @@
+1. where and how are the courses created?
+1.1 where and how are the events created?
+2. Are these pages protected by authentication? 
+   i.e can non-authenticated users view the pages?
+3. Insight into tools.
+4. Insight into Communitites.
