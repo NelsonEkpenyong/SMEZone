@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminAuthController;
 
 /*
@@ -21,13 +22,13 @@ use App\Http\Controllers\Auth\AdminAuthController;
 
 Auth::routes();
 
-Route::get('/admin/login',[AdminAuthController::class,'login'])->name('/admin/login');
+Route::get('admin',[AdminAuthController::class,'login'])->name('/admin');
 Route::post('/admin/logout',[AdminAuthController::class,'logout'])->name('/admin/logout');
 
 Route::post('/admin/handle-login',[AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
 
 
-Route::controller(AdminController::class)->prefix('admin')->middleware(['adminAuth'])->group( function(){
+Route::controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
     Route::get('/dashboard','admin_dashboard')->name('dashboard');
 
     Route::get('/event','event')->name('event');
@@ -64,15 +65,34 @@ Route::controller(AdminController::class)->prefix('admin')->middleware(['adminAu
     Route::get('/mail', 'mail')->name('mail');
     Route::post('/send-mail', 'send_mail')->name('send_mail');
 
+    Route::get('/sliders', 'sliders')->name('sliders');
+    Route::get('/change-hero-slider/{id}', 'change_hero_slider')->name('create-hero-slider');
+    Route::post('/slider/{id}', 'update_hero_slider')->name('slider');
+
+    Route::get('/create-video-slider', 'create_video_slider')->name('create-video-slider');
+    Route::post('/update-video-slider/{id}', 'update_video_slider')->name('update-video-slider');
+
+    Route::get('/featuredImage', 'featured_image')->name('featuredImage');
+    Route::get('/featured-image', 'create_featured_image')->name('featured-image');
+    Route::get('/create-featured-image', 'create_featured_image')->name('create-featured-image');
+    Route::post('/store-featured-image', 'store_featured_image')->name('store-featured-image');
+    Route::get('/update-featuredImage/{id}', 'update_featuredImage')->name('update-featuredImage');
+    Route::post('/update-featured-image/{id}', 'update_featured_image')->name('update-featured-image');
+    
+
+    Route::get('/featured-course-images', 'create_featured_course_images')->name('featured-course-images');
+    Route::post('/update-featured-course-images/{id}', 'update_featured_course_images')->name('update-featured-course-images');
+
+    Route::get('/featured-event-image', 'create_featured_event_image')->name('featured-event-image');
+    Route::post('/update-featured-event-image/{id}', 'update_featured_event_image')->name('update-featured-event-image');
+
 });
 
- Route::get('/', function () {
-   return view('welcome');
- });
- 
-// Route::get('/', function () {
-//     return view('welcome');
-// })->middleware(['auth'])->name('login');
+
+Route::controller(HomeController::class)->group( function(){
+    Route::get('/','index')->name('/');
+});
+
 
 
 Route::controller(CoursesController::class)->group( function(){

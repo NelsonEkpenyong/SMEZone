@@ -16,6 +16,7 @@ use App\Services\AddIndustryService;
 use App\Services\AddCourseTypeService;
 
 
+
 class AdminController extends Controller
 {
     //

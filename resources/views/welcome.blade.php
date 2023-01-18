@@ -13,7 +13,7 @@
               type="button"
               data-bs-target="#carouselExampleIndicatorsHero"
               data-bs-slide-to="0"
-              class="active"
+              class=  "active"
               aria-current="true"
               aria-label="Slide 1"
             ></button>
@@ -31,8 +31,45 @@
             ></button>
           </div>
           <div class="carousel-inner">
-            <div class="carousel-item active">
+          @php $sliders = json_decode($heroSlider->slider);@endphp
+            @forelse ($sliders as $i => $heroSlider)
+              <div class="carousel-item {{ $i == 0 ? 'active': ''}}">
+                <div class="homeHero{{$i+1}}">
+                  <img src="{{asset('/images/'. $heroSlider)}}" alt="">
+                  <div class="container">
+                    <div class="contents">
+                      <h1>Small & Medium-Sized <span>Enterprise</span></h1>
+                      <p>
+                        Giving you all the tools to ensure your business
+                        flourishes
+                      </p>
+                      <button class="btn">Get Started</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @empty
+              <div class="carousel-item active">
+                <div class="homeHero">
+                  <img src="{{asset('/images/'. $heroSlider->hero_slider1)}}" alt="">
+                  <div class="container">
+                    <div class="contents">
+                      <h1>Small & Medium-Sized <span>Enterprise</span></h1>
+                      <p>
+                        Giving you all the tools to ensure your business
+                        flourishes
+                      </p>
+                      <button class="btn">Get Started</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforelse
+
+
+            {{-- <div class="carousel-item active">
               <div class="homeHero">
+                <img src="{{asset('/images/'. $heroSlider->hero_slider1)}}" alt="">
                 <div class="container">
                   <div class="contents">
                     <h1>Small & Medium-Sized <span>Enterprise</span></h1>
@@ -58,23 +95,14 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
+
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleIndicatorsHero"
-            data-bs-slide="prev"
-          >
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleIndicatorsHero"
-            data-bs-slide="next"
-          >
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -289,7 +317,7 @@
               </div>
           </div>
           </div>
-      </div>
+        </div>
 
         <!-- #Learn from the best -->
       </div>
@@ -302,12 +330,23 @@
         </h4>
         <div class="d-flex flex-column flex-lg-row align-items-center pb-5">
           <div class="featured-img-container">
-            <img
-              src="../img/Yasmin-Belo-Osagie.png"
-              width="332"
-              alt=""
-              class="img-fluid position-relative"
-            />
+            @if($featuredImage)
+                <img
+                src="{{asset('/images/'. $featuredImage->featured_image)}}"
+                width="332"
+                alt=""
+                class="img-fluid position-relative"
+              />
+            @else
+                <img
+                src="{{ asset('img/Yasmin-Belo-Osagie.png')}}"
+                width="332"
+                alt=""
+                class="img-fluid position-relative"
+              />
+                
+            @endif
+           
             <div class="bg-img-color"></div>
           </div>
 
@@ -315,23 +354,52 @@
             <div class="featured-contents">
               <div class="row align-items-center pt-md-4 pt-3 pb-3">
                 <div class="col-md-5 px-md-5">
-                  <h2 class="mb-3">
-                    “SMEZone brought the change for small businesses...”
-                  </h2>
-                  <p class="name">Yasmin Belo-Osagie</p>
-                  <p class="name">
-                    Co-founder,
-                    <span style="font-family: nunito-bold"
-                      >She.Leads.Africa</span
-                    >
-                  </p>
+                  @if($featuredImage)
+                    <h2 class="mb-3">
+                      “{{$featuredImage->testimonial}}”
+                    </h2>
+                  @else
+                    <h2 class="mb-3">“SMEZone brought the change for small businesses...”</h2>
+                  @endif
+
+                  @if($featuredImage)
+                    <p class="name">{{$featuredImage->name}}</p>
+                  @else
+                    <p class="name">Yasmin Belo-Osagie</p>
+                  @endif
+
+                 
+
+                  @if($featuredImage)
+                    <p class="name">
+                      {{$featuredImage->role}},
+                      <span style="font-family: nunito-bold">
+                        {{$featuredImage->company}}
+                      </span>
+                    </p>
+                  @else
+                    <p class="name">Co-founder,
+                      <span style="font-family: nunito-bold">She.Leads.Africa</span>
+                    </p>
+                  @endif
+
+
                 </div>
                 <div class="col-md-7 mt-md-0 mt-4">
-                  <p class="content mb-4">
-                    She Leads Africa is a platform that gives women the
-                    community, information and inspiration they need to live the
-                    lives of their dreams.
-                  </p>
+
+                  @if($featuredImage)
+                    <p class="content mb-4">
+                      {{$featuredImage->description}}
+                    </p>
+                  @else
+                    <p class="content mb-4">
+                      She Leads Africa is a platform that gives women the
+                      community, information and inspiration they need to live the
+                      lives of their dreams.
+                    </p>
+                  @endif
+
+
                   <div class="d-flex">
                     <button class="btn ps-0">
                       <img

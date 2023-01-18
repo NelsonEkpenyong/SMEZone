@@ -14,15 +14,194 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
 use App\Models\EventType;
 use App\Models\Event;
+use App\Models\HeroSlider;
+use App\Models\FeaturedImage;
 use App\Models\CourseType;
 use App\Models\Course;
 use App\Models\Certificates;   
 use App\Models\CourseCategories;   
 use App\Models\Price;   
 use App\Models\UserTypes;   
+use Illuminate\Support\Str;
+use File;
+
+
 
 class AdminController extends Controller
 {
+
+    public function sliders(){
+        $sliders = HeroSlider::all();
+        return view('admin.sliders', compact('sliders'));
+    }
+
+    public function change_hero_slider($id){
+        $slider = HeroSlider::findOrFail($id);
+        return view('admin.change-hero-slider', compact('slider','id'));
+    }
+
+    public function update_hero_slider(Request $request, $id){
+        $media = HeroSlider::findOrFail($id);
+
+        $data = [];
+        if ($request->hasFile('photo')) {
+            $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+
+            foreach ($request->photo as $image) {
+                $extension = $image->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtensions);
+
+                if($check){
+                    $file_name = Str::random(4) . '.' . $extension;
+                    $image->move(public_path('images'), $file_name);
+                    $data[] = $file_name;
+                }else{
+                    return redirect()->back()->with('error', 'File type not supported');
+                }
+            }
+            $old_photo = $media->slider;
+            $old_photo = json_decode($old_photo);
+
+            foreach($old_photo as $picture){
+                if($picture){
+                    // unlink(storage_path('app/public/images/' . $picture));
+                    unlink(public_path('images/') . $picture);
+                }
+            }
+            
+            $media->slider = json_encode($data);
+            $media->save();
+        }
+
+        return redirect('/dashboard')->with('success', 'Image added successfully! 😃');
+
+    }
+
+   
+    public function featured_image(){
+        // $featuredImage = FeaturedImage::all();
+        $featuredImage = FeaturedImage::all()->first();
+        return view('admin.featured-image', compact('featuredImage'));
+    }
+
+    public function create_featured_image(){
+        return view('admin.add-featured-image');
+    }
+
+    public function store_featured_image(Request $request){
+        try{
+            $feturedImage              = new FeaturedImage;
+            $feturedImage->name        = $request->name;
+            $feturedImage->company     = $request->company;
+            $feturedImage->role        = $request->role;
+            $feturedImage->testimonial = $request->testimonial;
+            $feturedImage->description = $request->description;
+
+            if ($request->hasFile('photo')) {
+                    $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+                    $image = $request->photo;
+
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtensions);
+                    if($check){
+                        $file_name = Str::random(4) . '.' . $extension;
+                        $image->move(public_path('images'), $file_name);
+                    }else{
+                        return redirect()->back()->with('error', 'File type not supported');
+                    }
+            }
+                
+            $feturedImage->featured_image = $file_name;
+            $feturedImage->save();
+        
+            return redirect('/dashboard')->with('success', 'Featured Image added successfully! 😃');
+        } catch(\Exception $error){
+            report($error->getMessage());
+            return response()->json(['status'  => false,'message' => $error->getMessage()],500);
+        }catch(\Throwable $error){
+            report($error->getMessage());
+            return response()->json(['status'  => false,'message' => $error->getMessage()],500);
+        }
+
+    }
+
+     public function update_featuredImage($id){
+        $featuredImage = FeaturedImage::findOrFail($id);
+        //dd($featuredImage);
+        return view('admin.add-featured-image',compact('featuredImage'));
+    }
+
+    public function update_featured_image(Request $request, $id){
+        try{
+            $feturedImage              = FeaturedImage::findOrFail($id);
+            $feturedImage->name        = $request->name;
+            $feturedImage->company     = $request->company;
+            $feturedImage->role        = $request->role;
+            $feturedImage->testimonial = $request->testimonial;
+            $feturedImage->description = $request->description;
+
+            if ($request->hasFile('photo')) {
+                    $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+                    $image = $request->photo;
+
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtensions);
+                    if($check){
+                        $file_name = Str::random(4) . '.' . $extension;
+                        $image->move(public_path('images'), $file_name);
+                    }else{
+                        return redirect()->back()->with('error', 'File type not supported');
+                    }
+
+                    $old_photo = $feturedImage->featured_image;
+
+                    if($old_photo){
+                        // unlink(storage_path('app/public/images/' . $picture));
+                        unlink(public_path('images/') . $old_photo);
+                    }
+            }
+                
+            $feturedImage->featured_image = $file_name;
+            $feturedImage->save();
+        
+            return redirect('/dashboard')->with('success', 'Featured Image updated successfully! 😃');
+        } catch(\Exception $error){
+            report($error->getMessage());
+            return response()->json(['status'  => false,'message' => $error->getMessage()],500);
+        }catch(\Throwable $error){
+            report($error->getMessage());
+            return response()->json(['status'  => false,'message' => $error->getMessage()],500);
+        }
+    }
+
+    public function create_featured_course_images(){
+        return view('admin.add-featured-course-images');
+    }
+
+
+    public function update_featured_course_images(Request $request){
+        dd($request);
+    }
+
+    public function create_featured_event_image(){
+        return view('admin.add-featured-event-image');
+    }
+
+    public function update_featured_event_image(Request $request){
+
+    }
+
+
+     public function create_video_slider(){
+        return view('admin.add-video-slider');
+    }
+
+    public function update_video_slider(Request $request){
+   
+        
+
+        dd($request);
+    }
     public function admin_dashboard(){
         $authUser = Auth::user();
         $eventCount = Event::count();

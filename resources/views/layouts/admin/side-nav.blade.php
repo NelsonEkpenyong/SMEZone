@@ -2,24 +2,38 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="/admin/dashboard">
+          <a class="nav-link" href="/dashboard">
             <i class="icon-grid menu-icon"></i>
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" href="#zon" aria-expanded="false" aria-controls="zon">
+          <a class="nav-link" data-toggle="collapse" href="#landing" aria-expanded="false" aria-controls="zon">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Landing</span>
+            <i class="menu-arrow" style="margin-left: 9rem"></i>
+          </a>
+          <div class="collapse" id="landing">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/sliders">Sliders</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/create-video-slider">Add course video slider</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/featuredImage">Featured Image</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/create-featured-image">Create featured image single</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/featured-course-images">Add featured course images</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/featured-event-image">Add featured event image</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#event" aria-expanded="false" aria-controls="zon">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Events</span>
             <i class="menu-arrow" style="margin-left: 9.3rem"></i>
           </a>
-          <div class="collapse" id="zon">
+          <div class="collapse" id="event">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('manage')}}">Manage</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('event')}}">Add</a></li>
-
-              {{-- <li class="nav-item"> <a class="nav-link" href="{{route('manage')}}">Manage</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{route('event')}}">Add</a></li> --}}
             </ul>
           </div>
         </li>
