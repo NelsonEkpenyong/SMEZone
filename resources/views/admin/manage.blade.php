@@ -58,7 +58,7 @@
                                     <td>{{$key + 1}}</td>
                                     <td>{{$event->event_name}}</td>
                                     <td>{{$event->start_date->toFormattedDateString()}} - {{$event->end_date->toFormattedDateString()}}</td>
-                                    <td>{{$event->is_featured == 0 ? 'No' : 'Featured'}}</td>
+                                    <td>{{$event->is_featured == 0 ? 'Not Featured' : 'Featured'}}</td>
                                     <td>{{$event->eventType->name}}</td>
                                     <td>{{$event->expected_participants}}</td>
                                     <td class="text-primary"> 
@@ -70,13 +70,13 @@
                                             <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                            <a class="dropdown-item" href="/admin/edit-event/{{$event->id}}">Edit</a>
-                                            <a class="dropdown-item" href="/admin/analyse-event/{{$event->id}}">Analytics</a>
-                                            <a class="dropdown-item" href="/admin/feature-event/{{$event->id}}" onclick="return confirm('Are you sure?');">
+                                            <a class="dropdown-item" href="/edit-event/{{$event->id}}">Edit</a>
+                                            <a class="dropdown-item" href="/analyse-event/{{$event->id}}">Analytics</a>
+                                            <a class="dropdown-item" href="/feature-event/{{$event->id}}" onclick="return confirm('Are you sure?');">
                                                 {{$event->is_featured == 0 ? 'Feature Event' : 'Unfeature Event'}}
                                             </a>
                                             <a class="dropdown-item" href="#">Cancel Event</a>
-                                            <a class="dropdown-item" href="/admin/postpone-event/{{$event->id}}">Postpone Event</a>
+                                            <a class="dropdown-item" href="/postpone-event/{{$event->id}}">Postpone Event</a>
                                             <a class="dropdown-item" href="#">Registered</a>
                                             <a class="dropdown-item" href="#">Upload Registered Users</a>
                                             <a class="dropdown-item" href="#">Attendance</a>

@@ -20,4 +20,8 @@ class CourseController extends Controller
     public function modify_course(UpdateCourseRequest $request, $course){
         CourseService::updateCourse($request,$course);
     }
+
+    public function feature_course($course){
+        CourseService::featureCourse($course);
+    }
 }

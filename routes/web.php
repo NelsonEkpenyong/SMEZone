@@ -80,11 +80,13 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::post('/update-featured-image/{id}', 'update_featured_image')->name('update-featured-image');
     
 
-    Route::get('/featured-course-images', 'create_featured_course_images')->name('featured-course-images');
-    Route::post('/update-featured-course-images/{id}', 'update_featured_course_images')->name('update-featured-course-images');
+    Route::get('/featured-courses', 'featured_courses')->name('featured-courses');
+    Route::get('/edit-featured-courses/{id}', 'edit_featured_course')->name('edit-featured-courses');
+    Route::post('/update-featured-courses/{id}', 'update_featured_courses')->name('update-featured-courses');
+    Route::get('/feature-a-course/{course}','feature_course')->name('feature-a-course');
 
-    Route::get('/featured-event-image', 'create_featured_event_image')->name('featured-event-image');
-    Route::post('/update-featured-event-image/{id}', 'update_featured_event_image')->name('update-featured-event-image');
+    Route::get('/upcoming-event', 'upcoming_event')->name('upcoming-event');
+    Route::post('/update-upcoming-event/{id}', 'update_upcoming_event')->name('update-upcoming-event');
 
 });
 
@@ -101,4 +103,6 @@ Route::controller(CoursesController::class)->group( function(){
 
 Route::controller(EventsController::class)->group( function(){
     Route::get('/events','events')->name('events');
+    Route::get('/an-event/{id}','event')->name('an-event');
+    Route::post('/fe-storeEvent','sore_event')->name('fe-storeEvent');
 });

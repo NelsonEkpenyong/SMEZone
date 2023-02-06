@@ -39,12 +39,12 @@
 
           <div class="form-group">
             <label for="exampleInputUsername1">Testimonial</label>
-            <textarea name="testimonial" class="form-control"  value="{{$featuredImage->testimonial}}" required></textarea>
+            <textarea name="testimonial" class="form-control"   required>{{$featuredImage->testimonial}}</textarea>
           </div>
 
           <div class="form-group">
             <label for="exampleInputUsername1">Company Description</label>
-            <textarea name="description" class="form-control" value="{{$featuredImage->description}}" required></textarea>
+            <textarea name="description" class="form-control"  required>{{$featuredImage->description}}</textarea>
           </div>
           
           <div class="form-group">
@@ -53,7 +53,7 @@
            </label>								
 
            <input type="file" name="photo" class="form-control">
-           <img class="" src="{{asset('/images/'. $featuredImage->featured_image) }} "width="193" height="130"/>
+           <img class="" src="{{asset('/images/'. $featuredImage->featured_image) }} "width="200" height="130" style="margin-top: 1rem"/>
           </div>
           
           <button type="submit" class="btn btn-primary mr-2">Update</button>

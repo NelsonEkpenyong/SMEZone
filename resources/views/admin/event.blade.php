@@ -15,30 +15,43 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/admin/store-event" enctype="multipart/form-data">
+						<form  method="post" action="/store-event" enctype="multipart/form-data">
 							@csrf
-							<div class="form-group">
-								<label for="exampleInputUsername1">Event Name</label>
-								<input type="text" name="event_name" class="form-control"  placeholder="e.g Growing Your Business" required>
-							</div>
+
 							<div class="row">
-								<div class="col-md-6">
-										<div class="form-group">
-											<label for="exampleInputUsername1">Venue Name</label>
-											<input type="text" name="venue_name" class="form-control"  placeholder="e.g Miami Hall" required>
-										</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="exampleInputUsername1">Event Name</label>
+										<input type="text" name="event_name" class="form-control"  placeholder="e.g Growing Your Business" required>
+									</div>
 								</div>
-								<div class="col-md-6">
+
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="exampleInputUsername1">Expected Participants</label>
+										<input type="number" name="expected_participants" class="form-control"  placeholder="e.g 50" required>
+									</div>
+							 </div>
+							</div>
+							<div class="wrapper" id="venue_container">
+								<div class="row" id="row[0]">
+									<div class="col-md-11">
 										<div class="form-group">
-											<label for="exampleInputUsername1">Expected Participants</label>
-											<input type="number" name="expected_participants" class="form-control"  placeholder="e.g 50" required>
+											<i class="fa fa-exclamation-circle mt-1" title="This event address comprise; The name of the venue, and the address of the venue. Hit the plus button to add other event venues."></i>
+											<label for="exampleInputUsername1">Venue Address </label>
+											<input type="text" name="venue_address[0]" class="form-control"  placeholder="e.g Regency Hall, 40 adeniran road, VI, Lagos" required>
 										</div>
+									</div>
+									<div class="col-md-1" style="margin-top: 2.6rem">
+										<div class="form-group">
+											<button type="button" class=" fa-solid fa-plus" id="add" style="border-radius: 15px; width: 2rem" onclick="addVenue()">
+											</button>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="exampleInputUsername1">Venue Address</label>
-								<input type="text" name="venue_address" class="form-control"  placeholder="e.g #34 Adekunle street" required>
-							</div>
+							
+
 							<div class="form-group">
 								<label for="exampleFormControlSelect3">Event Type</label>
 								<select class="form-control form-control-sm" name="event_type_id">
@@ -52,6 +65,8 @@
 								<label for="exampleTextarea1">Event Link</label>
 								<textarea class="form-control" name="event_link"></textarea>
 							</div>
+
+
 							<div class="row">
 								<div class="col-md-6">
 										<div class="form-group">
@@ -66,20 +81,34 @@
 										</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6">
+
+							<div class="wrapper" id="time_container">
+								<div class="row" id="time_row[0]">
+									<div class="col-md-6">
+											<div class="form-group">
+												<label for="event_start_time">Event Start Time</label>
+												<input type="time" name="start_time[0]" class="form-control"  placeholder="e.g Miami Hall" required>
+											</div>
+									</div>
+									<div class="col-md-5">
+											<div class="form-group">
+												<label for="event_end_time">Event End Time</label>
+												<input type="time" name="end_time[0]" class="form-control "  placeholder="e.g 50" required>
+											</div>
+									</div>
+									<div class="col-md-1" style="margin-top: 2.6rem">
 										<div class="form-group">
-											<label for="event_start_time">Event Start Time</label>
-											<input type="time" name="start_time" class="form-control"  placeholder="e.g Miami Hall" required>
+											<button type="button" class=" fa-solid fa-plus" id="add" style="border-radius: 15px; width: 2rem" onclick="addTime()">
+											</button>
 										</div>
-								</div>
-								<div class="col-md-6">
-										<div class="form-group">
-											<label for="event_end_time">Event End Time</label>
-											<input type="time" name="end_time" class="form-control "  placeholder="e.g 50" required>
-										</div>
-								</div>
+									</div>
+							 </div>
 							</div>
+
+
+
+
+							
 						
 							<div class="form-group">
 								<label for="editor">Description</label>
@@ -91,7 +120,7 @@
 									<small class="form-text text-muted">Required Dimension: 1200px X 500px</small>
 								</label>								
 
-								<input type="file" name="event_image" class="form-control">
+								<input type="file" name="event_image" class="form-control" required>
 							</div>
 
 							<div class="form-group">
@@ -157,7 +186,14 @@
 			}
 		</style>
   <script>
+		  	var max_fields      = 2; //maximum input boxes allowed
+				 var x = 0;
+					var time_max_fields = 2; //maximum input boxes allowed
+				 var time_x = 0;
 
+				
+				var venue_container = document.getElementById("venue_container");
+				var time_container  = document.getElementById("time_container");
 
     function check(input)
     {
@@ -182,6 +218,65 @@
     		input.checked = true;
     	}	
     }
-  </script>
+
+				const addVenue = () => {
+					
+					if(x < max_fields){
+										x++;
+										console.log(x, max_fields)
+										let newRow= `<div class="row" id="row[${x}]">
+																								<div class="col-md-11">
+																									<div class="form-group">
+																										<input type="text" name="venue_address[${x}]" class="form-control"  placeholder="e.g Regency Hall, 40 adeniran road, VI, Lagos" required>
+																									</div>
+																								</div>
+																								<div class="col-md-1" style="margin-top: 0.7rem">
+																									<div class="form-group">
+																										<button type="button" class=" fa-solid fa-minus" id="remove" style="border-radius: 15px; width: 2rem" onclick="removeVenue(this)">
+																										</button>
+																									</div>
+																								</div>
+																							</div>`;
+																							venue_container.innerHTML += newRow;
+						} //end of if
+
+					};
+				
+					const removeVenue = (div) =>{ 
+						venue_container.removeChild(div.parentNode.parentNode.parentNode);x--;
+					};
+
+					const addTime = () => {
+						if(time_x < time_max_fields){
+							 time_x++;
+								let newRow = `
+									<div class="row" id="row[${time_x}]">
+										<div class="col-md-6">
+												<div class="form-group">
+													<input type="time" name="start_time[${time_x}]" class="form-control"  placeholder="e.g Miami Hall" required>
+												</div>
+										</div>
+										<div class="col-md-5">
+												<div class="form-group">
+													<input type="time" name="end_time[${time_x}]" class="form-control "  placeholder="e.g 50" required>
+												</div>
+										</div>
+										<div class="col-md-1" style="margin-top: 0.7rem">
+											<div class="form-group">
+												<button type="button" class=" fa-solid fa-minus" id="add" style="border-radius: 15px; width: 2rem" onclick="removeTime(this)">
+												</button>
+											</div>
+										</div>
+									</div>`;
+									time_container.innerHTML += newRow;
+						}
+					}
+
+					const removeTime = (div) =>{ 
+						time_container.removeChild(div.parentNode.parentNode.parentNode);time_x--;
+					};
+  
+		
+		</script>
 @endsection
     

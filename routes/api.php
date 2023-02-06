@@ -40,4 +40,5 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
 Route::controller(CourseController::class)->prefix('course')->group( function(){
     Route::post('/store-course','store_course')->name('store-course');
     Route::post('/modify-course/{course}','modify_course')->name('modify-course');
+    Route::get('/feature-course/{course}','feature_course')->name('feature-course');
 });

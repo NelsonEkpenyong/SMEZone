@@ -9,6 +9,7 @@ use App\Models\FeaturedEventImage;
 use App\Models\FeaturedImage;
 use App\Models\HeroSlider;
 use App\Models\VideoSlider;
+use App\Models\Course;
 
 class HomeController extends Controller
 {
@@ -18,14 +19,13 @@ class HomeController extends Controller
     // }
 
     
-    public function index()
-    {
+    public function index(){
         $heroSlider          = HeroSlider::select('slider')->first();
         $videoSliders        = VideoSlider::all();
         $featuredImage       = FeaturedImage::all()->first();
         $FeaturedEventImage  = FeaturedEventImage::all();
-        $FeaturedCourseImage = FeaturedCourseImage::all();
-
-        return view('welcome', compact('heroSlider','videoSliders','featuredImage','FeaturedEventImage','FeaturedCourseImage'));
+        $featured_courses    = Course::where('is_featured',1)->get();
+        // dd($featured_courses  );
+        return view('welcome', compact('featured_courses','heroSlider','videoSliders','featuredImage','FeaturedEventImage'));
     }
 }

@@ -455,54 +455,16 @@
               Featured Courses
             </p>
             <div class="row">
+             @foreach ($featured_courses  as $course)
               <div class="col-md-6 position-relative">
                 <img
-                  src="../img/unapologetically.png"
+                  src="{{asset('/images/'. $course->image)}}"
                   alt=""
                   class="img-fluid"
                 />
-                <img
-                  src="../img/suspended-img.png"
-                  alt=""
-                  class="img-fluid suspended-img"
-                />
               </div>
-              <div class="col-md-6 position-relative">
-                <img
-                  src="../img/drive-smart.png"
-                  alt=""
-                  class="img-fluid"
-                />
-                <img
-                  src="../img/suspended-img.png"
-                  alt=""
-                  class="img-fluid suspended-img"
-                />
-              </div>
-              <div class="col-md-6 position-relative">
-                <img
-                  src="../img/Access-quick.png"
-                  alt=""
-                  class="img-fluid"
-                />
-                <img
-                  src="../img/suspended-img.png"
-                  alt=""
-                  class="img-fluid suspended-img"
-                />
-              </div>
-              <div class="col-md-6 position-relative">
-                <img
-                  src="../img/Access-bank 2.55.54 AM.png"
-                  alt=""
-                  class="img-fluid"
-                />
-                <img
-                  src="../img/suspended-img.png"
-                  alt=""
-                  class="img-fluid suspended-img"
-                />
-              </div>
+              @endforeach
+
             </div>
           </div>
         </div>
@@ -516,36 +478,13 @@
             <div class="col-md-7">
               <h1>The <span>Business</span> Guru of the century</h1>
             </div>
-            <div
-              class="col-md-5 mt-5 mt-md-0 pt-5 pt-md-0 upcoming-event-landing"
-            >
+            <div class="col-md-5 mt-5 mt-md-0 pt-5 pt-md-0 upcoming-event-landing">
               <!-- Carousel -->
-              <div
-                id="carouselExampleIndicators2"
-                class="carousel slide"
-                data-bs-ride="true"
-              >
+              <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators2"
-                    data-bs-slide-to="0"
-                    class="active"
-                    aria-current="true"
-                    aria-label="Slide 1"
-                  ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators2"
-                    data-bs-slide-to="1"
-                    aria-label="Slide 2"
-                  ></button>
-                  <button
-                    type="button"
-                    data-bs-target="#carouselExampleIndicators2"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3"
-                  ></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -553,11 +492,7 @@
                     <div>
                       <div class="d-flex justify-content-between mb-4">
                         <div class="upcome">
-                          <img
-                            src="../icons/calendar.svg"
-                            alt=""
-                            class="img-fluid me-2"
-                          />
+                          <img src="../icons/calendar.svg" alt="" class="img-fluid me-2"/>
                           Upcoming Events
                         </div>
                         <div>
@@ -690,28 +625,12 @@
                     <!-- #Carouse contents -->
                   </div>
                 </div>
-                <button
-                  class="carousel-control-prev index"
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators2"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    class="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  ></span>
+                <button class="carousel-control-prev index" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button
-                  class="carousel-control-next index"
-                  type="button"
-                  data-bs-target="#carouselExampleIndicators2"
-                  data-bs-slide="next"
-                >
-                  <span
-                    class="carousel-control-next-icon"
-                    aria-hidden="true"
-                  ></span>
+                <button class="carousel-control-next index" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>

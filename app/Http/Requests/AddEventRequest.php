@@ -26,11 +26,9 @@ class AddEventRequest extends FormRequest
         return [
             //
             'event_name'               => 'required',
-            'venue_name'               => 'required',
             'expected_participants'    => 'required',
-            'venue_address'            => 'required',
             'event_type_id'            => 'required',
-            'event_link'               => 'required',
+            'event_link'               => 'nullable',
             'start_date'               => 'required',
             'end_date'                 => 'required',
             'start_time'               => 'required',
@@ -39,7 +37,8 @@ class AddEventRequest extends FormRequest
             'event_image'              => 'required',
             'thumbnail'                => 'nullable',
             'invitation_email_banner'  => 'nullable',
-            'invite_user'              => 'required|min:1'
+            // 'invite_user'              => 'required|min:1'
+            'invite_user'              => 'nullable'
         ];
     }
 }

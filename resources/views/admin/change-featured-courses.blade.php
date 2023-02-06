@@ -5,7 +5,7 @@
       <div class="col-md-8 grid-margin stretch-card">
        <div class="card offset-md-3">
         <div class="card-body">
-         <h4 class="card-title">Add Video Slider</h4>
+         <h4 class="card-title">Add Featured Course Images</h4>
          @if ($errors->any())
           <div class="alert alert-danger" style="border-radius: 10px">
             <ul>

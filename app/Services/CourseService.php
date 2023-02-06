@@ -64,9 +64,34 @@ class CourseService {
       $course->payment_type_id    = $request->payment_type_id;
       $course->synopsis           = $request->synopsis;
       $course->description        = $request->description;
- 
+
 
       if ($request->hasFile('image')) {
+          $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+          $image = $request->file('image');
+
+          $extension = $image->getClientOriginalExtension();
+          $check = in_array($extension, $allowedfileExtensions);
+          if($check){
+              $file_name = Str::random(4) . '.' . $extension;
+              $image->move(public_path('images'), $file_name);
+          }else{
+              return redirect()->back()->with('error', 'File type not supported');
+          }
+
+        $old_photo = $course->image;
+
+        if($old_photo){
+            // unlink(storage_path('app/public/images/' . $picture));
+            unlink(public_path('images/') . $old_photo);
+            $course->image = $file_name;
+        }else{
+          $course->image = $course->image;
+        }
+      }
+    
+      $course->save();
+      /* if ($request->hasFile('image')) {
           $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
 
           $image = $request->file('image');
@@ -84,7 +109,7 @@ class CourseService {
           $course->image = $file_name;
       }
       
-      $course->save();
+      $course->save(); */
       
       return response()->json(['status'  => true,'message' => 'Course updated succesfully'],200);
     }catch (\Exception$e) {
@@ -96,6 +121,33 @@ class CourseService {
     }
   }
 
+  public static function featureCourse($id){
+    try{
+      $course = Course::findOrFail($id);
+
+      if($course->is_featured == 0){
+          Course::where('id',$id)->update(['is_featured' =>  1]);
+      }
+
+      if($course->is_featured == 1){
+        // $is_featured = Course::where('is_featured',1)->get();
+
+        // if($is_featured->count() == 4){
+        //     return response()->json(['status'  => false,'message' => 'There\'re can only be 4 featured courses. Unfeature a course to continue!'],200);
+        // }
+        Course::where('id',$id)->update(['is_featured' =>  0]);
+      }
+
+      return response()->json(['status'  => true,'message' => 'Course status updated succesfully'],200);
+      
+    }catch (\Exception$e) {
+        report($e);
+        report($e->getMessage());
+    } catch (\Throwable $e) {
+        report($e->getMessage());
+        return back()->withError($e->getMessage())->withInput();
+    }
+  }
 
 
 }

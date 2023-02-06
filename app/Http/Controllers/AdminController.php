@@ -79,13 +79,16 @@ class AdminController extends Controller
 
    
     public function featured_image(){
-        // $featuredImage = FeaturedImage::all();
         $featuredImage = FeaturedImage::all()->first();
         return view('admin.featured-image', compact('featuredImage'));
     }
 
     public function create_featured_image(){
-        return view('admin.add-featured-image');
+        $featuredImage = FeaturedImage::all()->first();
+        if($featuredImage){
+            return redirect()->back()->with('warning', 'There can only be one featured Image. Update Instaed');
+        }
+        return view('admin.add-featured-image', compact('featuredImage'));
     }
 
     public function store_featured_image(Request $request){
@@ -127,8 +130,7 @@ class AdminController extends Controller
 
      public function update_featuredImage($id){
         $featuredImage = FeaturedImage::findOrFail($id);
-        //dd($featuredImage);
-        return view('admin.add-featured-image',compact('featuredImage'));
+        return view('admin.update-featured-image',compact('featuredImage','id'));
     }
 
     public function update_featured_image(Request $request, $id){
@@ -158,10 +160,12 @@ class AdminController extends Controller
                     if($old_photo){
                         // unlink(storage_path('app/public/images/' . $picture));
                         unlink(public_path('images/') . $old_photo);
+                        $feturedImage->featured_image = $file_name;
+                    }else{
+                    $feturedImage->featured_image = $feturedImage->featured_image;
                     }
             }
                 
-            $feturedImage->featured_image = $file_name;
             $feturedImage->save();
         
             return redirect('/dashboard')->with('success', 'Featured Image updated successfully! 😃');
@@ -174,20 +178,28 @@ class AdminController extends Controller
         }
     }
 
-    public function create_featured_course_images(){
-        return view('admin.add-featured-course-images');
+
+    /* Featured Courses */
+    public function featured_courses(){
+        $featuredCourses = Course::where('is_featured', 1)->get();
+        return view('admin.featured-courses', compact('featuredCourses'));
     }
 
-
-    public function update_featured_course_images(Request $request){
+    public function edit_featured_course($course){
+        $featuredCourse = Course::findOrFail($course);
+        return view('admin.change-featured-courses', compact('featuredCourse'));
+    }
+    public function update_featured_courses(Request $request, $id){
         dd($request);
     }
 
-    public function create_featured_event_image(){
-        return view('admin.add-featured-event-image');
+
+
+    public function upcoming_event(){
+        return view('admin.update-upcoming-event');
     }
 
-    public function update_featured_event_image(Request $request){
+    public function update_upcoming_event(Request $request){
 
     }
 
@@ -197,15 +209,13 @@ class AdminController extends Controller
     }
 
     public function update_video_slider(Request $request){
-   
-        
-
         dd($request);
     }
     public function admin_dashboard(){
-        $authUser = Auth::user();
+        $authUser   = Auth::user();
         $eventCount = Event::count();
-        return view('admin.dashboard',compact('authUser','eventCount'));
+        $courses    = Course::count();
+        return view('admin.dashboard',compact('authUser','eventCount','courses'));
     }
 
     public function manage_event(){
@@ -219,14 +229,14 @@ class AdminController extends Controller
     }
 
     public function store_event(AddEventRequest $request){
-      
-        $responded = Route::dispatch( Request::create('api/admin/add-event', 'POST', $request->all()) );
+        dd($request);
+       $responded = Route::dispatch( Request::create('api/admin/add-event', 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Event Created Successfully!😃');
-            return redirect('/admin/manage');
+            return redirect('/manage');
         }
-        return redirect()->back()->with('error', 'Event Creation Failed 😞');
-    }
+        return redirect()->back()->with('error', 'Event Creation Failed 😞'); 
+}
 
     public function edit_event($event){
         $event = Event::findOrFail($event);
@@ -257,7 +267,7 @@ class AdminController extends Controller
             }
       
             flash()->addSuccess('Event status changed Successfully!😃');
-            return redirect('/admin/manage');
+            return redirect('/manage');
             
           }catch (\Exception$e) {
               report($e);
@@ -388,13 +398,25 @@ class AdminController extends Controller
         $responded = Route::dispatch( Request::create("api/course/modify-course/$id", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course updated Successfully!😃');
-            return redirect('/admin/manage-course');
+            return redirect('/manage-course');
         }
         return redirect()->back()->with('error', 'Course updation Failed 😞');
     }
+
+    public function feature_course($id){
+       
+        
+        $responded = Route::dispatch( Request::create("api/course/feature-course/$id", 'GET') );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Course status updated Successfully!😃');
+            return redirect('/featured-courses');
+        }
+        return redirect()->back()->with('error', 'Course status updation Failed 😞');
+        
+    }
+
     public function analyse_event($id){
         $event = Event::findOrFail($id);
-        dd($event);
         return view('admin.event-analytics');
     }
 

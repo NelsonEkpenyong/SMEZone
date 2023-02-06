@@ -10,7 +10,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="ti-home" style="text-decoration: none; color: inherit; "> Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Landing page Featured Image</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Landing page Featured Courses</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -18,9 +18,9 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 col-md-11 col-sm-11 mb-2">
-                            <h4 class="card-title">Featured Image</h4>
-                            <a href="/create-featured-image" class="btn btn-success btn-icon-text">
-                                Create Featured Image
+                            <h4 class="card-title">Featured Courses</h4>
+                            <a href="/create-featured-courses" class="btn btn-success btn-icon-text">
+                                Create Featured Courses
                             </a>
                         </div>
                     </div>
@@ -29,51 +29,39 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Featured Image</th>
-                                <th>Person's Name</th>
-                                <th>Role</th>
-                                <th>Company</th>
-                                <th>Testimonial</th>
-                                <th>Description</th>
-                                <th>Created at</th>
-                                <th>Updated at</th>
+                                <th>Featured Course Image</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                               <tbody>
-                               @if($featuredImage)
-                                <td>1</td>
+                               @forelse($featuredCourses as $i => $course)
+                               <tr>
+                                  <td>{{ $i + 1}}</td>
                                   <td>
-                                   <a href="/update-featuredImage/{{$featuredImage->id}}">
-                                    <img src="{{asset('/images/'. $featuredImage->featured_image)}}" alt="" style="margin-bottom: 5px; width: 100px; height: 50px; border-radius: 0px"> <br>
+                                   <a href="#">
+                                    <img src="{{asset('/images/'. $course->image)}}" alt="" style="margin-bottom: 5px; width: 100px; height: 50px; border-radius: 0px"> <br>
                                    </a>
                                   </td>
-                                  <td>{{$featuredImage->name}}</td>
-                                  <td>{{$featuredImage->role}}</td>
-                                  <td>{{$featuredImage->company}}</td>
-                                  <td>{{$featuredImage->testimonial}}</td>
-                                  <td>{{$featuredImage->description}}</td>
-                                  <td>{{$featuredImage->created_at}}</td>
-                                  <td>{{$featuredImage->updated_at}}</td>
                                   <td>
                                    <div class="dropdown">
                                        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                        <i class="ti-settings"></i>
                                        </button>
                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                       <a class="dropdown-item" href="/update-featuredImage/{{$featuredImage->id}}">change Featured Image</a>
+                                       <a class="dropdown-item" href="#">change Featured Course</a>
                                        <div class="dropdown-divider"></div>
                                        {{-- <a class="dropdown-item" href="#">Delete Event</a> --}}
                                        </div>
                                    </div>
                                   </td>
-                                 @else
+                                 </tr>
+                                 @empty
                                    <tr>
-                                      <td>No Featured Image and record found</td>
+                                      <td>No Featured Course and record found</td>
                                       <td></td>
                                       <td></td>
                                    </tr>
-                                 @endif
+                                 @endforelse
                             </tbody>
                         </table>
                     </div>

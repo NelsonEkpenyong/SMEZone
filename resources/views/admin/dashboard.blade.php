@@ -88,7 +88,7 @@
                 <div class="card-body">
                   <a href="{{route('manage-course')}}" style="text-decoration: none; color: inherit;">
                     <p class="mb-4">Courses</p>
-                    <p class="fs-30 mb-2">47033</p>
+                    <p class="fs-30 mb-2">{{$courses}}</p>
                     <p>0.22% (30 days)</p>
                   </a>
                 </div>

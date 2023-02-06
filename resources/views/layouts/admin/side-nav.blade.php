@@ -19,8 +19,9 @@
               <li class="nav-item"> <a class="nav-link" href="/create-video-slider">Add course video slider</a></li>
               <li class="nav-item"> <a class="nav-link" href="/featuredImage">Featured Image</a></li>
               <li class="nav-item"> <a class="nav-link" href="/create-featured-image">Create featured image single</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/featured-courses">Featured Courses</a></li>
               <li class="nav-item"> <a class="nav-link" href="/featured-course-images">Add featured course images</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/featured-event-image">Add featured event image</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/upcoming-event">update upcoming event</a></li>
             </ul>
           </div>
         </li>
@@ -74,8 +75,8 @@
           </a>
           <div class="collapse" id="course">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="/admin/manage-course">Manage</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/admin/course">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('manage-course')}}">Manage</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('course')}}">Add</a></li>
             </ul>
           </div>
         </li>
