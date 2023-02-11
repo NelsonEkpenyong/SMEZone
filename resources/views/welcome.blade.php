@@ -2,12 +2,8 @@
 @extends('layouts.app')
 @section('content')
     <!-- Hero Section -->
-    <div class="homeHeroSection">
-        <div
-          id="carouselExampleIndicatorsHero"
-          class="carousel slide"
-          data-bs-ride="true"
-        >
+      <div class="homeHeroSection">
+        <div id="carouselExampleIndicatorsHero" class="carousel slide" data-bs-ride="true">
           <div class="carousel-indicators">
             <button
               type="button"
@@ -34,8 +30,7 @@
           @php $sliders = json_decode($heroSlider->slider);@endphp
             @forelse ($sliders as $i => $heroSlider)
               <div class="carousel-item {{ $i == 0 ? 'active': ''}}">
-                <div class="homeHero{{$i+1}}">
-                  <img src="{{asset('/images/'. $heroSlider)}}" alt="">
+                <div class="homeHero{{$i+1}}" style="background: url( '{{asset('images/'.$heroSlider)}} ') no-repeat center; ">
                   <div class="container">
                     <div class="contents">
                       <h1>Small & Medium-Sized <span>Enterprise</span></h1>
@@ -472,11 +467,12 @@
       <!-- #Section 3 -->
 
       <!-- section 4 -->
-      <div class="home-section4">
+      <div class="home-section4 container" style="background: url('{{ asset('images/'.$upcomingEventImage->event_image) }} ') center left no-repeat;">
         <div class="container py-5">
           <div class="row">
             <div class="col-md-7">
-              <h1>The <span>Business</span> Guru of the century</h1>
+              @php $name = explode(' ', $upcomingEventImage->event->event_name,3); @endphp
+                <h1>{{$name[0]}} <span class="our-orange">{{isset($name[1]) ? $name[1] : $upcomingEventImage->event->event_name}}</span> {{isset($name[2]) ? $name[2] : $upcomingEventImage->event->event_name}} {{isset($name[3]) ? $name[3] : $upcomingEventImage->event->event_name}}</h1>
             </div>
             <div class="col-md-5 mt-5 mt-md-0 pt-5 pt-md-0 upcoming-event-landing">
               <!-- Carousel -->
@@ -487,6 +483,49 @@
                   <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
+                  @forelse ($upcomingEvents as $i => $event)
+                  <div class="carousel-item {{ $i == 0 ? 'active': ''}}">
+                    <!-- Carousel contents -->
+                    <div>
+                      <div class="d-flex justify-content-between mb-4">
+                        <div class="upcome">
+                          <img src="../icons/calendar.svg" alt="" class="img-fluid me-2"/>
+                          Upcoming Events
+                        </div>
+                        <div>
+                          <a href="/an-event/{{$event->id}}">View event</a>
+                        </div>
+                      </div>
+                      <h5 class="business-guru">{{'r'}}</h5>
+                      <p class="live-zoom mb-4">Live on zoom UTC 19:00hrs</p>
+                      <div class="row">
+                        <div class="col-4">
+                          <h4 class="dlt">28 JAN</h4>
+                          <p class="dlt-sub">Date</p>
+                        </div>
+                        <div
+                          class="col-4 d-flex justify-content-center"
+                          style="
+                            border-left: 0.5px solid #000000;
+                            border-right: 0.5px solid #000000;
+                          "
+                        >
+                          <div>
+                            <h4 class="dlt">Lagos</h4>
+                            <p class="dlt-sub">Location</p>
+                          </div>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center">
+                          <div>
+                            <h4 class="dlt">19:00</h4>
+                            <p class="dlt-sub">Time</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- #Carouse contents -->
+                  </div>
+                  @empty
                   <div class="carousel-item active">
                     <!-- Carousel contents -->
                     <div>
@@ -530,100 +569,8 @@
                     </div>
                     <!-- #Carouse contents -->
                   </div>
-                  <div class="carousel-item">
-                    <!-- Carousel contents -->
-                    <div>
-                      <div class="d-flex justify-content-between mb-4">
-                        <div class="upcome">
-                          <img
-                            src="../icons/calendar.svg"
-                            alt=""
-                            class="img-fluid me-2"
-                          />
-                          Upcoming Events
-                        </div>
-                        <div>
-                          <a href="/event.html">View all</a>
-                        </div>
-                      </div>
-                      <h5 class="business-guru">
-                        The Business Guru of the Century
-                      </h5>
-                      <p class="live-zoom mb-4">Live on zoom UTC 19:00hrs</p>
-                      <div class="row">
-                        <div class="col-4">
-                          <h4 class="dlt">28 JAN</h4>
-                          <p class="dlt-sub">Date</p>
-                        </div>
-                        <div
-                          class="col-4 d-flex justify-content-center"
-                          style="
-                            border-left: 0.5px solid #000000;
-                            border-right: 0.5px solid #000000;
-                          "
-                        >
-                          <div>
-                            <h4 class="dlt">Lagos</h4>
-                            <p class="dlt-sub">Location</p>
-                          </div>
-                        </div>
-                        <div class="col-4 d-flex justify-content-center">
-                          <div>
-                            <h4 class="dlt">19:00</h4>
-                            <p class="dlt-sub">Time</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- #Carouse contents -->
-                  </div>
-                  <div class="carousel-item">
-                    <!-- Carousel contents -->
-                    <div>
-                      <div class="d-flex justify-content-between mb-4">
-                        <div class="upcome">
-                          <img
-                            src="../icons/calendar.svg"
-                            alt=""
-                            class="img-fluid me-2"
-                          />
-                          Upcoming Events
-                        </div>
-                        <div>
-                          <a href="/event.html">View all</a>
-                        </div>
-                      </div>
-                      <h5 class="business-guru">
-                        The Business Guru of the Century
-                      </h5>
-                      <p class="live-zoom mb-4">Live on zoom UTC 19:00hrs</p>
-                      <div class="row">
-                        <div class="col-4">
-                          <h4 class="dlt">28 JAN</h4>
-                          <p class="dlt-sub">Date</p>
-                        </div>
-                        <div
-                          class="col-4 d-flex justify-content-center"
-                          style="
-                            border-left: 0.5px solid #000000;
-                            border-right: 0.5px solid #000000;
-                          "
-                        >
-                          <div>
-                            <h4 class="dlt">Lagos</h4>
-                            <p class="dlt-sub">Location</p>
-                          </div>
-                        </div>
-                        <div class="col-4 d-flex justify-content-center">
-                          <div>
-                            <h4 class="dlt">19:00</h4>
-                            <p class="dlt-sub">Time</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- #Carouse contents -->
-                  </div>
+                  @endforelse
+                  
                 </div>
                 <button class="carousel-control-prev index" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -641,9 +588,8 @@
       </div>
       <!-- #section 4 -->
     <script>
-
-    const counters = document.querySelectorAll('.count');
-    const speed = 30;
+      const counters = document.querySelectorAll('.count');
+      const speed = 30;
         counters.forEach((counter) => {
             console.log(counters)
             const updateCount   = () => {

@@ -43,8 +43,8 @@
                      $address = [$event->venue_address];
                      $one = json_encode($event->venue_address);
 
-                     $start_times = json_decode($event->start_time);
-                     $end_times = json_decode($event->end_time);
+                    //  $start_times = json_decode($event->start_time);
+                    //  $end_times = json_decode($event->end_time);
                      if(is_array($start_times) && !is_null($start_times)){$dates = array_combine($start_times, $end_times);}
                   @endphp
                   

@@ -46,6 +46,7 @@
                                 <th>Name</th>
                                 <th>Date</th>
                                 <th>Featured</th>
+                                <th>Upcoming</th>
                                 <th>Type</th>
                                 <th>Exp. pcpts</th>
                                 <th>Join Link</th>
@@ -59,6 +60,7 @@
                                     <td>{{$event->event_name}}</td>
                                     <td>{{$event->start_date->toFormattedDateString()}} - {{$event->end_date->toFormattedDateString()}}</td>
                                     <td>{{$event->is_featured == 0 ? 'Not Featured' : 'Featured'}}</td>
+                                    <td>{{$event->is_upcoming == 0 ? 'Not Upcoming' : 'Upcoming'}}</td>
                                     <td>{{$event->eventType->name}}</td>
                                     <td>{{$event->expected_participants}}</td>
                                     <td class="text-primary"> 
@@ -72,6 +74,9 @@
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
                                             <a class="dropdown-item" href="/edit-event/{{$event->id}}">Edit</a>
                                             <a class="dropdown-item" href="/analyse-event/{{$event->id}}">Analytics</a>
+                                            <a class="dropdown-item" href="/upcome-event/{{$event->id}}" onclick="return confirm('Are you sure?');">
+                                                {{$event->is_upcoming == 0 ? 'Make upcoming' : 'Upcoming Event'}}
+                                            </a>
                                             <a class="dropdown-item" href="/feature-event/{{$event->id}}" onclick="return confirm('Are you sure?');">
                                                 {{$event->is_featured == 0 ? 'Feature Event' : 'Unfeature Event'}}
                                             </a>

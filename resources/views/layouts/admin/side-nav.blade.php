@@ -20,8 +20,8 @@
               <li class="nav-item"> <a class="nav-link" href="/featuredImage">Featured Image</a></li>
               <li class="nav-item"> <a class="nav-link" href="/create-featured-image">Create featured image single</a></li>
               <li class="nav-item"> <a class="nav-link" href="/featured-courses">Featured Courses</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/featured-course-images">Add featured course images</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/upcoming-event">update upcoming event</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/featured-course-images">Featured course images</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/upcoming-event-image">Upcoming event Image</a></li>
             </ul>
           </div>
         </li>

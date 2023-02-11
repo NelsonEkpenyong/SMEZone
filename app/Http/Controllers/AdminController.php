@@ -18,6 +18,7 @@ use App\Models\HeroSlider;
 use App\Models\FeaturedImage;
 use App\Models\CourseType;
 use App\Models\Course;
+use App\Models\UpcomingEventImage;
 use App\Models\Certificates;   
 use App\Models\CourseCategories;   
 use App\Models\Price;   
@@ -162,7 +163,7 @@ class AdminController extends Controller
                         unlink(public_path('images/') . $old_photo);
                         $feturedImage->featured_image = $file_name;
                     }else{
-                    $feturedImage->featured_image = $feturedImage->featured_image;
+                        $feturedImage->featured_image = $feturedImage->featured_image;
                     }
             }
                 
@@ -195,12 +196,62 @@ class AdminController extends Controller
 
 
 
-    public function upcoming_event(){
-        return view('admin.update-upcoming-event');
+    public function upcoming_event_image(){
+        $events = UpcomingEventImage::all();
+        return view('admin.upcoming-event-image', compact('events'));
     }
 
-    public function update_upcoming_event(Request $request){
+    public function upcoming_event($id){
+        $upcomingEventImage  = UpcomingEventImage::findOrFail($id);
+        $events = Event::where('is_upcoming',1)->get();
+        return view('admin.update-upcoming-event', compact('upcomingEventImage','events'));
+    }
 
+
+    public function update_upcoming_event(Request $request, $id){
+        try {
+            $upcomingEventImage = UpcomingEventImage::findOrFail($id);
+            $upcomingEventImage->event_id = $request->event;
+
+            if ($request->hasFile('image')) {
+                $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+                $newImage = $request->file('image');
+      
+                $extension = $newImage->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtensions);
+
+                if($check){
+                    $old_photo = $upcomingEventImage->event_image;
+
+                    $file_name = Str::random(4) . '.' . $extension;
+                    $newImage->move(public_path('images'), $file_name);
+                    if($old_photo){
+                        unlink(public_path('images/') . $old_photo);
+                        $upcomingEventImage->event_image = $file_name;
+                    }else{
+                      $upcomingEventImage->event_image = $upcomingEventImage->event_image;
+                    }
+                    
+                }else{
+                    return redirect()->back()->with('error', 'File type not supported');
+                }
+      
+            }
+          
+            $upcomingEventImage->save();
+
+            flash()->addSuccess('Featured Upcoming Event image updated Successfully!😃');
+            return redirect('/manage');
+        }catch (\Exception$e) {
+            report($e);
+            report($e->getMessage());
+
+            flash()->addError('Featured Upcoming Event image was not updated!😞');
+            return redirect('/manage');
+        } catch (\Throwable $e) {
+            report($e->getMessage());
+            return back()->withError($e->getMessage())->withInput();
+        }
     }
 
 
@@ -229,7 +280,6 @@ class AdminController extends Controller
     }
 
     public function store_event(AddEventRequest $request){
-        dd($request);
        $responded = Route::dispatch( Request::create('api/admin/add-event', 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Event Created Successfully!😃');
@@ -280,13 +330,38 @@ class AdminController extends Controller
         
     }
 
+    public function upcome_event($id){
+        try{
+              $event = Event::findOrFail($id);
+  
+              if($event->is_upcoming == 0){
+                  $event::where('id',$id)->update(['is_upcoming' =>  1]);
+              }
+      
+              if($event->is_upcoming == 1){
+                  $event::where('id',$id)->update(['is_upcoming' =>  0]);
+              }
+        
+              flash()->addSuccess('Event upcoming status changed Successfully!😃');
+              return redirect('/manage');
+              
+            }catch (\Exception$e) {
+                report($e);
+                report($e->getMessage());
+            } catch (\Throwable $e) {
+                report($e->getMessage());
+                return back()->withError($e->getMessage())->withInput();
+            }
+          return redirect()->back()->with('error', 'Event status change has Failed 😞');
+          
+      }
+
     public function postpone_event($id){
         $event = Event::findOrFail($id);
         return view('admin.postpone-event', compact('event'));
     }
 
     public function postpone(Request $request, $id){
-        
         $responded = Route::dispatch( Request::create("api/admin/postpone-an-event/$id", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Event postponed Successfully!😃');
@@ -295,17 +370,15 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'We couldn\'t postpone this Event 😞');
     }
 
-
     public function industry(){
         return view('admin.industry');
     }
 
     public function store_industry(AddIndustryRequest $request){
-
         $request->slug = strtolower( preg_replace('/-+/', '-', $request->slug ));
         $data = [
             'industry' => $request->industry,
-            'slug' => $request->slug,
+            'slug'     => $request->slug,
         ];
         $responded = Route::dispatch( Request::create('api/admin/add-industry', 'POST', $data) );
         if ($responded->status() == 200 ) {
@@ -404,8 +477,6 @@ class AdminController extends Controller
     }
 
     public function feature_course($id){
-       
-        
         $responded = Route::dispatch( Request::create("api/course/feature-course/$id", 'GET') );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course status updated Successfully!😃');
@@ -421,7 +492,6 @@ class AdminController extends Controller
     }
 
     public function manage_mail(){
-
     }
 
     public function mail(){

@@ -40,6 +40,7 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
 
     Route::get('/analyse-event/{event}','analyse_event')->name('analyse-event');
     Route::get('/feature-event/{event}','feature_event')->name('feature-event');
+    Route::get('/upcome-event/{event}','upcome_event')->name('upcome-event');
     Route::get('/cancel-event/{event}','cancel_event')->name('cancel-event');
 
     Route::get('/postpone-event/{event}','postpone_event')->name('postpone-event');
@@ -85,7 +86,8 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::post('/update-featured-courses/{id}', 'update_featured_courses')->name('update-featured-courses');
     Route::get('/feature-a-course/{course}','feature_course')->name('feature-a-course');
 
-    Route::get('/upcoming-event', 'upcoming_event')->name('upcoming-event');
+    Route::get('/upcoming-event-image', 'upcoming_event_image')->name('upcoming-event-image');
+    Route::get('/upcoming-event/{id}', 'upcoming_event')->name('upcoming-event');
     Route::post('/update-upcoming-event/{id}', 'update_upcoming_event')->name('update-upcoming-event');
 
 });

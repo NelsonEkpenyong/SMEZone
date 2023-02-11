@@ -359,6 +359,7 @@ aside .dropdown-toggle:hover {
   /* background: url(../img/Hero-Img-1.png) no-repeat center; */
   background-size: auto 100%;
   height: 455px;
+  width: 100%;
   display: flex;
   align-items: center;
   color: var(--white);
@@ -373,17 +374,17 @@ aside .dropdown-toggle:hover {
   color: var(--white);
 }
 
-:is(.homeHero, .homeHero2) .contents {
+:is(.homeHero1, .homeHero2) .contents {
   width: 344px;
 }
 
-:is(.homeHero, .homeHero2) .contents h1 {
+:is(.homeHero1, .homeHero2) .contents h1 {
   font-family: MontserratAlternates-SemiBold;
   font-size: 45px;
   line-height: 55px;
 }
 
-:is(.homeHero, .homeHero2) .contents h1 span {
+:is(.homeHero1, .homeHero2) .contents h1 span {
   font-family: MontserratAlternates-SemiBold;
   background: linear-gradient(90.59deg, #eb8e02 20.41%, #bceb02 73.12%);
   -webkit-background-clip: text;
@@ -392,14 +393,14 @@ aside .dropdown-toggle:hover {
   color: transparent;
 }
 
-:is(.homeHero, .homeHero2) .contents p {
+:is(.homeHero1, .homeHero2) .contents p {
   font-size: 18px;
   line-height: 25px;
   margin-top: 20px;
   margin-bottom: 34px;
 }
 
-:is(.homeHero, .homeHero2) .contents .btn {
+:is(.homeHero1, .homeHero2) .contents .btn {
   font-family: nunito-bold;
   background: #3068a0;
   border-radius: 30px;
@@ -651,10 +652,10 @@ aside .dropdown-toggle:hover {
 
 /* Home Section 4 */
 .home-section4 {
-  background: url(../img/Business-guru-bg.png) center left no-repeat;
-  background-size: 53% 100%;
-  background-color: rgba(162, 142, 112, 0.26);
-  min-height: 326px;
+  /* background: url(../img/Business-guru-bg.png) center left no-repeat; */
+  background-size: 53% 100% !important;
+  background-color: rgba(162, 142, 112, 0.26) !important;
+  min-height: 326px !important;
 }
 
 .home-section4 h1 {

@@ -41,11 +41,15 @@
                     @php 
                       $start_times = json_decode($event->start_time);
                       $end_times = json_decode($event->end_time);
-                      if(is_array($start_times) && !is_null($start_times)){$dates = array_combine($start_times, $end_times);}
+                      if(is_array($start_times) && !is_null($start_times)){
+                        $dates = array_combine($start_times, $end_times);
+                      }
                     @endphp
                     
-                    @foreach ($dates as $start => $end)
+                    @forelse ($dates as $start => $end)
                         {{$start}} - {{$end}} <br>
+                    @empty
+
                     @endforeach
                   </div>
                 </div>
