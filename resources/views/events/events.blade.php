@@ -50,9 +50,9 @@
                     }
                   @endphp
                   
-                  {{-- @foreach ($dates as $start => $end)
+                  @foreach ($dates as $start => $end)
                       <p style="margin-bottom: 0.2rem">{{$start}} - {{$end}}</p>
-                  @endforeach --}}
+                  @endforeach
 
                   @if (strpos($event->venue_address, ","))
                       <p>Multiple Locations</p>
