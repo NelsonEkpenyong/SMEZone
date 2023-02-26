@@ -3,7 +3,9 @@
 
       <section class="events-upper container-fluid">
         <div class="container">
-          @php $name = explode(' ', $event->event_name,3); @endphp
+          @php 
+            $name = explode(' ', $event->event_name,3); 
+          @endphp
           <h2>{{$event->event_name}}
             {{-- {{$name[0]}} <span class="our-orange">{{$name[1]}}</span> {{isset($name[2]) ? $name[2] : ""}} {{isset($name[3]) ? $name[3] : ""}} --}}
           </h2>
