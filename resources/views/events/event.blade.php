@@ -14,10 +14,7 @@
 
       <div class="event-back">
         <div class="container">
-          <a href="/events" class="d-flex align-items-center">
-            <img src="{{asset('icons/back-icon.svg')}}" alt="back" />
-            Back
-          </a>
+          <a href="/events" class="d-flex align-items-center"><img src="{{asset('icons/back-icon.svg')}}" alt="back" />Back</a>
         </div>
       </div>
 
