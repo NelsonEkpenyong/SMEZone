@@ -113,7 +113,6 @@
                 <input type="hidden" name="password" value="admin">
                 @php 
                   $venues = json_decode($event->venue_address);
-                  // dd(count($venues));
                 @endphp
                 <div class="form-group">
                   <select class="form-select" id="exampleSelect" name="venue_name" required>
