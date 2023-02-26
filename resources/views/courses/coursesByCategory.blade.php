@@ -64,7 +64,7 @@
                       
                   @empty
                   <li class="nav-item">
-                    <a class="nav-link" href="/financial-management.html">No Course Categories Yet</a>
+                    <a class="nav-link" href="#">No Course Categories Yet</a>
                   </li>
                   @endforelse
                 </ul>
@@ -78,11 +78,11 @@
       <div class="container">
         <div class="row mt-5">
           <div class="col-12 course-p">
-            <p>showing all courses</p>
+            <p>showing courses in {{$coursesByCategory[0]->courseCategory->title}}</p>
           </div>
         </div>
         <div class="row courses-list py-4">
-          @forelse($courses as $course)
+          @forelse($coursesByCategory as $course)
             <div class="col-auto">
               <div class="card" style="max-width: 282px">
                 <img class="card-img-top" src="{{ asset('images/'. $course->image)}}" alt="course pics" style="width: 100%"/>

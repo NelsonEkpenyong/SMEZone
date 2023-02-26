@@ -50,7 +50,7 @@
                         {{$start}} - {{$end}} <br>
                     @empty
 
-                    @endforeach
+                    @endforelse
                   </div>
                 </div>
               </div>
@@ -113,11 +113,9 @@
                 <input type="hidden" name="password" value="admin">
                 @php 
                   $venues = json_decode($event->venue_address);
-                  // dd(count($venues));
                 @endphp
                 <div class="form-group">
                   <select class="form-select" id="exampleSelect" name="venue_name" required>
-                    <option value="0" readonly>Select Venue</option>
                     @foreach ($venues as $item)
                         @if( count($venues) == 1)
                             <option value="{{$item}}" selected >{{$item}}</option>

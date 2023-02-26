@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\api\AdminController;
 use App\Http\Controllers\api\CourseController;
+use App\Http\Controllers\api\CourseCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,9 @@ Route::controller(CourseController::class)->prefix('course')->group( function(){
     Route::post('/store-course','store_course')->name('store-course');
     Route::post('/modify-course/{course}','modify_course')->name('modify-course');
     Route::get('/feature-course/{course}','feature_course')->name('feature-course');
+});
+
+Route::controller(CourseCategoryController::class)->prefix('courseCategory')->group( function(){
+    Route::post('/store-course-category','store_course_category')->name('store-course-category');
+    Route::post('/modify-course-category/{category}','modify_course_category')->name('modify-course-category');
 });

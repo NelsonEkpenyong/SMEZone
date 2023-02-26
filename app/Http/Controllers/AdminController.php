@@ -12,6 +12,7 @@ use App\Http\Requests\AddEventRequest;
 use App\Http\Requests\AddCourseRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
+use App\Http\Requests\CourseCategoryRequest;
 use App\Models\EventType;
 use App\Models\Event;
 use App\Models\HeroSlider;
@@ -452,7 +453,7 @@ class AdminController extends Controller
         $responded = Route::dispatch( Request::create('api/course/store-course', 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course Created Successfully!😃');
-            return redirect('/admin/manage-course');
+            return redirect('/manage-course');
         }
         return redirect()->back()->with('error', 'Course Creation Failed 😞');
     }
@@ -500,4 +501,32 @@ class AdminController extends Controller
         return view('admin.mail', compact('user_types','courses'));
     }
    
+    public function course_categories(){
+        $categories = CourseCategories::orderBy('id', 'desc')->paginate(5);
+        return view('admin.course-categories',compact('categories'));
+    }
+    public function add_category(){
+        return view('admin.add-category');
+    }
+    public function add_course_category(CourseCategoryRequest $request){
+        $responded = Route::dispatch( Request::create('api/courseCategory/store-course-category', 'POST', $request->all()) );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Course Category Created Successfully!😃');
+            return redirect('/course-categories');
+        }
+        return redirect()->back()->with('error', 'Course Category Creation Failed 😞');
+
+    }
+    public function edit_course_category($category){
+        $category = CourseCategories::findOrFail($category);
+        return view('admin.edit-category', compact('category'));
+    }
+    public function update_course_category(Request $request,$category ){
+        $responded = Route::dispatch( Request::create("api/courseCategory/modify-course-category/$category", 'POST', $request->all()) );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Course category updated Successfully!😃');
+            return redirect('/course-categories');
+        }
+        return redirect()->back()->with('error', 'Course category updation Failed 😞');
+    }
 }

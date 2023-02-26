@@ -61,7 +61,7 @@
        <div class="form-group">
 								<label>Price</label>
 								<select class="form-control form-control-sm" name="payment_type_id">
-									<option value="{{ $course->payment_type_id }}"  selected> {{ $course->paymentType->name}}</option>
+									<option value="{{ $course->payment_type_id }}"  selected> {{ $course->cost->name}}</option>
 									@foreach($paymentType as $price)
           @if($course->payment_type_id != $price->id)
            <option value="{{$price->id }}"> {{ $price->name}}</option>

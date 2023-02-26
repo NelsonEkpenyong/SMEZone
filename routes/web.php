@@ -55,6 +55,12 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
 
     Route::get('/delete-industry/{industry}','delete_industry')->name('delete-industry');
 
+    Route::get('/course-categories','course_categories')->name('course-categories');
+    Route::get('/add-category','add_category')->name('add-category');
+    Route::post('/add-course-category','add_course_category')->name('add-course_category');
+    Route::get('/edit-course-category/{category}','edit_course_category')->name('edit-course-category');
+    Route::post('/update-course-category/{category}','update_course_category')->name('update-course-category');
+
     Route::get('/manage-course','manage_course')->name('manage-course');
     Route::get('/course','course')->name('course');
     Route::post('/add-course','add_course')->name('add-course');
@@ -101,6 +107,8 @@ Route::controller(HomeController::class)->group( function(){
 
 Route::controller(CoursesController::class)->group( function(){
     Route::get('/courses','courses')->name('courses');
+    Route::get('/acourse/{id}','course')->name('acourse');
+    Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
 
 Route::controller(EventsController::class)->group( function(){
