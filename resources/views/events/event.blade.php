@@ -39,7 +39,8 @@
                   <div>
                     @php 
                       $start_times = json_decode($event->start_time);
-                      $end_times = json_decode($event->end_time);
+                      $end_times   = json_decode($event->end_time);
+                      // dd($event->start_time,$event->end_time );
                       if(is_array($start_times) && !is_null($start_times)){
                         $dates = array_combine($start_times, $end_times);
                       }
@@ -107,21 +108,25 @@
                   <input type="number" class="form-control" id="PhoneNumber" placeholder="Phone Number"/>
                 </div>
 
-                <input type="hidden" name="role_id" value="4">
+                <input type="hidden" name="role_id"   value="4">
+                <input type="hidden" name="event_id"  value="{{$event->id}}">
                 <input type="hidden" name="gender_id" value="1">
-                <input type="hidden" name="password" value="admin">
+                <input type="hidden" name="password"  value="admin">
                 @php 
                   $venues = json_decode($event->venue_address);
+                  if(is_array($venues) == false) $venues = [$venues];
                 @endphp
                 <div class="form-group">
                   <select class="form-select" id="exampleSelect" name="venue_name" required>
-                    @foreach ($venues as $item)
+                    @forelse ($venues as $item)
                         @if( count($venues) == 1)
                             <option value="{{$item}}" selected >{{$item}}</option>
                         @else
                             <option value="{{$item}}" readonly>{{$item}}</option>
                         @endif
-                    @endforeach
+                    @empty
+                      This event has no venue
+                    @endforelse
                   </select>
                 </div>
 
