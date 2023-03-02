@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventRegistration;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -49,7 +51,7 @@ class EventsController extends Controller
             $user->email      = $request->email;
             $user->gender_id  = $request->gender_id;
             $user->role_id    = $request->role_id;
-            $user->password   = $request->password;
+            $user->password   = Hash::make($request->password),
             $user->save();
 
             $registration = [
