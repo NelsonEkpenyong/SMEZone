@@ -51,7 +51,7 @@ class EventsController extends Controller
             $user->email      = $request->email;
             $user->gender_id  = $request->gender_id;
             $user->role_id    = $request->role_id;
-            $user->password   = Hash::make($request->password),
+            $user->password   = Hash::make($request->password);
             $user->save();
 
             $registration = [
