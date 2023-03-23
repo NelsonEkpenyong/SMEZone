@@ -52,20 +52,17 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/courses"
-                      >All Courses</a
-                    >
+                    <a class="nav-link" aria-current="page" href="/courses">All Courses</a>
                   </li>
                  
                   @forelse ($categories as $category)
                     <li class="nav-item">
                       <a class="nav-link" href="/category-courses/{{$category->id}}">{{$category->title}}</a>
                     </li>
-                      
                   @empty
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">No Course Categories Yet</a>
-                  </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">No Course Categories Yet</a>
+                    </li>
                   @endforelse
                 </ul>
               </div>

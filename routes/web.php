@@ -6,6 +6,9 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +106,30 @@ Route::controller(HomeController::class)->group( function(){
     Route::get('/','index')->name('/');
 });
 
+Route::controller(ToolsController::class)->group( function(){
+    Route::get('/tools','tools')->name('tools');
+    Route::get('/biz-debit-card','debit_card')->name('biz-debit-card');
+    Route::get('/loans','loans')->name('loans');
+    Route::get('/loan','loan')->name('loan');
+    Route::get('/proposition','proposition')->name('proposition');
+});
+
+
+Route::controller(CommunityController::class)->group( function(){
+    Route::get('/community','community')->name('community');
+    Route::get('/news','news')->name('news');
+    Route::get('/webinars','webinars')->name('webinars');
+    
+});
+
+Route::controller(DashboardController::class)->group( function(){
+    Route::get('/dashboard/home','dashboard')->name('dashboard/home');
+    Route::get('/explore-courses','courses')->name('explore-courses');
+    Route::get('/explore-webinars','webinars')->name('explore-webinars');
+    Route::get('/explore-resources','resources')->name('explore-resources');
+    Route::get('/settings-profile','profile_settings')->name('settings-profile');
+    Route::get('/settings','settings')->name('settings');
+});
 
 
 Route::controller(CoursesController::class)->group( function(){

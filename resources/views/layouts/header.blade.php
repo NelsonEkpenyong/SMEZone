@@ -47,12 +47,25 @@
             </li>
           @endif
 
-          <li class="nav-item">
-            <a class="nav-link" href="/tools.html">Tools</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/community.html">Community</a>
-          </li>
+          @if(Route::is('tools'))
+            <li class="nav-item">
+              <a class="nav-link active" href="/tools">Tools</a>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="/tools">Tools</a>
+            </li>
+          @endif
+
+          @if(Route::is('community'))
+            <li class="nav-item">
+              <a class="nav-link active" href="/community">Community</a>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="/community">Community</a>
+            </li>
+          @endif
         </ul>
 
         {{-- <form class="d-flex flex-lg-row flex-column gap-3">

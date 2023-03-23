@@ -27,32 +27,32 @@
                 style="width: 100%"
               >
                 <li>
-                  <a class="dropdown-item" href="/course-marketing.html"
+                  <a class="dropdown-item" href="#"
                     >Marketing</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/course-tectnology.html"
+                  <a class="dropdown-item" href="#"
                     >Technology</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/course-human-resources.html"
+                  <a class="dropdown-item" href="#"
                     >Human Resources</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/course-business-plan.html"
+                  <a class="dropdown-item" href="#"
                     >Business Plans & Models</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/course-bet-videos.html"
+                  <a class="dropdown-item" href="#"
                     >BET Videos</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="/course-sme-accelerate.html"
+                  <a class="dropdown-item" href="#"
                     >SME Accelerate</a
                   >
                 </li>
@@ -67,32 +67,32 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/course-marketing.html"
+                  <a class="nav-link" href="#"
                     >Marketing</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/course-tectnology.html"
+                  <a class="nav-link" href="#"
                     >Technology</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/course-human-resources.html"
+                  <a class="nav-link" href="#"
                     >Human Resources</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/course-business-plan.html"
+                  <a class="nav-link" href="#"
                     >Business Plans & Models</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/course-bet-videos.html"
+                  <a class="nav-link" href="#"
                     >BET Videos</a
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/course-sme-accelerate.html"
+                  <a class="nav-link" href="#"
                     >SME Accelerate</a
                   >
                 </li>
@@ -130,11 +130,11 @@
         >
           <div>
             <a href="#" class="d-inline-block pe-2 me-3">
-              <img src="../asset/icons/liove-icon.svg" alt="like icon" />
+              <img src="{{asset('icons/liove-icon.svg')}}" alt="like icon" />
             </a>
 
             <a href="#" class="d-inline-block"
-              ><img src="../asset/icons/share-icon.svg" alt="share"
+              ><img src="{{asset('icons/share-icon.svg')}}" alt="share"
             /></a>
           </div>
         </div>
@@ -152,11 +152,11 @@
       <div class="row finance-pics">
         <div class="position-relative">
           <img
-            src="../asset/img/finance-pics-1.png"
+            src="{{asset('img/finance-pics-1.png')}}"
             alt="..."
             class="image"
           />
-          <img src="../asset/icons/play-img.svg" alt="play" class="play" />
+          <img src="{{asset('icons/play-img.svg')}}" alt="play" class="play" />
         </div>
         <div class="actions">
           <button class="btn" style="background: #ceee0a; border-radius: 4px">
@@ -201,7 +201,7 @@
           <div class="card" style="max-width: 282px">
             <img
               class="card-img-top"
-              src="../asset/img/course_pics.png"
+              src="{{asset('img/course_pics.png')}}"
               alt="course pics"
               style="width: 100%"
             />
@@ -216,7 +216,7 @@
           <div class="card" style="max-width: 282px">
             <img
               class="card-img-top"
-              src="../asset/img/course_pics.png"
+              src="{{asset('img/course_pics.png')}}"
               alt="course pics"
               style="width: 100%"
             />
@@ -231,7 +231,7 @@
           <div class="card" style="max-width: 282px">
             <img
               class="card-img-top"
-              src="../asset/img/course_pics.png"
+              src="{{asset('img/course_pics.png')}}"
               alt="course pics"
               style="width: 100%"
             />
@@ -246,7 +246,7 @@
       <div class="row justify-content-center mb-5 d-none">
         <div class="col-auto mb-0 mb-sm-3">
           <span class="inline-block pagination-p me-2">Next Page</span>
-          <img src="../asset/icons/next.svg" alt="" />
+          <img src="{{asset('icons/next.svg')}}" alt="" />
         </div>
       </div>
     </div>
