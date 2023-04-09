@@ -5,32 +5,15 @@
       <div class="homeHeroSection">
         <div id="carouselExampleIndicatorsHero" class="carousel slide" data-bs-ride="true">
           <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicatorsHero"
-              data-bs-slide-to="0"
-              class=  "active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicatorsHero"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicatorsHero"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
+            <button type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide-to="0" class=  "active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
           <div class="carousel-inner">
           @php $sliders = json_decode($heroSlider->slider);@endphp
             @forelse ($sliders as $i => $heroSlider)
               <div class="carousel-item {{ $i == 0 ? 'active': ''}}">
-                <div class="homeHero{{$i+1}}" style="background: url( '{{asset('images/'.$heroSlider)}} ') no-repeat center; ">
+                <div class="homeHero{{$i+1}}" style="background: url( '{{asset('images/'.$heroSlider)}}') no-repeat center; ">
                   <div class="container">
                     <div class="contents">
                       <h1>Small & Medium-Sized <span>Enterprise</span></h1>

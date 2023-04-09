@@ -28,21 +28,13 @@ class EventsController extends Controller
       try{  
 
         if (User::where('email', $request->email)->exists()) {
-            // dd($request);
             $user = User::where("email", $request->email)->first()->id;
-            // dd($user,$request->venue_name, $request->event_id);
             $registration             = new EventRegistration;
             $registration->user_id    = $user;
             $registration->venue_name = $request->venue_name;
             $registration->event_id   = $request->event_id;
             $registration->save(); 
-            // dd($user,$request->venue_name,$request->event_id);
-            // $registration = EventRegistration::create([
-            //     'user_id'    => $user,
-            //     'venue_name' => $request->venue_name,
-            //     'event_id'   => $request->event_id,
-            // ]);
-
+            
             return redirect("/an-event/$request->event_id")->with('success','Event registration was successful');
         } else {
             $user = new User;

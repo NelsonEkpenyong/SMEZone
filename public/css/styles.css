@@ -1624,6 +1624,17 @@ ol.alpha {
   font-family: 'KronaOne';
   color: var(--white);
 }
+.event-upper h2 {
+  max-width: 438px;
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 60px;
+  text-transform: capitalize;
+  padding-top: 53px;
+  margin-left: 10px;
+  font-family: 'KronaOne';
+  color: var(--white);
+}
 .events-upper h2 span {
   font-family: inherit;
 }

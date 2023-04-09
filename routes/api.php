@@ -32,6 +32,7 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
     Route::post('/add-event','add_event')->name('add-event');
     Route::post('/change-event/{event}','change_event')->name('change-event');
     Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
+    Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
 
     Route::post('/add-industry','add_industry')->name('add-industry');
     Route::post('/add-course-type','add_course_type')->name('add-course-type');

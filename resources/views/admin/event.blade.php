@@ -14,8 +14,8 @@
 											@endforeach
 									</ul>
 							</div>
-            @endif
-						<form  method="post" action="/store-event" enctype="multipart/form-data">
+      @endif
+						<form  method="post" action="/store-event" enctype="multipart/form-data" onsubmit="return validateForm()" id="eventForm">
 							@csrf
 
 							<div class="row">
@@ -105,11 +105,6 @@
 							 </div>
 							</div>
 
-
-
-
-							
-						
 							<div class="form-group">
 								<label for="editor">Description</label>
 								<textarea class="form-control editor"  id="editor" name="description"></textarea>
@@ -117,7 +112,7 @@
 							
 							<div class="form-group">
 								<label>Event Image
-									<small class="form-text text-muted">Required Dimension: 1200px X 500px</small>
+									<small class="form-text text-muted">Required Dimension: 1440px X 326px</small>
 								</label>								
 
 								<input type="file" name="event_image" class="form-control" required>
@@ -186,8 +181,9 @@
 			}
 		</style>
   <script>
-		  	var max_fields      = 2; //maximum input boxes allowed
-				 var x = 0;
+			  var form = document.getElementById("eventForm");
+		  	var venue_max_fields      = 2; //maximum input boxes allowed
+				 var venue_x = 0;
 					var time_max_fields = 2; //maximum input boxes allowed
 				 var time_x = 0;
 
@@ -195,39 +191,33 @@
 				var venue_container = document.getElementById("venue_container");
 				var time_container  = document.getElementById("time_container");
 
-    function check(input)
-    {
+    const check = (input) => {
     	var checkboxes = document.getElementsByClassName("radioCheck");
     	
     	for(var i = 0; i < checkboxes.length; i++)
     	{
-    		//uncheck all
-    		if(checkboxes[i].checked == true)
-    		{
-    			checkboxes[i].checked = false;
-    		}
+    		 //uncheck all
+							if(checkboxes[i].checked == true){
+								checkboxes[i].checked = false;
+							}
     	}
     	
-    	//set checked of clicked object
-    	if(input.checked == true)
-    	{
-    		input.checked = false;
-    	}
-    	else
-    	{
-    		input.checked = true;
-    	}	
+						//set checked of clicked object
+						if(input.checked == true){
+							input.checked = false;
+						}
+						else{
+							input.checked = true;
+						}	
     }
 
 				const addVenue = () => {
-					
-					if(x < max_fields){
-										x++;
-										console.log(x, max_fields)
-										let newRow= `<div class="row" id="row[${x}]">
+					if(venue_x < venue_max_fields){
+										venue_x++;
+										let newRow= `<div class="row" id="row[${venue_x}]">
 																								<div class="col-md-11">
 																									<div class="form-group">
-																										<input type="text" name="venue_address[${x}]" class="form-control"  placeholder="e.g Regency Hall, 40 adeniran road, VI, Lagos" required>
+																										<input type="text" name="venue_address[${venue_x}]" class="form-control"  placeholder="e.g Regency Hall, 40 adeniran road, VI, Lagos" required>
 																									</div>
 																								</div>
 																								<div class="col-md-1" style="margin-top: 0.7rem">
@@ -240,15 +230,13 @@
 																							venue_container.innerHTML += newRow;
 						} //end of if
 
-					};
+				};
 				
-					const removeVenue = (div) =>{ 
-						venue_container.removeChild(div.parentNode.parentNode.parentNode);x--;
-					};
-
-					const addTime = () => {
+				const addTime = () => {
 						if(time_x < time_max_fields){
 							 time_x++;
+								console.log("TIME X:",time_x)
+								console.log("VENUE X:",venue_x)
 								let newRow = `
 									<div class="row" id="row[${time_x}]">
 										<div class="col-md-6">
@@ -268,14 +256,44 @@
 											</div>
 										</div>
 									</div>`;
-									time_container.innerHTML += newRow;
+										time_container.innerHTML += newRow;
 						}
 					}
+
+					const removeVenue = (div) =>{ 
+						venue_container.removeChild(div.parentNode.parentNode.parentNode);venue_x--;
+					};
+
+					
 
 					const removeTime = (div) =>{ 
 						time_container.removeChild(div.parentNode.parentNode.parentNode);time_x--;
 					};
   
+					
+					const validateForm = (event) => {
+						event.preventDefault();
+							if(venue_x === time_x){
+								alert("The Venue Address field must be the same number as the Event Start and End Time")
+								return false
+							}
+
+							return true
+					}
+
+
+
+					form.addEventListener("submit", function(event) {
+							var numVenueFields = document.querySelectorAll('input[name^="venue_address["]').length;
+							var numTimeFields  = document.querySelectorAll('input[name^="start_time["]').length;
+							// Check if the numbers are equal
+							if (numVenueFields !== numTimeFields) {
+									alert("The number of venue addresses does not matches the number of start and end times. They must match.");
+									event.preventDefault(); 
+							}
+					});
+
+
 		
 		</script>
 @endsection

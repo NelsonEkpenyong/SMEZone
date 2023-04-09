@@ -91,7 +91,7 @@
                                             <a class="dropdown-item" href="#">Venues</a>
                                             <a class="dropdown-item" href="#">Invites</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Delete Event</a>
+                                            <a class="dropdown-item" href="/delete-event/{{$event->id}}">Delete Event</a>
                                             </div>
                                         </div>
                                     </td>

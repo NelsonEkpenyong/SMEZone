@@ -10,7 +10,7 @@
     <section class="px-lg-3">
       <div class="container-fluid px-lg-4">
         <div class="row">
-          <h4 class="greeting">Good Morning Tobi!</h4>
+          <h4 class="greeting">Good Morning {{Auth::user()->first_name}}!</h4>
           <div class="d-md-flex d-none justify-content-between subheader">
             <ul class="">
               <li class="active">
@@ -54,26 +54,27 @@
           </div>
         </div>
 
-        <form action="#" class="settings-form">
+        <form action="/update-profile/{{$user->id}}" method="POST" class="settings-form">
+          @csrf
           <div class="row">
             <div class="col-sm-6">
               <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" />
+              <input type="text" class="form-control" value="{{$user->first_name}}" />
             </div>
             <div class="col-sm-6">
               <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" />
+              <input type="text" class="form-control" value="{{$user->last_name}}" />
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-6">
               <label for="email">Email Address</label>
-              <input type="email" class="form-control" id="email" />
+              <input type="email" class="form-control" value="{{$user->email}}" />
             </div>
             <div class="col-sm-6">
               <label for="tel">Telephone</label>
-              <input type="tel" class="form-control" id="tel" />
+              <input type="tel" class="form-control" value="{{$user->phone}}"/>
             </div>
           </div>
 

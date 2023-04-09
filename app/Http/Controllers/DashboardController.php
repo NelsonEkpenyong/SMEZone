@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EventRegistration;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -29,7 +30,12 @@ class DashboardController extends Controller
     }
 
     public function profile_settings(){
-        return view('community.dashboard.settings-profile');
+        $user = Auth::user();
+        return view('community.dashboard.settings-profile',compact('user'));
+    }
+
+    public function update_profile($id, Request $request){
+        dd($id,$request);
     }
 
     public function settings(){

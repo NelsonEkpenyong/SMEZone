@@ -47,9 +47,19 @@ class AdminController extends Controller
 
         $data = [];
         if ($request->hasFile('photo')) {
-            $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
 
             foreach ($request->photo as $image) {
+                $temporaryFilePath = $image->getPathname();
+                $image_info = getimagesize( $temporaryFilePath);
+
+                $image_width  = $image_info[0];
+                $image_height = $image_info[1];
+
+                if ($image_width !== 1440 && !$image_height !== 455) {
+                    return redirect()->back()->with('error', 'Landing page sider dimension must to be 1440 X 455');
+                }
+
+                $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
                 $extension = $image->getClientOriginalExtension();
                 $check = in_array($extension, $allowedfileExtensions);
 
@@ -160,7 +170,6 @@ class AdminController extends Controller
                     $old_photo = $feturedImage->featured_image;
 
                     if($old_photo){
-                        // unlink(storage_path('app/public/images/' . $picture));
                         unlink(public_path('images/') . $old_photo);
                         $feturedImage->featured_image = $file_name;
                     }else{
@@ -192,10 +201,56 @@ class AdminController extends Controller
         return view('admin.change-featured-courses', compact('featuredCourse'));
     }
     public function update_featured_courses(Request $request, $id){
-        dd($request);
+        
+         try{
+            $featuredCourse = Course::findOrFail($id);
+
+            if ($request->hasFile('photo')) {
+                    $image   = $request->photo;
+                    $temporaryFilePath = $image->getPathname();
+                    $image_info = getimagesize( $temporaryFilePath);
+
+                    $image_width  = $image_info[0];
+                    $image_height = $image_info[1];
+
+                    if ($image_width !== 396 && !$image_height !== 245) {
+                        return redirect()->back()->with('error', 'Featured course Image dimension must to be 396px X 245px');
+                    }
+
+                    $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+                    
+
+                    $extension = $image->getClientOriginalExtension();
+                    $check = in_array($extension, $allowedfileExtensions);
+
+                    if($check){
+                        $file_name = Str::random(4) . '.' . $extension;
+                        $image->move(public_path('images'), $file_name);
+                    }else{
+                        return redirect()->back()->with('error', 'File type not supported');
+                    }
+
+                    $old_photo = $featuredCourse->image;
+
+                    if($old_photo){
+                        unlink(public_path('images/') . $old_photo);
+                        $featuredCourse->image = $file_name;
+                    }else{
+                        $featuredCourse->image = $featuredCourse->image;
+                    }
+            }
+                
+            $featuredCourse->save();
+        
+            return redirect('/dashboard')->with('success', 'Featured Course Image updated successfully! 😃');
+        } catch(\Exception $error){
+            report($error->getMessage());
+            return response()->json(['status'  => false,'message' => $error->getMessage()],500);
+        }catch(\Throwable $error){
+            report($error->getMessage());
+            return response()->json(['status'  => false,'message' => $error->getMessage()],500);
+        }
     }
-
-
 
     public function upcoming_event_image(){
         $events = UpcomingEventImage::all();
@@ -207,7 +262,6 @@ class AdminController extends Controller
         $events = Event::where('is_upcoming',1)->get();
         return view('admin.update-upcoming-event', compact('upcomingEventImage','events'));
     }
-
 
     public function update_upcoming_event(Request $request, $id){
         try {
@@ -255,7 +309,6 @@ class AdminController extends Controller
         }
     }
 
-
      public function create_video_slider(){
         return view('admin.add-video-slider');
     }
@@ -286,7 +339,7 @@ class AdminController extends Controller
             flash()->addSuccess('Event Created Successfully!😃');
             return redirect('/manage');
         }
-        return redirect()->back()->with('error', 'Event Creation Failed 😞'); 
+        return redirect()->back()->with('error', 'Event Creation Failed. Please check Image dimension and try again. 😞'); 
 }
 
     public function edit_event($event){
@@ -303,6 +356,15 @@ class AdminController extends Controller
             return redirect('/admin/manage');
         }
         return redirect()->back()->with('error', 'Event Updation Failed 😞');
+    }
+
+    public function delete_event($event){
+        $responded = Route::dispatch( Request::create("api/admin/deleteEvent/$event", 'GET') );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Event deleted Successfully!😃');
+            return redirect('/manage');
+        }
+        return redirect()->back()->with('error', 'Event deletion Failed 😞');
     }
 
     public function feature_event($id){
