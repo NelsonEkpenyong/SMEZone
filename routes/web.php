@@ -123,7 +123,7 @@ Route::controller(CommunityController::class)->group( function(){
 });
 
 Route::controller(DashboardController::class)->middleware(['auth'])->group( function(){
-    Route::get('/dashboard/home','dashboard')->name('dashboard/home');
+    Route::get('/dashboard/home','dashboard')->middleware('checkProfile')->name('dashboard/home');
     Route::get('/explore-courses','courses')->name('explore-courses');
     Route::get('/explore-webinars','webinars')->name('explore-webinars');
     Route::get('/explore-resources','resources')->name('explore-resources');

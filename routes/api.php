@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\api\AdminController;
 use App\Http\Controllers\api\CourseController;
+use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\CourseCategoryController;
 
 /*
@@ -18,6 +19,8 @@ use App\Http\Controllers\api\CourseCategoryController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/lga/{state}', [LocationController::class,'lgaBySate']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

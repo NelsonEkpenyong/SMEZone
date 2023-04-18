@@ -44,7 +44,7 @@
         <h4 class="semi-sub-header">Complete your profile</h4>
         <div class="row align-items-center image-upload">
           <div class="col-auto position-relative">
-            <input type="file" id="uploadDP" />
+            <input type="file" name="image" id="uploadDP" />
             <img src="{{asset('icons/upload-img.svg')}}" alt="" />
           </div>
           <div class="col-auto">
@@ -80,44 +80,99 @@
 
           <div class="row">
             <div class="col-sm-6">
+              <label for="Address">Gender</label>
+              <select id="gender_id" name="gender_id" class="form-control">
+
+                @if($genders->count())
+                  @foreach($genders as $gender)
+                      <option value="{{ $gender->id }}" {{ $user->gender_id  == $gender->id ?  'selected' : '' }} > {{ $gender->name}}</option>
+                  @endforeach
+               @endif
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <label for="tel">Date of Birth</label>
+              <input type="date" name="dob" class="form-control"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="businessName"> Do you have a business?</label>
+              <select class="form-select" id="have_business" name="have_business">
+                <option value="1" selected>Yes</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <label for="businessName"> How long have you been in business?</label>
+              <input type="number" class="form-control" id="no_of_years_in_business" name="no_of_years_in_business"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="Industry">In what Industry is your business?</label>
+              <select class="form-select" id="Industry" name="Industry" required>
+                <option value="0" selected readonly>Choose Industry</option>
+                @forelse ($industries as $industry)
+                  <option value="{{$industry->id}}">{{$industry->name}}</option>
+                @empty
+                  <option value="0">No industries</option>
+                @endforelse
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <label for="businessName"> Do you have an Access Bank account?</label>
+              <select class="form-select" id="have_account" name="have_account">
+                <option value="1" >Yes</option>
+                <option value="0" selected>No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" id="me">
+            <div class="col-sm-6">
+              <label for="Address">Access Account Number</label>
+              <input type="text" name="account" class="form-control" id="Address" />
+            </div>
+            <div class="col-sm-6">
+              <label for="Address">Account Status</label>
+              <select class="form-select" id="account_status" name="account_status">
+                <option value="1" >Active</option>
+                <option value="0" selected>Dormant</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
               <label for="Address">Address</label>
-              <input type="text" class="form-control" id="Address" />
+              <input type="text" name="address" class="form-control" id="Address" />
+            </div>
+            <div class="col-sm-6">
+              <label for="Address">State</label>
+              <select class="form-select" id="state" name="state" onchange="getLgas()">
+                 <option value="1">Choose State</option>
+                @foreach ($states as $state)
+                  <option value="{{$state->id}}">{{$state->name}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
 
           <div class="row">
-            <div class="col-sm-6">
-              <label for="businessName">Business Name</label>
-              <input type="email" class="form-control" id="businessName" />
-            </div>
-            <div class="col-sm-6">
-              <label for="businessNature">Business Nature</label>
-              <input type="tel" class="form-control" id="businessNature" />
+            <div class="col-sm-12">
+              <label for="Address">Lga</label>
+              <select class="form-select" id="lga" name="lga">
+                 <option value="1">Choose Lga</option>
+                @foreach ($lgas as $lga)
+                  <option value="{{$lga->id}}">{{$lga->name}}</option>
+                @endforeach
+              </select>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-sm-6">
-              <label for="exampleSelect">Number Of Years In Business</label>
-              <select class="form-select" id="exampleSelect">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-            <div class="col-sm-6">
-              <label for="Industry">Industry</label>
-              <select class="form-select" id="Industry">
-                <option>Engineering</option>
-                <option>Academics</option>
-                <option>Banking</option>
-                <option>Health</option>
-                <option>Logistics</option>
-              </select>
-            </div>
-          </div>
 
           <div class="row justify-content-end save">
             <div class="col-sm-auto">
@@ -128,4 +183,55 @@
       </div>
     </section>
    </main>
+
+   <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+   
+   <script>
+    const haveBusiness  = document.getElementById('have_business');
+    const businessYears = document.getElementById('no_of_years_in_business');
+    const Industry      = document.getElementById('Industry');
+    const haveAccount   = document.getElementById('have_account');
+    const meRow         = document.getElementById('me');
+    const state         = document.getElementById('state');
+  
+    haveBusiness.addEventListener('change', function() {
+      if (haveBusiness.value === '0') {
+          businessYears.disabled = true;
+          Industry.disabled = true;
+          businessYears.value = 0;
+      } else {
+         businessYears.disabled = false;
+         Industry.disabled = false;
+      }
+    });
+
+    meRow.classList.add('hidden');
+
+
+    haveAccount.addEventListener('change', function() {
+      if (haveAccount.value === '0') {
+        meRow.classList.add('hidden'); 
+      } else {
+        meRow.classList.remove('hidden'); 
+      }
+    });
+
+    const getLgas = async () => {
+      let selectedState = state.value;
+      let url = "/api/lga/" + selectedState;
+      let response = fetch(url);
+
+      await response.then((res) => res.json()).then((data) => { 
+          lga.innerHTML = `<option value='0' selected disabled >Select Lga</option>`;
+          for(let i = 0; i < data.length; i++) {
+            lga.options[lga.options.length] = new Option(data[i].name, data[i].id);
+          }
+      });
+  }
+
+  </script>
   @endsection

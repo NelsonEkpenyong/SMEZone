@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\EventRegistration;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\State;
+use App\Models\Lga;
+use App\Models\Industries;
+use App\Models\Genders;
 
 class DashboardController extends Controller
 {
     //
-    
     public function dashboard(){
         $authUser = Auth::id();
         $registeredEventCount = EventRegistration::where('user_id',$authUser)->count();
@@ -30,8 +33,13 @@ class DashboardController extends Controller
     }
 
     public function profile_settings(){
-        $user = Auth::user();
-        return view('community.dashboard.settings-profile',compact('user'));
+        $user       = Auth::user();
+        $industries = Industries::all();
+        $genders    = Genders::all();
+        $states     = State::orderBy('id', 'desc')->get();
+        $lgas       = Lga::orderBy('id', 'desc')->get();
+
+        return view('community.dashboard.settings-profile',compact('user','industries','genders','states','lgas'));
     }
 
     public function update_profile($id, Request $request){
