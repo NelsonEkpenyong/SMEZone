@@ -27,14 +27,36 @@
          <img src="{{asset('icons/alarm.svg')}}" alt="alarm" />
        </div>
      </div>
+     <ul class="navbar-nav ms-auto">
+      
+      <li class="nav-item dropdown">
+        {{-- <img src="{{asset('img/member1.png')}}" alt="dp" width="30" height="30" class="mr-4"/> --}}
+        <p class="mt-1"> {{Auth::user()->first_name . " " . Auth::user()->last_name}}</p>
+        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          {{ Auth::user()->name }}
+        </a>
 
-     <div class="col-auto dp-wrapper d-flex align-items-center d-none d-md-flex">
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          
+            <a class="dropdown-item" href="{{ route('logout') }}"
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+      </li>
+     </ul>
+
+     {{-- <div class="col-auto dp-wrapper d-flex align-items-center d-none d-md-flex">
        <img src="{{asset('img/member1.png')}}" alt="dp" class="dp" />
        <p>
         {{Auth::user()->first_name . " " . Auth::user()->last_name}}
          <img src="{{asset('icons/dropdown.svg')}}" alt="dropdown" type="button"/>
        </p>
-     </div>
+     </div> --}}
    </div>
 
    <div class="offcanvas offcanvas-start d-block d-md-none" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">

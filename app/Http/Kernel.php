@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'isAdmin' => \App\Http\Middleware\isAdminMidddleware::class,
         'ridirectToAdmin' => \App\Http\Middleware\RedirectToAdmin::class,
         'checkProfile' => \App\Http\Middleware\CheckUserProfile::class,
+        'onlineUser' => \App\Http\Middleware\IsUserOnline::class,
     ];
 }

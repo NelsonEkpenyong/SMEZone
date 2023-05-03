@@ -30,7 +30,6 @@ Route::post('/admin/logout',[AdminAuthController::class,'logout'])->name('/admin
 
 Route::post('/admin/handle-login',[AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
 
-
 Route::controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
     Route::get('/dashboard','admin_dashboard')->name('dashboard');
 
@@ -101,7 +100,6 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/delete-event/{id}', 'delete_event')->name('delete-event');
 });
 
-
 Route::controller(HomeController::class)->group( function(){
     Route::get('/','index')->name('/');
 });
@@ -114,12 +112,13 @@ Route::controller(ToolsController::class)->group( function(){
     Route::get('/proposition','proposition')->name('proposition');
 });
 
-
 Route::controller(CommunityController::class)->group( function(){
-    Route::get('/community','community')->name('community');
+    Route::get('/community','community')->middleware('onlineUser')->name('community');
     Route::get('/news','news')->name('news');
     Route::get('/webinars','webinars')->name('webinars');
-    
+    Route::post('/store-post','store_post')->name('store-post');
+    Route::post('/store-comment/{id}','store_comment')->name('store-comment');
+    Route::post('/post-likes/{post_id}/{comment_id}','post_likes')->name('post-likes');
 });
 
 Route::controller(DashboardController::class)->middleware(['auth'])->group( function(){
@@ -128,10 +127,9 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group( func
     Route::get('/explore-webinars','webinars')->name('explore-webinars');
     Route::get('/explore-resources','resources')->name('explore-resources');
     Route::get('/settings-profile','profile_settings')->name('settings-profile');
-    Route::post('/update-profile/{id}','update_profile')->name('update-profile');
+    Route::post('/update-profile','update_profile')->name('update-profile');
     Route::get('/settings','settings')->name('settings');
 });
-
 
 Route::controller(CoursesController::class)->group( function(){
     Route::get('/courses','courses')->name('courses');

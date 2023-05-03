@@ -54,52 +54,52 @@
           </div>
         </div>
 
-        <form action="/update-profile/{{$user->id}}" method="POST" class="settings-form">
+        <form action="/update-profile" method="POST" class="settings-form">
           @csrf
           <div class="row">
             <div class="col-sm-6">
               <label for="firstName">First Name</label>
-              <input type="text" class="form-control" value="{{$user->first_name}}" />
+              <input type="hidden" name="id" value="{{Auth::user()->id}}">
+              <input type="text" name="first_name" class="form-control" value="{{$user->first_name}}" required/>
             </div>
             <div class="col-sm-6">
               <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" value="{{$user->last_name}}" />
+              <input type="text" name="last_name" class="form-control" value="{{$user->last_name}}" required/>
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-6">
               <label for="email">Email Address</label>
-              <input type="email" class="form-control" value="{{$user->email}}" />
+              <input type="email" name="email" class="form-control" value="{{$user->email}}" required/>
             </div>
             <div class="col-sm-6">
               <label for="tel">Telephone</label>
-              <input type="tel" class="form-control" value="{{$user->phone}}"/>
+              <input type="tel" name="phone" class="form-control" value="{{$user->phone}}" required/>
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-6">
-              <label for="Address">Gender</label>
-              <select id="gender_id" name="gender_id" class="form-control">
-
+              <label for="Gender">Gender</label>
+              <select id="gender_id" name="gender_id" class="form-control" required>
                 @if($genders->count())
                   @foreach($genders as $gender)
                       <option value="{{ $gender->id }}" {{ $user->gender_id  == $gender->id ?  'selected' : '' }} > {{ $gender->name}}</option>
                   @endforeach
-               @endif
+                @endif
               </select>
             </div>
             <div class="col-sm-6">
               <label for="tel">Date of Birth</label>
-              <input type="date" name="dob" class="form-control"/>
+              <input type="date" name="dob" class="form-control" required/>
             </div>
           </div>
 
           <div class="row">
             <div class="col-sm-6">
               <label for="businessName"> Do you have a business?</label>
-              <select class="form-select" id="have_business" name="have_business">
+              <select class="form-select" id="have_business" name="have_business" required>
                 <option value="1" selected>Yes</option>
                 <option value="0">No</option>
               </select>
@@ -113,7 +113,7 @@
           <div class="row">
             <div class="col-sm-6">
               <label for="Industry">In what Industry is your business?</label>
-              <select class="form-select" id="Industry" name="Industry" required>
+              <select class="form-select" id="Industry" name="industry" required>
                 <option value="0" selected readonly>Choose Industry</option>
                 @forelse ($industries as $industry)
                   <option value="{{$industry->id}}">{{$industry->name}}</option>
@@ -125,19 +125,19 @@
             <div class="col-sm-6">
               <label for="businessName"> Do you have an Access Bank account?</label>
               <select class="form-select" id="have_account" name="have_account">
-                <option value="1" >Yes</option>
                 <option value="0" selected>No</option>
+                <option value="1" >Yes</option>
               </select>
             </div>
           </div>
 
           <div class="row" id="me">
             <div class="col-sm-6">
-              <label for="Address">Access Account Number</label>
-              <input type="text" name="account" class="form-control" id="Address" />
+              <label for="Access Account Number">Access Account Number</label>
+              <input type="text" name="account" class="form-control" id="access_account_number"/>
             </div>
             <div class="col-sm-6">
-              <label for="Address">Account Status</label>
+              <label for="Account Statua">Account Status</label>
               <select class="form-select" id="account_status" name="account_status">
                 <option value="1" >Active</option>
                 <option value="0" selected>Dormant</option>
@@ -148,11 +148,11 @@
           <div class="row">
             <div class="col-sm-6">
               <label for="Address">Address</label>
-              <input type="text" name="address" class="form-control" id="Address" />
+              <input type="text" name="address" class="form-control" id="address" required/>
             </div>
             <div class="col-sm-6">
-              <label for="Address">State</label>
-              <select class="form-select" id="state" name="state" onchange="getLgas()">
+              <label for="State">State</label>
+              <select class="form-select" id="state" name="state" onchange="getLgas()" required>
                  <option value="1">Choose State</option>
                 @foreach ($states as $state)
                   <option value="{{$state->id}}">{{$state->name}}</option>
@@ -163,8 +163,8 @@
 
           <div class="row">
             <div class="col-sm-12">
-              <label for="Address">Lga</label>
-              <select class="form-select" id="lga" name="lga">
+              <label for="Lga">Lga</label>
+              <select class="form-select" id="lga" name="lga" required>
                  <option value="1">Choose Lga</option>
                 @foreach ($lgas as $lga)
                   <option value="{{$lga->id}}">{{$lga->name}}</option>
@@ -176,7 +176,7 @@
 
           <div class="row justify-content-end save">
             <div class="col-sm-auto">
-              <button class="btn">Save</button>
+              <button class="btn">Update Profile</button>
             </div>
           </div>
         </form>
@@ -220,7 +220,8 @@
       }
     });
 
-    const getLgas = async () => {
+  const getLgas = async () => 
+  {
       let selectedState = state.value;
       let url = "/api/lga/" + selectedState;
       let response = fetch(url);
@@ -231,7 +232,7 @@
             lga.options[lga.options.length] = new Option(data[i].name, data[i].id);
           }
       });
-  }
+   }
 
   </script>
   @endsection

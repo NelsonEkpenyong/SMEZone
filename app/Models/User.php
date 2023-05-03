@@ -31,10 +31,12 @@ class User extends Authenticatable
         'have_access_bank_account',
         'account',
         'account_status',
+        'account_type',
         'address',
         'state_id',
         'lga_id',
         'role_id',
+        'last_activity',
     ];
 
     /**
@@ -72,9 +74,13 @@ class User extends Authenticatable
         return $this->belongsTo(State::class,'state_id');
     }
 
-
     public function lga(){
         return $this->belongsTo(Lga::class,'lga_id');
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
     }
 
    

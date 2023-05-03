@@ -17,10 +17,18 @@ class CheckUserProfile
     public function handle(Request $request, Closure $next)
     {
         $user = auth()->user();
-
         if (
-            ($user->have_business == 0) && ($user->have_access_bank_account == 0) && ($user->account_status == 0) && empty($user->industry_id) &&
-            (empty($user->years_in_business)) && (empty($user->address)) && (empty($user->state_id)) && (empty($user->lga_id) && (empty($user->account)))
+                empty($user->dob) &&
+                empty($user->gender_id) &&
+                empty($user->have_business) && 
+                empty($user->industry_id) &&
+                empty($user->account_status) && 
+                empty($user->industry_id) &&
+                empty($user->years_in_business) && 
+                empty($user->address) && 
+                empty($user->state_id) && 
+                empty($user->lga_id) && 
+                empty($user->account)
            ) 
         {
              return redirect('/settings-profile');

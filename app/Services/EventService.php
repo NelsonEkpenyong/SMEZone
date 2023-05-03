@@ -22,7 +22,7 @@ class EventService {
         $event->invite_user           = $request->invite_user;
 
         $event->venue_address         = json_encode($request->venue_address);
-        $event->start_time            =  json_encode($request->start_time);
+        $event->start_time            = json_encode($request->start_time);
         $event->end_time              = json_encode($request->end_time);
         
         

@@ -50,11 +50,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name'  => ['required', 'string', 'max:255'],
-            'phone'      => ['required', 'string', 'max:11', 'unique:users'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'   => ['required', 'string', 'min:8', 'confirmed']
+            'first_name'   => ['required', 'string', 'max:255'],
+            'last_name'    => ['required', 'string', 'max:255'],
+            'phone'        => ['required', 'string', 'max:11', 'unique:users'],
+            'email'        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'     => ['required', 'string', 'min:8', 'confirmed'],
+            'have_account' => ['required']
         ]);
     }
 
@@ -67,11 +68,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-            'phone'      => $data['phone'],
-            'email'      => $data['email'],
-            'password'   => Hash::make($data['password']),
+            'first_name'               => $data['first_name'],
+            'last_name'                => $data['last_name'],
+            'phone'                    => $data['phone'],
+            'email'                    => $data['email'],
+            'role_id'                  => 4,
+            'password'                 => Hash::make($data['password']),
+            'have_access_bank_account' => $data['have_account'],
+            'account_type'             => $data['account_type']
         ]);
     }
 }

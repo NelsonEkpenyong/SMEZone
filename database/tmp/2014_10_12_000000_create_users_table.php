@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
@@ -29,10 +30,12 @@ return new class extends Migration
             $table->boolean('have_access_bank_account')->default(0);
             $table->string('account',10)->nullable();
             $table->boolean('account_status')->default(0);
+            $table->string('account_type');
             $table->string('address')->nullable();
             $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('lga_id')->nullable();
             $table->unsignedBigInteger('role_id');
+            $table->timestamp('last_activity')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->rememberToken();
             $table->timestamps();
             $table->timestamp('email_verified_at')->nullable();

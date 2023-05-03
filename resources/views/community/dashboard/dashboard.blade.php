@@ -11,9 +11,7 @@
         <h4 class="greeting">Good Morning {{Auth::user()->first_name}}!</h4>
       </div>
 
-      <div
-        class="dash-hero row justify-content-evenly align-items-center mx-0 d-none d-md-flex"
-      >
+      <div class="dash-hero row justify-content-evenly align-items-center mx-0 d-none d-md-flex">
         <div class="col-auto">
           <div class="details">
             <div class="d-flex">

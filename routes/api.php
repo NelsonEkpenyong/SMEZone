@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\api\AdminController;
 use App\Http\Controllers\api\CourseController;
 use App\Http\Controllers\api\LocationController;
+use App\Http\Controllers\api\PostController;
 use App\Http\Controllers\api\CourseCategoryController;
 
 /*
@@ -51,4 +52,11 @@ Route::controller(CourseController::class)->prefix('course')->group( function(){
 Route::controller(CourseCategoryController::class)->prefix('courseCategory')->group( function(){
     Route::post('/store-course-category','store_course_category')->name('store-course-category');
     Route::post('/modify-course-category/{category}','modify_course_category')->name('modify-course-category');
+});
+
+
+Route::controller(PostController::class)->prefix('post')->group( function(){
+    Route::post('/post','store_post')->name('post');
+    Route::post('/comment/{id}','store_comment')->name('comment');
+    Route::post('/likes/{post_id}/{comment_id}','likes')->name('likes');
 });
