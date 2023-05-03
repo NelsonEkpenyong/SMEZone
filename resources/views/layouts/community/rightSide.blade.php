@@ -3,7 +3,7 @@
    <h4>Community members online</h4>
    <ul>
     @forelse ($onlineUsers as $user)
-    <a href="{{$user->id}}">
+    <a href="/community/{{$user->id}}">
       <li class="d-flex align-items-center">
         <div class="m-i-wrapper">
           <img src="{{asset('img/member1.png')}}" alt="" class="pp" />

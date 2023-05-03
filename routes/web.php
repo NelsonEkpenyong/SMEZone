@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\ToolsController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EnrolmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,7 +114,7 @@ Route::controller(ToolsController::class)->group( function(){
 });
 
 Route::controller(CommunityController::class)->group( function(){
-    Route::get('/community','community')->middleware('onlineUser')->name('community');
+    Route::get('/community/{id?}','community')->middleware('onlineUser')->name('community');
     Route::get('/news','news')->name('news');
     Route::get('/webinars','webinars')->name('webinars');
     Route::post('/store-post','store_post')->name('store-post');
@@ -136,6 +137,12 @@ Route::controller(CoursesController::class)->group( function(){
     Route::get('/acourse/{id}','course')->name('acourse');
     Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
+
+
+Route::controller(EnrolmentController::class)->group( function(){
+    Route::post('/enrol', 'enrol')->name('enrol')->middleware('auth');
+});
+
 
 Route::controller(EventsController::class)->group( function(){
     Route::get('/events','events')->name('events');
