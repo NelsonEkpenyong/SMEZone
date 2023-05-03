@@ -99,6 +99,9 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/upcoming-event/{id}', 'upcoming_event')->name('upcoming-event');
     Route::post('/update-upcoming-event/{id}', 'update_upcoming_event')->name('update-upcoming-event');
     Route::get('/delete-event/{id}', 'delete_event')->name('delete-event');
+
+    Route::get('/post', 'post')->name('post');
+
 });
 
 Route::controller(HomeController::class)->group( function(){
