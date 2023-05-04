@@ -18,6 +18,6 @@ class Post extends Model
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->orderby('created_at', 'desc')->with('user:id,first_name,last_name');
     }
 }
