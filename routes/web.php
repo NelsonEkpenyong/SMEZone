@@ -101,7 +101,10 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/delete-event/{id}', 'delete_event')->name('delete-event');
 
     Route::get('/post', 'post')->name('post');
+
 });
+
+Route::controller(HomeController::class)->group( function(){
     Route::get('/','index')->name('/');
 });
 
