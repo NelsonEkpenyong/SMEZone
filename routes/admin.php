@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\EventsController;
+use App\Http\Controllers\AdminController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+//Auth::routes();
+
+//Route::get('admin.localhost', [AdminController::class, 'index']);
+
+
+// Route::get('/', function () {
+//     dd('Route using separate file');
+// });
+
+
+
+// Route::domain('{admin}.'. env('APP_URL'))->group(function () {
+//   Route::get('/home', [AdminController::class, 'index'])->name('home');
+// });
+
+Route::name('admin.')->group(function () {
+  Route::get('/users', function () {
+      // Route assigned name "admin.users"...
+  })->name('users');
+});
+
+
+Route::prefix('admin')->group(function () {
+  Route::get('/users', function () {
+      // Matches The "/admin/users" URL
+  });
+});
