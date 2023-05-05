@@ -594,8 +594,22 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Course category updation Failed 😞');
     }
 
-    public function post() {
-        $posts = Post::all();
-        return view('', compact('posts'));
+    public function posts() {
+        $posts = Post::withCount(['comments', 'likes'])->orderBy('id', 'desc')->paginate(5);
+        return view('admin.posts', compact('posts'));
     }
+
+    
+
+
+    public function delete_post($post){
+        $responded = Route::dispatch( Request::create("api/admin/deletePost/$post", 'GET') );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Post deleted Successfully!😃');
+            return redirect('/posts');
+        }
+        return redirect()->back()->with('error', 'Post deletion Failed 😞');
+    }
+
+
 }

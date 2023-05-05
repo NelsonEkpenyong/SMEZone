@@ -26,15 +26,14 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" href="#event" aria-expanded="false" aria-controls="zon">
+          <a class="nav-link" data-toggle="collapse" href="#posts" aria-expanded="false" aria-controls="zon">
             <i class="icon-layout menu-icon"></i>
-            <span class="menu-title">Events</span>
+            <span class="menu-title">Posts</span>
             <i class="menu-arrow" style="margin-left: 9.3rem"></i>
           </a>
-          <div class="collapse" id="event">
+          <div class="collapse" id="posts">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('manage')}}">Events</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{route('event')}}">Add event</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('posts')}}">Post</a></li>
             </ul>
           </div>
         </li>
