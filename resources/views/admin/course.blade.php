@@ -15,7 +15,7 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/admin/add-course" enctype="multipart/form-data">
+						<form  method="post" action="/add-course" enctype="multipart/form-data">
 							@csrf
        <div class="form-group">
 								<label>Course Type</label>
@@ -31,7 +31,7 @@
 							</div>
        <div class="form-group">
 								<label>Embeded Link</label>
-								<textarea class="form-control editor" name="embed_link" rows="15"></textarea>
+								<textarea class="form-control editor" name="embed_link" rows="4"></textarea>
 							</div>
        <div class="form-group">
 								<label>Certificate</label>
@@ -59,7 +59,7 @@
 							</div>
        <div class="form-group">
 								<label for="editor">Synopsis</label>
-								<textarea class="form-control editor" name="synopsis" rows="15"></textarea>
+								<textarea class="form-control editor" name="synopsis" rows="7"></textarea>
 							</div>
        <div class="form-group">
 								<label for="editor">description</label>
@@ -68,7 +68,7 @@
 						
 							<div class="form-group">
 								<label> Image
-									<small class="form-text text-muted">Required Dimension: 1200px X 500px</small>
+									<small class="form-text text-muted">Required Dimension: 1440px X 326px</small>
 								</label>								
 								<input type="file" name="image" class="form-control">
 							</div>

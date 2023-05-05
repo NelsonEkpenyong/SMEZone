@@ -65,6 +65,27 @@
                   @error('password_confirmation') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
                 </div>
 
+
+                <div class="row">
+                  <div class="col-lg-12" id="choice">
+                    <label for="" class="lbl">Have Access Bank Account?</label>
+                    <select class="form-select set" id="have_account" name="have_account" required>
+                      <option value="" selected readonly>-select option-</option>
+                      <option value="0">No</option>
+                      <option value="1">Yes</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6" id="yes" style="display: none;">
+                    <label for="" class="lbl">What's the Account Type?</label>
+                    <select class="form-select set" id="account_type" name="account_type" required>
+                      <option value="" selected readonly>-select option-</option>
+                      <option value="0">Individual</option>
+                      <option value="1">Corporate</option>
+                    </select>
+                  </div>
+                </div>
+                
+
                 <div>
                   <button class="btn">Sign up</button>
                 </div>
@@ -122,6 +143,49 @@
     </div>
   </footer>
   <!-- #Footer -->
+
+  <style>
+    .set {
+      margin-top: 10px;
+      width: 100%;
+      height: 54px;
+      padding: 0 2rem;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.4);
+      background: #ffffff;
+      border: 0.2px solid #000000;
+      border-radius: 30px;
+    }
+
+    .lbl {
+        font-family: 'nunito';
+        font-weight: 400;
+        font-size: 17.5px;
+        line-height: 28px;
+        color: rgba(0, 0, 0, 0.6);
+        margin-top: 1rem;
+    }
+  </style>
+
+  <script>
+    const haveAccountDropdown = document.getElementById('have_account');
+    const choiceDiv = document.getElementById('choice');
+    const yesDiv = document.getElementById('yes');
+
+    haveAccountDropdown.addEventListener('change', () => {
+      if (haveAccountDropdown.value === '1') {
+        choiceDiv.classList.remove('col-lg-12');
+        choiceDiv.classList.add('col-lg-6');
+        yesDiv.style.display = 'block';
+      } else {
+        choiceDiv.classList.remove('col-lg-6');
+        choiceDiv.classList.add('col-lg-12');
+        yesDiv.style.display = 'none';
+      }
+    });
+  </script>
 
   <script
     src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"

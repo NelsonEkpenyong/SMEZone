@@ -31,94 +31,42 @@
           <nav class="navbar navbar-expand-lg navbar-light py-0">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Courses Categories:</a>
-
+              {{-- mobile nav --}}
               <div class="d-block d-lg-none dropdown px-0">
-                <a
-                  style="height: 100%; color: #000000"
-                  class="nav-link dropdown-toggle active d-flex align-items-center justify-content-between"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Financial Management
+                <a style="height: 100%; color: #000000"class="nav-link dropdown-toggle active d-flex align-items-center justify-content-between" href="/courses" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  All Courses
                 </a>
-                <ul
-                  class="dropdown-menu"
-                  aria-labelledby="navbarDropdown"
-                  style="width: 100%"
-                >
-                  <li>
-                    <a class="dropdown-item" href="/course-marketing.html"
-                      >Marketing</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/course-tectnology.html"
-                      >Technology</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/course-human-resources.html"
-                      >Human Resources</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/course-business-plan.html"
-                      >Business Plans & Models</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/course-bet-videos.html"
-                      >BET Videos</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="/course-sme-accelerate.html"
-                      >SME Accelerate</a
-                    >
-                  </li>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 100%">
+                  @forelse ($categories as $category)
+                    <li>
+                      <a class="dropdown-item" href="/category-courses/{{$category->id}}">{{$category->title}}</a>
+                    </li>
+                  @empty
+                    <li>
+                      <a class="dropdown-item" href="#">No Course Categories Yet</a>
+                    </li>
+                  @endforelse
                 </ul>
               </div>
-
+              {{-- regular nav --}}
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"
-                      >Financial Management</a
+                    <a class="nav-link {{ (\Request::route()->getName() == 'courses') ? 'active' : ''}}" aria-current="page" href="/courses"
+                      >All Courses</a
                     >
                   </li>
+                 
+                  @forelse ($categories as $category)
+                    <li class="nav-item">
+                      <a class="nav-link" href="/category-courses/{{$category->id}}">{{$category->title}}</a>
+                    </li>
+                      
+                  @empty
                   <li class="nav-item">
-                    <a class="nav-link" href="/course-marketing.html"
-                      >Marketing</a
-                    >
+                    <a class="nav-link" href="/financial-management.html">No Course Categories Yet</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/course-tectnology.html"
-                      >Technology</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/course-human-resources.html"
-                      >Human Resources</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/course-business-plan.html"
-                      >Business Plans & Models</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/course-bet-videos.html"
-                      >BET Videos</a
-                    >
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/course-sme-accelerate.html"
-                      >SME Accelerate</a
-                    >
-                  </li>
+                  @endforelse
                 </ul>
               </div>
             </div>
@@ -126,133 +74,47 @@
         </div>
       </div>
 
+      {{-- content --}}
       <div class="container">
         <div class="row mt-5">
           <div class="col-12 course-p">
-            <p>Showing results for financial management</p>
+            <p>showing all courses</p>
           </div>
         </div>
         <div class="row courses-list py-4">
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
+          @forelse($courses as $course)
+            <div class="col-auto">
+              <div class="card" style="max-width: 282px">
+                <img class="card-img-top" src="{{ asset('images/'. $course->image)}}" alt="course pics" style="width: 100%"/>
+                <div class="card-body">
+                  <a href="#" class="btn">{{$course->cost->name}}</a>
+                  <a href="/acourse/{{$course->id}}" style="background: white !important"> 
+                  <h5 class="card-title">Course Title</h5>
+                  <h6 class="card-text">{{$course->name}}</h6>
+                  </a>
+                </div>
+              </div>
+           
+            </div>
+            
+          @empty
+            <div class="col-auto">
+              <div class="card" style="max-width: 282px">
+                <img
+                  class="card-img-top"
+                  src="../img/course_pics.png"
+                  alt="course pics"
+                  style="width: 100%"
+                />
+                <div class="card-body">
+                  <a href="#" class="btn">Free</a>
+                  <h5 class="card-title">Course Title</h5>
+                  <h6 class="card-text">No Courses Found</h6>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="card" style="max-width: 282px">
-              <img
-                class="card-img-top"
-                src="../img/course_pics.png"
-                alt="course pics"
-                style="width: 100%"
-              />
-              <div class="card-body">
-                <a href="#" class="btn">Free</a>
-                <h5 class="card-title">Course Title</h5>
-                <h6 class="card-text">How Do I Finance My Business?</h6>
-              </div>
-            </div>
-          </div>
+          @endempty
+          
         </div>
         <div class="row justify-content-center mb-5">
           <div class="col-auto mb-0 mb-sm-3">

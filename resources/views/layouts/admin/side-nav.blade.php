@@ -33,8 +33,8 @@
           </a>
           <div class="collapse" id="event">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('manage')}}">Manage</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{route('event')}}">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('manage')}}">Events</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('event')}}">Add event</a></li>
             </ul>
           </div>
         </li>
@@ -68,6 +68,19 @@
           </div>
         </li>
         <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Category Management</span>
+            <i class="menu-arrow ml-5" style="margin-right: 20rem"></i>
+          </a>
+          <div class="collapse" id="categories">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{route('course-categories')}}">Course Categories</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('add-category')}}">Add Category</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#course" aria-expanded="false" aria-controls="course">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Course Management</span>
@@ -75,8 +88,8 @@
           </a>
           <div class="collapse" id="course">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('manage-course')}}">Manage</a></li>
-              <li class="nav-item"> <a class="nav-link" href="{{route('course')}}">Add</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('manage-course')}}">Courses</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{route('course')}}">Add Course</a></li>
             </ul>
           </div>
         </li>
@@ -92,18 +105,7 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-            <i class="icon-layout menu-icon"></i>
-            <span class="menu-title">Category Management</span>
-            <i class="menu-arrow ml-5" style="margin-right: 20rem"></i>
-          </a>
-          <div class="collapse" id="icons">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
-            </ul>
-          </div>
-        </li>
+      
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
             <i class="icon-layout menu-icon"></i>

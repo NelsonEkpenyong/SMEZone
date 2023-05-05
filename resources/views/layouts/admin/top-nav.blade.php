@@ -98,9 +98,9 @@
   </div>
 </nav>
 
-{{-- <form action="/admin/logout" method="POST" id="logout">
-              @csrf
-              {{-- <button onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="ti-power-off text-primary"></i>Logout</button> --}}
-              {{-- <a onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="ti-power-off text-primary"></i>Logout</a> --}}
-            </form>  
+<form action="/admin/logout" method="POST" id="logout">
+  @csrf
+  <button onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="ti-power-off text-primary"></i>Logout</button>
+  <a onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="ti-power-off text-primary"></i>Logout</a>
+</form>  
 

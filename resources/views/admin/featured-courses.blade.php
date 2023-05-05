@@ -48,9 +48,8 @@
                                        <i class="ti-settings"></i>
                                        </button>
                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                       <a class="dropdown-item" href="#">change Featured Course</a>
+                                       <a class="dropdown-item" href="/edit-featured-courses/{{ $course->id }}">change Featured Course</a>
                                        <div class="dropdown-divider"></div>
-                                       {{-- <a class="dropdown-item" href="#">Delete Event</a> --}}
                                        </div>
                                    </div>
                                   </td>

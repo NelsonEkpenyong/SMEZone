@@ -22,11 +22,11 @@ class AdminAuthController extends Controller
             ]);
             
             if ($validator->fails()) {
-                return redirect('/admin/login')->withErrors($validator)->withInput();
+                return redirect('/admin')->withErrors($validator)->withInput();
             }
 
             if(!Auth::attempt($request->only(['email','password']))){
-                return redirect('/admin/login')->with('error','Either your email or Password is not correct.')->withInput();
+                return redirect('/admin')->with('error','Either your email or Password is not correct.')->withInput();
             }
 
             if (Auth::attempt($request->only(['email','password']))){
@@ -50,6 +50,6 @@ class AdminAuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/admin/login')->with('success', 'logged out Successfully! 😃' );
+        return redirect('/admin')->with('success', 'logged out Successfully! 😃' );
     }
 }

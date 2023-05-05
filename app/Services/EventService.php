@@ -22,14 +22,23 @@ class EventService {
         $event->invite_user           = $request->invite_user;
 
         $event->venue_address         = json_encode($request->venue_address);
-        $event->start_time            =  json_encode($request->start_time);
+        $event->start_time            = json_encode($request->start_time);
         $event->end_time              = json_encode($request->end_time);
         
         
         if ($request->hasFile('event_image')) {
-            $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
-  
+
             $image = $request->file('event_image');
+            $temporaryFilePath = $image->getPathname();
+            $image_info = getimagesize( $temporaryFilePath);
+
+            $image_width  = $image_info[0];
+            $image_height = $image_info[1];
+
+            if ($image_width !== 1440 && !$image_height !== 326) {
+                return redirect()->back()->with('error', 'Event Image must be 1440 X 326 in dimension.');
+            }
+            $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
   
             $extension = $image->getClientOriginalExtension();
             $check = in_array($extension, $allowedfileExtension);
@@ -110,9 +119,17 @@ class EventService {
  
 
       if ($request->hasFile('event_image')) {
-          $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
+            $image = $request->file('event_image');
+            $temporaryFilePath = $image->getPathname();
+            $image_info = getimagesize( $temporaryFilePath);
 
-          $image = $request->file('event_image');
+            $image_width  = $image_info[0];
+            $image_height = $image_info[1];
+
+            if ($image_width !== 1440 && !$image_height !== 326) {
+                return redirect()->back()->with('error', 'Event Image must be 1440 X 326 in dimension.');
+            }
+            $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
 
           $extension = $image->getClientOriginalExtension();
           $check = in_array($extension, $allowedfileExtension);
@@ -192,5 +209,19 @@ class EventService {
         report($e->getMessage());
         return back()->withError($e->getMessage())->withInput();
     }
+  }
+
+  public static function deleteEvent($event){
+        try{
+            Event::find($event)->delete();
+            
+            return response()->json(['status'  => true,'message' => 'Event deleted succesfully'],200);
+        }catch (\Exception$e) {
+            report($e);
+            report($e->getMessage());
+        } catch (\Throwable $e) {
+            report($e->getMessage());
+            return back()->withError($e->getMessage())->withInput();
+        }
   }
 }

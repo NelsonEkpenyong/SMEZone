@@ -1,11 +1,18 @@
 @extends('layouts.app')
   @section('content')
-
-      <section class="events-upper container-fluid">
+      <section class="container-fluid" style="height: 310px; background: rgba(235, 142, 2, 0.16); background-size: cover; background-repeat: no-repeat; background-image: url('{{asset('images/'.$event->event_image)}}');">
         <div class="container">
-          @php $name = explode(' ', $event->event_name,3); @endphp
-          <h2>{{$event->event_name}}
-            {{-- {{$name[0]}} <span class="our-orange">{{$name[1]}}</span> {{isset($name[2]) ? $name[2] : ""}} {{isset($name[3]) ? $name[3] : ""}} --}}
+          @php 
+            $name = explode(' ', $event->event_name,3); 
+          @endphp
+          <h2 style="max-width: 438px; font-weight: 400; font-size: 45px; line-height: 60px; text-transform: capitalize; padding-top: 53px; margin-left: 10px; font-family: 'KronaOne'; color: var(--white);">
+            @if ( count($name) == 1)
+                {{$name[0]}}
+            @elseif(count($name) == 2)
+              {{$name[0]}} <span class="our-orange">{{$name[1]}}</span>
+            @else
+              {{$name[0]}} <span class="our-orange">{{$name[1]}}</span> {{$name[2]}}
+            @endif
           </h2>
         </div>
       </section>
@@ -13,8 +20,7 @@
       <div class="event-back">
         <div class="container">
           <a href="/events" class="d-flex align-items-center">
-            <img src="{{asset('icons/back-icon.svg')}}" alt="back" />
-            Back
+            <img src="{{asset('icons/back-icon.svg')}}" alt="back" />Back
           </a>
         </div>
       </div>
@@ -40,7 +46,8 @@
                   <div>
                     @php 
                       $start_times = json_decode($event->start_time);
-                      $end_times = json_decode($event->end_time);
+                      $end_times   = json_decode($event->end_time);
+                      // dd($event->start_time,$event->end_time );
                       if(is_array($start_times) && !is_null($start_times)){
                         $dates = array_combine($start_times, $end_times);
                       }
@@ -50,7 +57,7 @@
                         {{$start}} - {{$end}} <br>
                     @empty
 
-                    @endforeach
+                    @endforelse
                   </div>
                 </div>
               </div>
@@ -108,22 +115,25 @@
                   <input type="number" class="form-control" id="PhoneNumber" placeholder="Phone Number"/>
                 </div>
 
-                <input type="hidden" name="role_id" value="4">
+                <input type="hidden" name="role_id"   value="4">
+                <input type="hidden" name="event_id"  value="{{$event->id}}">
                 <input type="hidden" name="gender_id" value="1">
-                <input type="hidden" name="password" value="admin">
+                <input type="hidden" name="password"  value="admin">
                 @php 
                   $venues = json_decode($event->venue_address);
+                  if(is_array($venues) == false) $venues = [$venues];
                 @endphp
                 <div class="form-group">
                   <select class="form-select" id="exampleSelect" name="venue_name" required>
-                    <option value="0" readonly>Select Venue</option>
-                    @foreach ($venues as $item)
+                    @forelse ($venues as $item)
                         @if( count($venues) == 1)
                             <option value="{{$item}}" selected >{{$item}}</option>
                         @else
                             <option value="{{$item}}" readonly>{{$item}}</option>
                         @endif
-                    @endforeach
+                    @empty
+                      This event has no venue
+                    @endforelse
                   </select>
                 </div>
 

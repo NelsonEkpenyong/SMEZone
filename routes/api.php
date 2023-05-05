@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\api\AdminController;
 use App\Http\Controllers\api\CourseController;
+use App\Http\Controllers\api\LocationController;
+use App\Http\Controllers\api\PostController;
+use App\Http\Controllers\api\CourseCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,8 @@ use App\Http\Controllers\api\CourseController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/lga/{state}', [LocationController::class,'lgaBySate']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -31,6 +36,7 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
     Route::post('/add-event','add_event')->name('add-event');
     Route::post('/change-event/{event}','change_event')->name('change-event');
     Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
+    Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
 
     Route::post('/add-industry','add_industry')->name('add-industry');
     Route::post('/add-course-type','add_course_type')->name('add-course-type');
@@ -41,4 +47,16 @@ Route::controller(CourseController::class)->prefix('course')->group( function(){
     Route::post('/store-course','store_course')->name('store-course');
     Route::post('/modify-course/{course}','modify_course')->name('modify-course');
     Route::get('/feature-course/{course}','feature_course')->name('feature-course');
+});
+
+Route::controller(CourseCategoryController::class)->prefix('courseCategory')->group( function(){
+    Route::post('/store-course-category','store_course_category')->name('store-course-category');
+    Route::post('/modify-course-category/{category}','modify_course_category')->name('modify-course-category');
+});
+
+
+Route::controller(PostController::class)->prefix('post')->group( function(){
+    Route::post('/post','store_post')->name('post');
+    Route::post('/comment/{id}','store_comment')->name('comment');
+    Route::post('/likes/{post_id}/{comment_id}','likes')->name('likes');
 });

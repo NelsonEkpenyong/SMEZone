@@ -10,6 +10,9 @@ class Course extends Model
     use HasFactory;
 
     protected $table = 'course';
+
+    protected $with = ['courseCategory'];
+
     protected $fillable = [
         'type_id',
         'name',
@@ -35,7 +38,7 @@ class Course extends Model
         return $this->belongsto(CourseCategories::class, 'course_category_id');
     }
 
-    public function paymentType(){
+    public function cost(){
         return $this->belongsto(Price::class, 'payment_type_id');
     }
 

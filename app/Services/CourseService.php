@@ -130,11 +130,6 @@ class CourseService {
       }
 
       if($course->is_featured == 1){
-        // $is_featured = Course::where('is_featured',1)->get();
-
-        // if($is_featured->count() == 4){
-        //     return response()->json(['status'  => false,'message' => 'There\'re can only be 4 featured courses. Unfeature a course to continue!'],200);
-        // }
         Course::where('id',$id)->update(['is_featured' =>  0]);
       }
 

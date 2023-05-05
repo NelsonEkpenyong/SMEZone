@@ -6,6 +6,9 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminAuthController;
+use App\Http\Controllers\ToolsController;
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,6 @@ Route::get('admin',[AdminAuthController::class,'login'])->name('/admin');
 Route::post('/admin/logout',[AdminAuthController::class,'logout'])->name('/admin/logout');
 
 Route::post('/admin/handle-login',[AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
-
 
 Route::controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
     Route::get('/dashboard','admin_dashboard')->name('dashboard');
@@ -54,6 +56,12 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::post('/update-industry/{industry}','update_industry')->name('update-industry');
 
     Route::get('/delete-industry/{industry}','delete_industry')->name('delete-industry');
+
+    Route::get('/course-categories','course_categories')->name('course-categories');
+    Route::get('/add-category','add_category')->name('add-category');
+    Route::post('/add-course-category','add_course_category')->name('add-course_category');
+    Route::get('/edit-course-category/{category}','edit_course_category')->name('edit-course-category');
+    Route::post('/update-course-category/{category}','update_course_category')->name('update-course-category');
 
     Route::get('/manage-course','manage_course')->name('manage-course');
     Route::get('/course','course')->name('course');
@@ -89,18 +97,44 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/upcoming-event-image', 'upcoming_event_image')->name('upcoming-event-image');
     Route::get('/upcoming-event/{id}', 'upcoming_event')->name('upcoming-event');
     Route::post('/update-upcoming-event/{id}', 'update_upcoming_event')->name('update-upcoming-event');
-
+    Route::get('/delete-event/{id}', 'delete_event')->name('delete-event');
 });
-
 
 Route::controller(HomeController::class)->group( function(){
     Route::get('/','index')->name('/');
 });
 
+Route::controller(ToolsController::class)->group( function(){
+    Route::get('/tools','tools')->name('tools');
+    Route::get('/biz-debit-card','debit_card')->name('biz-debit-card');
+    Route::get('/loans','loans')->name('loans');
+    Route::get('/loan','loan')->name('loan');
+    Route::get('/proposition','proposition')->name('proposition');
+});
 
+Route::controller(CommunityController::class)->group( function(){
+    Route::get('/community','community')->middleware('onlineUser')->name('community');
+    Route::get('/news','news')->name('news');
+    Route::get('/webinars','webinars')->name('webinars');
+    Route::post('/store-post','store_post')->name('store-post');
+    Route::post('/store-comment/{id}','store_comment')->name('store-comment');
+    Route::post('/post-likes/{post_id}/{comment_id}','post_likes')->name('post-likes');
+});
+
+Route::controller(DashboardController::class)->middleware(['auth'])->group( function(){
+    Route::get('/dashboard/home','dashboard')->middleware('checkProfile')->name('dashboard/home');
+    Route::get('/explore-courses','courses')->name('explore-courses');
+    Route::get('/explore-webinars','webinars')->name('explore-webinars');
+    Route::get('/explore-resources','resources')->name('explore-resources');
+    Route::get('/settings-profile','profile_settings')->name('settings-profile');
+    Route::post('/update-profile','update_profile')->name('update-profile');
+    Route::get('/settings','settings')->name('settings');
+});
 
 Route::controller(CoursesController::class)->group( function(){
     Route::get('/courses','courses')->name('courses');
+    Route::get('/acourse/{id}','course')->name('acourse');
+    Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
 
 Route::controller(EventsController::class)->group( function(){

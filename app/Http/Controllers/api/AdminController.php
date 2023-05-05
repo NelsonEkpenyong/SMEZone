@@ -78,6 +78,10 @@ class AdminController extends Controller
         return EventService::postponeEvent($request, $event);
     }
 
+    public function delete_event($event ){
+        return EventService::deleteEvent($event);
+    }
+
     public function add_industry(AddIndustryRequest $request){
         return AddIndustryService::addIndustry($request);
     }
