@@ -38,6 +38,8 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
     Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
     Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
 
+    Route::get('/deletePost/{post}','delete_post')->name('deletePost');
+
     Route::post('/add-industry','add_industry')->name('add-industry');
     Route::post('/add-course-type','add_course_type')->name('add-course-type');
 });

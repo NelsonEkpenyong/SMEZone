@@ -77,11 +77,11 @@
                                             </div>
                                             @forelse ($post->comments as $comment)
                                                 <div class="alert alert-secondary mt-2" style="margin-left: 2rem">
-                                                        <div class="" >
+                                                        <div class="d-flex justify-content-start" >
                                                           <p class="fw-bold mb-0">
                                                             {{ $comment->user->first_name . ' ' . $comment->user->last_name }}
                                                         </p>
-                                                        <i class=""  style="font-size: 12px" > ({{date('D j M Y h:i A', strtotime($comment->created_at))}}) </i>
+                                                        <i class="mt-1"  style="font-size: 12px; padding-left: 5px " > ({{date('D j M Y h:i A', strtotime($comment->created_at))}}) </i>
                                                         </div>
 
                                                     <p>{{ $comment->body }}</p>

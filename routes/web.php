@@ -100,7 +100,10 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::post('/update-upcoming-event/{id}', 'update_upcoming_event')->name('update-upcoming-event');
     Route::get('/delete-event/{id}', 'delete_event')->name('delete-event');
 
-    Route::get('/post', 'post')->name('post');
+    Route::get('/posts', 'posts')->name('posts');
+    Route::get('/post/{id}', 'post_comment')->name('postcomment');
+    Route::get('/delete-post/{id}', 'delete_post')->name('delete-post');
+
 
 });
 
