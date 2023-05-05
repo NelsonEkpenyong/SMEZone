@@ -2721,9 +2721,6 @@ header .dp {
   background: #000000;
   border-radius: 30px;
   color: var(--white);
-  margin-top: 40px;
-  margin-bottom: 100px;
-  margin-left:19.5rem;
 }
 /* .submit-reg:hover {
   color: rgba(255, 255, 255, 0.7);

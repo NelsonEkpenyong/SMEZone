@@ -21,7 +21,8 @@ use App\Models\CourseType;
 use App\Models\Course;
 use App\Models\UpcomingEventImage;
 use App\Models\Certificates;   
-use App\Models\CourseCategories;   
+use App\Models\CourseCategories;
+use App\Models\Post;
 use App\Models\Price;   
 use App\Models\UserTypes;   
 use Illuminate\Support\Str;
@@ -591,5 +592,10 @@ class AdminController extends Controller
             return redirect('/course-categories');
         }
         return redirect()->back()->with('error', 'Course category updation Failed 😞');
+    }
+
+    public function post() {
+        $posts = Post::all();
+        return view('', compact('posts'));
     }
 }
