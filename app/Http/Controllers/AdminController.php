@@ -35,6 +35,7 @@ class AdminController extends Controller
 
     public function sliders(){
         $sliders = HeroSlider::all();
+        
         return view('admin.sliders', compact('sliders'));
     }
 
