@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
@@ -20,20 +22,15 @@ class CommunityController extends Controller
         return view('community.dashboard');
     }
 
-    public function community($id=0)
+    public function community(int $id = 0)
     {
         if (Auth::check()) {
-            
-            if (!$id) {
-                $id    =    Auth::user()->id;
-            }else {
-                $id    =    User::findOrFail($id)->id;
-            }
+            if (!$id) { $id = Auth::user()->id; }
+            else { $id = User::findOrFail($id)->id; }
 
-            $posts = Post::orderBy('id', 'desc')->with('user:id,first_name', 'comments')->where('user_id', $id)->paginate(2);
+            $posts        = Post::withCount(['comments', 'likes'])->orderBy('id', 'desc')->with('user:id,first_name', 'comments')->where('user_id', $id)->paginate(2);
             $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
-            $onlineUsers = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
-
+            $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
 
             return view('community.community', compact('onlineUsers', 'posts', 'id'));
         } else {
@@ -76,11 +73,15 @@ class CommunityController extends Controller
 
     public function news()
     {
-        return view('community.news');
+        $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
+        $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
+        return view('community.news', compact('onlineUsers'));
     }
 
     public function webinars()
     {
-        return view('community.webinars');
+        $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
+        $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
+        return view('community.webinars', compact('onlineUsers'));
     }
 }

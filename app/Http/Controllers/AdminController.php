@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Industries;
@@ -13,6 +15,7 @@ use App\Http\Requests\AddCourseRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
 use App\Http\Requests\CourseCategoryRequest;
+use App\Http\Requests\NewsRequest;
 use App\Models\EventType;
 use App\Models\Event;
 use App\Models\HeroSlider;
@@ -24,6 +27,9 @@ use App\Models\Certificates;
 use App\Models\CourseCategories;
 use App\Models\Post;
 use App\Models\Price;   
+use App\Models\User; 
+use App\Models\News; 
+use App\Models\Roles; 
 use App\Models\UserTypes;   
 use Illuminate\Support\Str;
 use File;
@@ -39,12 +45,12 @@ class AdminController extends Controller
         return view('admin.sliders', compact('sliders'));
     }
 
-    public function change_hero_slider($id){
+    public function change_hero_slider(int $id){
         $slider = HeroSlider::findOrFail($id);
         return view('admin.change-hero-slider', compact('slider','id'));
     }
 
-    public function update_hero_slider(Request $request, $id){
+    public function update_hero_slider(Request $request, int $id){
         $media = HeroSlider::findOrFail($id);
 
         $data = [];
@@ -142,12 +148,12 @@ class AdminController extends Controller
 
     }
 
-     public function update_featuredImage($id){
+     public function update_featuredImage(int $id){
         $featuredImage = FeaturedImage::findOrFail($id);
         return view('admin.update-featured-image',compact('featuredImage','id'));
     }
 
-    public function update_featured_image(Request $request, $id){
+    public function update_featured_image(Request $request, int $id){
         try{
             $feturedImage              = FeaturedImage::findOrFail($id);
             $feturedImage->name        = $request->name;
@@ -198,11 +204,11 @@ class AdminController extends Controller
         return view('admin.featured-courses', compact('featuredCourses'));
     }
 
-    public function edit_featured_course($course){
+    public function edit_featured_course(int $course){
         $featuredCourse = Course::findOrFail($course);
         return view('admin.change-featured-courses', compact('featuredCourse'));
     }
-    public function update_featured_courses(Request $request, $id){
+    public function update_featured_courses(Request $request, int $id){
         
          try{
             $featuredCourse = Course::findOrFail($id);
@@ -259,13 +265,13 @@ class AdminController extends Controller
         return view('admin.upcoming-event-image', compact('events'));
     }
 
-    public function upcoming_event($id){
+    public function upcoming_event(int $id){
         $upcomingEventImage  = UpcomingEventImage::findOrFail($id);
         $events = Event::where('is_upcoming',1)->get();
         return view('admin.update-upcoming-event', compact('upcomingEventImage','events'));
     }
 
-    public function update_upcoming_event(Request $request, $id){
+    public function update_upcoming_event(Request $request, int $id){
         try {
             $upcomingEventImage = UpcomingEventImage::findOrFail($id);
             $upcomingEventImage->event_id = $request->event;
@@ -318,11 +324,26 @@ class AdminController extends Controller
     public function update_video_slider(Request $request){
         dd($request);
     }
+    
+    /**
+     * Admin Dashboard
+     *
+     * Retrieves data for the admin dashboard and returns the corresponding view.
+     *
+     * @var \App\Models\User $authUser The currently authenticated user.
+     * @var int $eventCount The number of events.
+     * @var int $courses The number of courses.
+     * @var int $users The number of users.
+     *
+     * @return \Illuminate\Contracts\View\View
+    */
     public function admin_dashboard(){
         $authUser   = Auth::user();
         $eventCount = Event::count();
         $courses    = Course::count();
-        return view('admin.dashboard',compact('authUser','eventCount','courses'));
+        $users      = User::count();
+
+        return view('admin.dashboard',compact('authUser','eventCount','courses','users'));
     }
 
     public function manage_event(){
@@ -342,16 +363,16 @@ class AdminController extends Controller
             return redirect('/manage');
         }
         return redirect()->back()->with('error', 'Event Creation Failed. Please check Image dimension and try again. 😞'); 
-}
+    }
 
-    public function edit_event($event){
+    public function edit_event(int $event){
         $event = Event::findOrFail($event);
         $eventTypes = EventType::select(['id', 'name'])->get();
         return view('admin.edit-event', compact('event','eventTypes'));
     }
 
 
-    public function update_event(UpdateEventRequest $request, $event){
+    public function update_event(UpdateEventRequest $request, int $event){
         $responded = Route::dispatch( Request::create("api/admin/change-event/$event", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Event Updated Successfully!😃');
@@ -360,7 +381,7 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Event Updation Failed 😞');
     }
 
-    public function delete_event($event){
+    public function delete_event(int $event){
         $responded = Route::dispatch( Request::create("api/admin/deleteEvent/$event", 'GET') );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Event deleted Successfully!😃');
@@ -369,7 +390,7 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Event deletion Failed 😞');
     }
 
-    public function feature_event($id){
+    public function feature_event(int $id){
       try{
             $event = Event::findOrFail($id);
 
@@ -395,7 +416,7 @@ class AdminController extends Controller
         
     }
 
-    public function upcome_event($id){
+    public function upcome_event(int $id){
         try{
               $event = Event::findOrFail($id);
   
@@ -421,12 +442,12 @@ class AdminController extends Controller
           
       }
 
-    public function postpone_event($id){
+    public function postpone_event(int $id){
         $event = Event::findOrFail($id);
         return view('admin.postpone-event', compact('event'));
     }
 
-    public function postpone(Request $request, $id){
+    public function postpone(Request $request, int $id){
         $responded = Route::dispatch( Request::create("api/admin/postpone-an-event/$id", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Event postponed Successfully!😃');
@@ -458,12 +479,12 @@ class AdminController extends Controller
         return view('admin.manage-industry', compact('industries'));
     }
 
-    public function edit_industry( $id){
+    public function edit_industry(int $id){
         $industry = Industries::where('id', $id)->get()[0];
         return view('admin.edit-industry', compact('industry'));
     }
 
-    public function update_industry(Request $request, $id){
+    public function update_industry(Request $request, int $id){
         try {
             DB::beginTransaction();
 
@@ -522,7 +543,7 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Course Creation Failed 😞');
     }
 
-    public function edit_course($id){
+    public function edit_course(int $id){
         $course       = Course::findOrFail($id);
         $courseTypes  = CourseType::all();
         $certificates = Certificates::all();
@@ -532,7 +553,7 @@ class AdminController extends Controller
         return view('admin.edit-course', compact('course','courseTypes','certificates','categories','paymentType'));
     }
 
-    public function update_course(Request $request, $id){
+    public function update_course(Request $request, int $id){
         $responded = Route::dispatch( Request::create("api/course/modify-course/$id", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course updated Successfully!😃');
@@ -541,7 +562,7 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Course updation Failed 😞');
     }
 
-    public function feature_course($id){
+    public function feature_course(int $id){
         $responded = Route::dispatch( Request::create("api/course/feature-course/$id", 'GET') );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course status updated Successfully!😃');
@@ -551,7 +572,7 @@ class AdminController extends Controller
         
     }
 
-    public function analyse_event($id){
+    public function analyse_event(int $id){
         $event = Event::findOrFail($id);
         return view('admin.event-analytics');
     }
@@ -581,11 +602,11 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Course Category Creation Failed 😞');
 
     }
-    public function edit_course_category($category){
+    public function edit_course_category(int $category){
         $category = CourseCategories::findOrFail($category);
         return view('admin.edit-category', compact('category'));
     }
-    public function update_course_category(Request $request,$category ){
+    public function update_course_category(Request $request,int $category ){
         $responded = Route::dispatch( Request::create("api/courseCategory/modify-course-category/$category", 'POST', $request->all()) );
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course category updated Successfully!😃');
@@ -599,8 +620,20 @@ class AdminController extends Controller
         return view('admin.posts', compact('posts'));
     }
 
-    
-
+     /**
+     * Post Comments
+     *
+     * Retrieves the comments under a post
+     * @param int $id
+     * @var int $post Post with its comments.
+     *
+     * @return \Illuminate\Contracts\View\View
+    */
+    public function post_comment(int $id) {
+        $post = Post::with('comments')->findOrFail($id);
+        // dd($post);
+        return view('admin.post_comments', compact('post','id'));
+    }
 
     public function delete_post($post){
         $responded = Route::dispatch( Request::create("api/admin/deletePost/$post", 'GET') );
@@ -609,6 +642,33 @@ class AdminController extends Controller
             return redirect('/posts');
         }
         return redirect()->back()->with('error', 'Post deletion Failed 😞');
+    }
+
+    public function users(){
+        $users = User::orderBy('id', 'desc')->paginate(5);
+        return view('admin.users', compact('users'));
+    }
+
+
+    public function news(){
+        $news = News::orderBy('id', 'desc')->paginate(5);
+        return view('admin.news', compact('news'));
+    }
+
+    public function to_add_news(){
+        $roles = Roles::all();
+        return view('admin.add-news', compact('roles'));
+    }
+
+
+    public function add_news(NewsRequest $request){
+        $responded = Route::dispatch( Request::create("api/news/addNews", 'POST') );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('news added Successfully!😃');
+            return redirect('/manage-news');
+        }
+        return redirect()->back()->with('error', 'Baba, dat news fit be fake news O. d tin no go 😞');
+        
     }
 
 

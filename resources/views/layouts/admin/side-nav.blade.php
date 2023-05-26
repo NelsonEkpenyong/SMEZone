@@ -26,14 +26,26 @@
           </div>
         </li>
         <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Users</span>
+            <i class="menu-arrow" style="margin-left: 10rem"></i>
+          </a>
+          <div class="collapse" id="users">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/users">Users</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#posts" aria-expanded="false" aria-controls="zon">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Posts</span>
-            <i class="menu-arrow" style="margin-left: 9.3rem"></i>
+            <i class="menu-arrow" style="margin-left: 9.8rem"></i>
           </a>
           <div class="collapse" id="posts">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="{{route('posts')}}">Post</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/posts">Post</a></li>
             </ul>
           </div>
         </li>
@@ -50,6 +62,21 @@
             </ul>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">News Management</span>
+            <i class="menu-arrow" style="margin-left: 4.5rem"></i>
+          </a>
+          <div class="collapse" id="news">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/manage-news">Manage</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/to-add-news">Add</a></li>
+            </ul>
+          </div>
+        </li>
+
+
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#mail" aria-expanded="false" aria-controls="mail">
             <i class="icon-layout menu-icon"></i>

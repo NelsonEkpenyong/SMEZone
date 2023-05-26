@@ -104,6 +104,13 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/post/{id}', 'post_comment')->name('postcomment');
     Route::get('/delete-post/{id}', 'delete_post')->name('delete-post');
 
+    Route::get('/users','users')->name('users');
+
+    Route::get('/manage-news','news')->name('/manage-news');
+    Route::get('/to-add-news','to_add_news')->name('/to_add-news');
+    Route::post('/add-news','add_news')->name('/add-news');
+    Route::get('/a-news/{news}','a_news')->name('/a-news');
+    Route::put('/update_news/{news}','update_news')->name('update_news');
 
 });
 
@@ -126,6 +133,9 @@ Route::controller(CommunityController::class)->group( function(){
     Route::post('/store-post','store_post')->name('store-post');
     Route::post('/store-comment/{id}','store_comment')->name('store-comment');
     Route::post('/post-likes/{post_id}/{comment_id}','post_likes')->name('post-likes');
+
+    Route::post('/reply-comment/{post_id}/{comment_id}','reply_comment')->name('reply-comment');
+    Route::post('/edit-comment/{id}','edit_comment')->name('edit-comment');
 });
 
 Route::controller(DashboardController::class)->middleware(['auth'])->group( function(){

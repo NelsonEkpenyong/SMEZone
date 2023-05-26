@@ -10,7 +10,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="ti-home" style="text-decoration: none; color: inherit; "> Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Post Management</li>
+                                    <li class="breadcrumb-item active" aria-current="page">User Management</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 col-md-11 col-sm-11">
-                            <h4 class="card-title">Manage Post</h4>
+                            <h4 class="card-title">Manage Users</h4>
                             <button type="button" class="btn btn-success mb-2 btn-icon-text">
                                 <i class="ti-bar-chart-alt text-white"></i>                                                    
                                 Download Excel
@@ -33,32 +33,40 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Title</th>
                                 <th>User</th>
-                                <th>Comments</th>
-                                <th>Likes</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Have Business</th>
+                                <th>Has Access Account</th>
+                                <th>Account Number</th>
+                                <th>Account Type</th>
+                                <th>Account Status</th>
                                 <th>Created</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @forelse($posts as $key => $post)
+                                @forelse($users as $key => $user)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td><a href="/post/{{$post->id}}" style="text-decoration: none; color: inherit">{{$post->title}}</a></td>
-                                    <td>{{$post->user->first_name.' '.$post->user->last_name}}</td>
-                                    <td>{{$post->comments_count}}</td>
-                                    <td>{{$post->likes_count}}</td>
-                                    <td>{{$post->created_at->toFormattedDateString()}}  </td>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{$user->first_name.' '.$user->last_name}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{ ($user->have_business == 1) ? "Yes" : "No" }}</td>
+                                    <td>{{ ($user->have_access_bank_account == 1) ? "Yes" : "No" }}</td>
+                                    <td>{{$user->account}}</td>
+                                    <td>{{ ($user->account_status == 1) ? "Active" : "Dormant" }}</td>
+                                    <td>{{ ($user->account_type == 0) ? "Individual" : "Corporate" }}</td>
+                                    <td>{{$user->created_at->toFormattedDateString()}}  </td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                            <a class="dropdown-item" href="/post/{{$post->id}}">See Comments</a>
+                                            <a class="dropdown-item" href="#">action 1</a>
                                             <div class="dropdown-divider"></div>
-                                            {{-- <a class="dropdown-item" href="/delete-post/{{$post->id}}">Delete Post</a> --}}
+                                            <a class="dropdown-item" href="#">action 2</a>
                                             </div>
                                         </div>
                                     </td>
@@ -74,7 +82,7 @@
                     </div>
                     <div class="row">
                         <div class="mb-4 mt-3 col-lg-6">
-                            {{$posts->links()}}
+                            {{$users->links()}}
                         </div>
                     </div>
                 </div>

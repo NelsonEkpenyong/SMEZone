@@ -10,7 +10,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}" class="ti-home" style="text-decoration: none; color: inherit; "> Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Post Management</li>
+                                    <li class="breadcrumb-item active" aria-current="page">News Management</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-10 col-md-11 col-sm-11">
-                            <h4 class="card-title">Manage Post</h4>
+                            <h4 class="card-title">Manage News</h4>
                             <button type="button" class="btn btn-success mb-2 btn-icon-text">
                                 <i class="ti-bar-chart-alt text-white"></i>                                                    
                                 Download Excel
@@ -34,31 +34,31 @@
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
-                                <th>User</th>
-                                <th>Comments</th>
-                                <th>Likes</th>
-                                <th>Created</th>
+                                <th>Excerpt</th>
+                                <th>Content</th>
+                                <th>Image</th>
+                                <th>Audience</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @forelse($posts as $key => $post)
+                                @forelse($news as $key => $article)
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td><a href="/post/{{$post->id}}" style="text-decoration: none; color: inherit">{{$post->title}}</a></td>
-                                    <td>{{$post->user->first_name.' '.$post->user->last_name}}</td>
-                                    <td>{{$post->comments_count}}</td>
-                                    <td>{{$post->likes_count}}</td>
-                                    <td>{{$post->created_at->toFormattedDateString()}}  </td>
+                                    <td>{{$key + 1}}</td>
+                                    <td>{{Str::limit($article->news_title, 20, '...')}}</td>
+                                    <td>{{ strip_tags(Str::limit($article->excerpt, 20, '...'))}}</td>
+                                    <td>{{ strip_tags(Str::limit($article->description, 50, '...') ) }}</td>
+                                    <td>{{ $article->image ? $article->image : 'No Image'}}</td>
+                                    <td>{{$article->role->guard_name}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                            <a class="dropdown-item" href="/post/{{$post->id}}">See Comments</a>
+                                            <a class="dropdown-item" href="#">action 1</a>
                                             <div class="dropdown-divider"></div>
-                                            {{-- <a class="dropdown-item" href="/delete-post/{{$post->id}}">Delete Post</a> --}}
+                                            <a class="dropdown-item" href="#">action 2</a>
                                             </div>
                                         </div>
                                     </td>
@@ -66,7 +66,7 @@
                                 </tr>
                                 @empty
                                     <tr>
-                                        <td>No records found</td>
+                                        <td>No News found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="row">
                         <div class="mb-4 mt-3 col-lg-6">
-                            {{$posts->links()}}
+                            {{$news->links()}}
                         </div>
                     </div>
                 </div>

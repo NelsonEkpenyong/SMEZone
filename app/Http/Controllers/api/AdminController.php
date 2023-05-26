@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddEventRequest;
+use App\Http\Requests\NewsRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
 use App\Http\Requests\AddCourseTypeRequest;
@@ -16,14 +17,9 @@ use App\Services\AddIndustryService;
 use App\Services\AddCourseTypeService;
 use App\Services\PostService;
 
+
 class AdminController extends Controller
 {
-    //
-    // private $service;
-
-    // public function _construct(AddEventService $service){
-    //     $this->service = $service;
-    // }
 
     public function handleLogin(Request $request){
         try{
@@ -88,7 +84,6 @@ class AdminController extends Controller
     public function add_industry(AddIndustryRequest $request){
         return AddIndustryService::addIndustry($request);
     }
-
     public function add_course_type(AddCourseTypeRequest $request){
         return AddCourseTypeService::addCourseType($request);
     }

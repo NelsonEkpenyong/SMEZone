@@ -346,8 +346,8 @@ class ComposerStaticInit93ca9671138f040957a97c86e0f35d37
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -560,6 +560,7 @@ class ComposerStaticInit93ca9671138f040957a97c86e0f35d37
         'App\\Http\\Controllers\\CourseController' => __DIR__ . '/../..' . '/app/Http/Controllers/CourseController.php',
         'App\\Http\\Controllers\\CoursesController' => __DIR__ . '/../..' . '/app/Http/Controllers/CoursesController.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
+        'App\\Http\\Controllers\\EnrolmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/EnrolmentController.php',
         'App\\Http\\Controllers\\EventsController' => __DIR__ . '/../..' . '/app/Http/Controllers/EventsController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ToolsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ToolsController.php',
@@ -610,6 +611,7 @@ class ComposerStaticInit93ca9671138f040957a97c86e0f35d37
         'App\\Models\\HeroSlider' => __DIR__ . '/../..' . '/app/Models/HeroSlider.php',
         'App\\Models\\Industries' => __DIR__ . '/../..' . '/app/Models/Industries.php',
         'App\\Models\\Lga' => __DIR__ . '/../..' . '/app/Models/Lga.php',
+        'App\\Models\\News' => __DIR__ . '/../..' . '/app/Models/News.php',
         'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
         'App\\Models\\PostLikes' => __DIR__ . '/../..' . '/app/Models/PostLikes.php',
         'App\\Models\\Price' => __DIR__ . '/../..' . '/app/Models/Price.php',
