@@ -41,15 +41,15 @@
       <div class="row">
         <div class="col-md-12 grid-margin transparent">
           <div class="row">
-            <div class="col-md-3 mb-4 stretch-card transparent">
-              <div class="card font-weight-bold" style="background: #ffa218; color: white">
+           <div class="col-md-3 mb-4 stretch-card transparent">
+              <div class="card font-weight-bold" style="background: #009cb3; color: white">
                 <div class="card-body">
-                  <p class="mb-4">Invitation Sent</p>
-                  <p class="fs-30 mb-2">4006</p>
-                  <p>10.00% (30 days)</p>
+                  <p class="mb-4">Total Users/Registrations</p>
+                  <p class="fs-30 mb-2">{{$users}}</p>
+                  <p>0.22% (30 days)</p>
                 </div>
               </div>
-            </div>
+            </div> 
             <div class="col-md-3 mb-4 stretch-card transparent">
               
               <div class="card font-weight-bold" style="background: #ee2d24; color: white">
@@ -72,14 +72,15 @@
               </div>
             </div>
             <div class="col-md-3 mb-4 stretch-card transparent">
-              <div class="card font-weight-bold" style="background: #009cb3; color: white">
+              <div class="card font-weight-bold" style="background: #ffa218; color: white">
                 <div class="card-body">
-                  <p class="mb-4">Total Users/Registrations</p>
-                  <p class="fs-30 mb-2">47033</p>
-                  <p>0.22% (30 days)</p>
+                  <p class="mb-4">Invitation Sent</p>
+                  <p class="fs-30 mb-2">4006</p>
+                  <p>10.00% (30 days)</p>
                 </div>
               </div>
             </div>
+            
           </div>
 
           <div class="row">

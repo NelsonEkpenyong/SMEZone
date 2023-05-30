@@ -9,6 +9,7 @@ use App\Http\Controllers\api\CourseController;
 use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\PostController;
 use App\Http\Controllers\api\CourseCategoryController;
+use App\Http\Controllers\api\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +39,15 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
     Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
     Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
 
+    Route::get('/deletePost/{post}','delete_post')->name('deletePost');
+
     Route::post('/add-industry','add_industry')->name('add-industry');
     Route::post('/add-course-type','add_course_type')->name('add-course-type');
+    
+});
+
+Route::controller(NewsController::class)->prefix('news')->group( function(){
+    Route::post('/addNews','add_news')->name('addNews');
 });
 
 

@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 use App\DataTransferObject\PostDTO;
 use App\DataTransferObject\CommentDTO;
 
-class PostService {
+class PostService
+{
 
-  public function addPost(PostDTO $postDTO) : PostDTO
+  public function addPost(PostDTO $postDTO): PostDTO
   {
-    try{
+    try {
       $post            = new Post;
       $post->title     = $postDTO->title;
       $post->body      = $postDTO->body;
@@ -21,20 +22,19 @@ class PostService {
       $post->save();
 
       return $postDTO;
-
-    }catch (\Exception $e) {
-        report($e);
-        report($e->getMessage());
+    } catch (\Exception $e) {
+      report($e);
+      report($e->getMessage());
     } catch (\Throwable $e) {
-        report($e->getMessage());
-        return back()->withError($e->getMessage())->withInput();
+      report($e->getMessage());
+      return back()->withError($e->getMessage())->withInput();
     }
   }
 
 
   public static function updatePost(PostDTO $postDTO, $id)
   {
-    try{
+    try {
       $post            = Post::findOrFail($id);
       $post->title     = $postDTO->title;
       $post->body      = $postDTO->body;
@@ -42,37 +42,58 @@ class PostService {
       $post->save();
 
       return $postDTO;
-
-    }catch (\Exception$e) {
-        report($e);
-        report($e->getMessage());
+    } catch (\Exception $e) {
+      report($e);
+      report($e->getMessage());
     } catch (\Throwable $e) {
-        report($e->getMessage());
-        return back()->withError($e->getMessage())->withInput();
+      report($e->getMessage());
+      return back()->withError($e->getMessage())->withInput();
     }
   }
 
 
-  public function addComment(CommentDTO $commentDTO) : CommentDTO
+  public function addComment(CommentDTO $commentDTO): CommentDTO
   {
-    try{
+    try {
       $comment            = new Comment;
       $comment->post_id   = $commentDTO->postId;
       $comment->user_id   = $commentDTO->userId;
       $comment->body      = $commentDTO->body;
       $comment->save();
 
-      
-      return $commentDTO;
 
-    }catch (\Exception $e) {
-        report($e);
-        report($e->getMessage());
+      return $commentDTO;
+    } catch (\Exception $e) {
+      report($e);
+      report($e->getMessage());
     } catch (\Throwable $e) {
-        report($e->getMessage());
-        return back()->withError($e->getMessage())->withInput();
+      report($e->getMessage());
+      return back()->withError($e->getMessage())->withInput();
     }
   }
- 
 
+
+  public static function deletePost($post)
+  {
+    try {
+      $post = Post::find($post);
+
+      foreach($post->comments as $comment) {
+        $comment->delete();
+      }
+      foreach($post->likes as $like) {
+        $like->delete();
+      }
+
+      $post->delete();
+    
+      return response()->json(['status'  => true, 'message' => 'Post deleted succesfully'], 200);
+    } catch (\Exception $e) {
+      report($e);
+      report($e->getMessage());
+    } catch (\Throwable $e) {
+      report($e->getMessage());
+      return back()->withError($e->getMessage())->withInput();
+    }
+  }
 }

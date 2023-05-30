@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\ToolsController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EnrolmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +99,19 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/upcoming-event/{id}', 'upcoming_event')->name('upcoming-event');
     Route::post('/update-upcoming-event/{id}', 'update_upcoming_event')->name('update-upcoming-event');
     Route::get('/delete-event/{id}', 'delete_event')->name('delete-event');
+
+    Route::get('/posts', 'posts')->name('posts');
+    Route::get('/post/{id}', 'post_comment')->name('postcomment');
+    Route::get('/delete-post/{id}', 'delete_post')->name('delete-post');
+
+    Route::get('/users','users')->name('users');
+
+    Route::get('/manage-news','news')->name('/manage-news');
+    Route::get('/to-add-news','to_add_news')->name('/to_add-news');
+    Route::post('/add-news','add_news')->name('/add-news');
+    Route::get('/a-news/{news}','a_news')->name('/a-news');
+    Route::put('/update_news/{news}','update_news')->name('update_news');
+
 });
 
 Route::controller(HomeController::class)->group( function(){
@@ -113,12 +127,15 @@ Route::controller(ToolsController::class)->group( function(){
 });
 
 Route::controller(CommunityController::class)->group( function(){
-    Route::get('/community','community')->middleware('onlineUser')->name('community');
+    Route::get('/community/{id?}','community')->middleware('onlineUser')->name('community');
     Route::get('/news','news')->name('news');
     Route::get('/webinars','webinars')->name('webinars');
     Route::post('/store-post','store_post')->name('store-post');
     Route::post('/store-comment/{id}','store_comment')->name('store-comment');
     Route::post('/post-likes/{post_id}/{comment_id}','post_likes')->name('post-likes');
+
+    Route::post('/reply-comment/{post_id}/{comment_id}','reply_comment')->name('reply-comment');
+    Route::post('/edit-comment/{id}','edit_comment')->name('edit-comment');
 });
 
 Route::controller(DashboardController::class)->middleware(['auth'])->group( function(){
@@ -136,6 +153,12 @@ Route::controller(CoursesController::class)->group( function(){
     Route::get('/acourse/{id}','course')->name('acourse');
     Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
+
+
+Route::controller(EnrolmentController::class)->group( function(){
+    Route::post('/enrol', 'enrol')->name('enrol')->middleware('auth');
+});
+
 
 Route::controller(EventsController::class)->group( function(){
     Route::get('/events','events')->name('events');

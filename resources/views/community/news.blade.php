@@ -28,10 +28,7 @@
                   </div>
                 </div>
                 <div class="com-body">
-                  <h5>
-                    Why small Businesses have the initial struggle in the
-                    market space
-                  </h5>
+                  <h5> Why small Businesses have the initial struggle in the market space </h5>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Nunc ut phasellus aliquam, arcu nibh habitasse sit. Eget
