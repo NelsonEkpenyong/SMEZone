@@ -667,7 +667,7 @@ class AdminController extends Controller
             flash()->addSuccess('news added Successfully!😃');
             return redirect('/manage-news');
         }
-        return redirect()->back()->with('error', 'Baba, dat news fit be fake news O. d tin no go 😞');
+        return redirect()->back()->with('error', 'Baba, dat news fit be fake O. d tin no go 😞');
         
     }
 
