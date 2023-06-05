@@ -655,6 +655,7 @@ class AdminController extends Controller
         return view('admin.news', compact('news'));
     }
 
+    
     public function to_add_news(){
         $roles = Roles::all();
         return view('admin.add-news', compact('roles'));
