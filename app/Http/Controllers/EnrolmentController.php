@@ -23,7 +23,7 @@ class EnrolmentController extends Controller
                 'enrrolled' => 1
             ]);
 
-            flash()->addSuccess('you have enrol Successfully!😃');
+            flash()->addSuccess('you have enrolled Successfully!😃');
             return redirect()->back();
         } catch (\Exception $e) {
             report($e);
