@@ -15,6 +15,7 @@ use App\Http\Requests\AddCourseRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
 use App\Http\Requests\CourseCategoryRequest;
+use App\Http\Requests\webinarRecordingsRequest as webRequest;
 use App\Http\Requests\NewsRequest;
 use App\Models\EventType;
 use App\Models\Event;
@@ -24,6 +25,7 @@ use App\Models\CourseType;
 use App\Models\Course;
 use App\Models\UpcomingEventImage;
 use App\Models\Certificates;   
+use App\Models\WebinarRecordings as web;   
 use App\Models\CourseCategories;
 use App\Models\Post;
 use App\Models\Price;   
@@ -440,7 +442,7 @@ class AdminController extends Controller
             }
           return redirect()->back()->with('error', 'Event status change has Failed 😞');
           
-      }
+    }
 
     public function postpone_event(int $id){
         $event = Event::findOrFail($id);
@@ -672,5 +674,22 @@ class AdminController extends Controller
         
     }
 
+    public function manage_webinar(){
+        $webinars = web::orderBy('id','desc')->paginate(10);
+        return view('admin.manage-webinar', compact('webinars'));
+    }
+
+    public function add_webinar(){
+        return view('admin.add-webinar');
+    }
+
+     public function webinar_recordings(webRequest $request){
+        $responded = Route::dispatch( Request::create("api/webinarRecs/add-recording", 'POST') );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Webinar Recordings added Successfully!😃');
+            return redirect('/manage-webinar');
+        }
+        return redirect()->back()->with('error', 'Baba,wu no fit add dat recording O. Call persin mek e epp u. 😞');
+    }
 
 }

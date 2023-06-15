@@ -6,60 +6,45 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light py-0">
                     <div class="container-fluid px-0">
-                        <a class="navbar-brand" href="#">Courses Categories:</a>
+                        <a class="navbar-brand" href="#">Courses Categories</a>
 
                         <div class="d-block d-lg-none dropdown px-0">
                             <a style="height: 100%; color: #000000"
                                 class="nav-link dropdown-toggle active d-flex align-items-center justify-content-between ps-1"
                                 href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Financial Management
+                                Financial Manigement
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 100%">
-                                <li>
-                                    <a class="dropdown-item" href="#">Marketing</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Technology</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Human Resources</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Business Plans & Models</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">BET Videos</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">SME Accelerate</a>
-                                </li>
+                                @forelse ($categories as $category)
+                                    <li>
+                                        <a class="dropdown-item" href="/category-courses/{{$category->id}}">{{$category->title}}</a>
+                                    </li>
+                                @empty
+                                    <li>
+                                        <a class="dropdown-item" href="#">No Course Category</a>
+                                    </li>
+                                @endforelse
+                                
                             </ul>
                         </div>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+                            {{-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"> --}}
+                            <ul class="navbar-nav mb-lg-0 me-auto mt-2" style="overflow: auto; white-space: nowrap;">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="#">Financial Management</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Marketing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Technology</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Human Resources</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Business Plans & Models</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">BET Videos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">SME Accelerate</a>
-                                </li>
+                                </li> --}}
+                                @forelse ($categories as $cat)
+                                
+                                    <li class="nav-item">
+                                        <a class="nav-link {{$cat->title == $course->courseCategory->title ? 'active' : ''}}" aria-current="{{$cat->title == $category->title ? 'page' : ''}}" href="/category-courses/{{$cat->id}}">{{$cat->title}}</a>
+                                    </li>
+                                @empty
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">No Course Category</a>
+                                    </li>
+                                @endforelse
                             </ul>
                         </div>
                     </div>
@@ -73,10 +58,10 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="/financial-management.html">Financial Management</a>
+                            <a href="/category-courses/{{$course->course_category_id}}">{{$course->courseCategory->title}}</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            How do i finance my business
+                            {{$course->name}}
                         </li>
                     </ol>
                 </nav>
@@ -87,7 +72,7 @@
         <div class="container finance-details py-5 pb-0 pb-md-5">
             <div class="row justify-content-between mb-md-4">
                 <div class="col-md-auto order-md-1 order-2">
-                    <h3>How do i finance my business?</h3>
+                    <h3> {{$course->name}}</h3>
                 </div>
                 <div class="mb-3 mb-md-0 col-md-auto order-md-2 order-1 d-flex justify-content-between align-items-start">
                     <div>
@@ -112,32 +97,22 @@
             </div>
             <div class="row finance-pics">
                 <div class="position-relative">
-                    <img src="{{ asset('img/finance-pics-1.png') }}" alt="..." class="image" />
+                    <img src="{{ asset('images/'. $course->image) }}" class="image" />
+
                     <img src="{{ asset('icons/play-img.svg') }}" alt="play" class="play" />
                 </div>
                 <div class="actions">
-                    <button class="btn" style="background: #ceee0a; border-radius: 4px">
-                        Free
-                    </button>
+                    <button class="btn" style="background: #ceee0a; border-radius: 4px">Free</button>
 
-                    @if ($user_has_course > 0)
-                        <button class="btn" style="border: 1px solid #000000; border-radius: 4px">
-                            Enrolled
-                        </button>
+                     @if ($user_has_course > 0)
+                        <button class="btn" style="border: 1px solid #000000; border-radius: 4px" disabled>Enrolled </button>
                     @else
-                        <form action="/enrol" method="post" style="display: inline"> @csrf
-                          <input type="hidden" name="course_id" value="{{$course->id}}" >
-                          <input type="hidden" name="user_id" value="{{auth()->user()->id ?? ''}}" >
-                            <button class="btn enroll" style="border: 1px solid #000000; border-radius: 4px">
-                                Enroll
-                            </button>
-                        </form>
+                        <a href="/enrollment/{{$course->id}}" class="btn" style="border: 1px solid #000000; border-radius: 4px">Enroll</a>
                     @endif
 
                 </div>
             </div>
             <div class="row speaker-details mb-0">
-                @if ($user_has_course > 0)
                     <h6>Brief Description</h6>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum
@@ -153,8 +128,6 @@
                         convallis at cras malesuada. Nam dapibus augue vitae pellentesque
                         urna velit. Diam mi id posuere velit tristique mi.
                     </p>
-                @endif
-
             </div>
         </div>
 

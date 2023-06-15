@@ -9,7 +9,7 @@
    <section>
      <div class="container-fluid px-lg-4">
        <div class="row">
-         <h4 class="greeting">Good Morning Tobi!</h4>
+         <h4 class="greeting">Good Morning {{Auth::user()->first_name}}!</h4>
          <div class="d-md-flex d-none justify-content-between subheader">
            <ul class="">
              <li>

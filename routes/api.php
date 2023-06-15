@@ -8,6 +8,7 @@ use App\Http\Controllers\api\AdminController;
 use App\Http\Controllers\api\CourseController;
 use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\PostController;
+use App\Http\Controllers\api\WebinarController;
 use App\Http\Controllers\api\CourseCategoryController;
 use App\Http\Controllers\api\NewsController;
 
@@ -48,6 +49,10 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
 
 Route::controller(NewsController::class)->prefix('news')->group( function(){
     Route::post('/addNews','add_news')->name('addNews');
+});
+
+Route::controller(WebinarController::class)->prefix('webinarRecs')->group( function(){
+    Route::post('/add-recording','add_recording')->name('add-recording');
 });
 
 

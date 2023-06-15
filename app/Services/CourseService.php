@@ -91,25 +91,6 @@ class CourseService {
       }
     
       $course->save();
-      /* if ($request->hasFile('image')) {
-          $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
-
-          $image = $request->file('image');
-
-          $extension = $image->getClientOriginalExtension();
-          $check = in_array($extension, $allowedfileExtension);
-
-          if($check){
-              $file_name = Str::random(4) . '.' . $extension;
-              $image->move(public_path('images'), $file_name);
-          }else{
-              return redirect()->back()->with('error', 'File type not supported');
-          }
-
-          $course->image = $file_name;
-      }
-      
-      $course->save(); */
       
       return response()->json(['status'  => true,'message' => 'Course updated succesfully'],200);
     }catch (\Exception$e) {

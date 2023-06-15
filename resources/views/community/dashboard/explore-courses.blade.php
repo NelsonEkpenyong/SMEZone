@@ -6,9 +6,9 @@
      <div class="upper-glow"></div>
    </div>
    <div class="container-fluid px-lg-4">
-     <div class="row">
-       <h4 class="greeting">Good Morning Tobi!</h4>
-     </div>
+    <div class="row">
+      <h4 class="greeting">Good Morning {{Auth::user()->first_name}}!</h4>
+    </div>
 
      <div class="this-course">
        <div class="d-flex justify-content-between subheader">

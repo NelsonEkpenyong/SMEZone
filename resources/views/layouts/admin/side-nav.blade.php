@@ -62,6 +62,23 @@
             </ul>
           </div>
         </li>
+
+        {{-- Webinar recordings --}}
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#wedRec" aria-expanded="false" aria-controls="wedRec">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Webinar Recordings</span>
+            <i class="menu-arrow" style="margin-left: 4rem"></i>
+          </a>
+          <div class="collapse" id="wedRec">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/manage-webinar">Manage</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/add-webinar">Add</a></li>
+            </ul>
+          </div>
+        </li>
+
+        {{-- News Management --}}
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
             <i class="icon-layout menu-icon"></i>

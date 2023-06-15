@@ -66,32 +66,18 @@
               <a class="nav-link" href="/community">Community</a>
             </li>
           @endif
-        </ul>
 
-        {{-- <form class="d-flex flex-lg-row flex-column gap-3">
-          <div class="dropdown">
-
-            @if(Auth::check() == 1 && Auth::user())
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {{Auth::user()->first_name}} </a>
-            @else
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Guest</a>
-            @endif
-
-            <ul class="dropdown-menu">
-              @if(Auth::check() == 1 && Auth::user())
-                <li> <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a> </li>
-                <li> <a class="dropdown-item" href="{{ route('login') }}">My Profile</a> </li>
-
-                <form id="logout-form" action="/logout" method="POST" class="d-none">@csrf</form>
-              @else
-                <li> <a class="dropdown-item" href="{{ route('login') }}">Login</a> </li>
-              @endif
+          <li class="nav-item dropdan">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Partners</a>
+            <ul class="dropdan-menu">
+              <li>
+                <a class="dropdan-item" href="/getFundedAfrica">Get Funded Africa</a>
+              </li>
             </ul>
-          </div>
-          <a href="{{ route('register') }}" style="margin-left: 15px">
-            <button class="btn" type="button">Sign up</button>
-          </a>
-        </form> --}}
+          </li>
+          
+
+        </ul>
 
         <ul class="navbar-nav ms-auto">
           <!-- Authentication Links -->
@@ -133,6 +119,43 @@
 </header>
 
 <div style="padding-top: 60px"></div>
+
+<style>
+.dropdan-menu {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdan:hover .dropdan-menu {
+  display: block;
+}
+.dropdan-menu li {
+  list-style: none;
+  color: white;
+  padding: 4px 8px;
+  background-color: #3068a0;
+  border-bottom: 2px solid #f3c358;
+}
+
+.dropdan-menu li a {
+  text-decoration: none;
+}
+
+</style>
+
+<script>
+ document.addEventListener("click", function(event) {
+  var dropdowns = document.getElementsByClassName("dropdan-menu");
+  for (var i = 0; i < dropdowns.length; i++) {
+    var dropdown = dropdowns[i];
+    if (!dropdown.contains(event.target)) {
+      dropdown.style.display = "none";
+    }
+  }
+});
+
+  </script>
 
 
 

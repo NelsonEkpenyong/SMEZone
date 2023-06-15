@@ -1446,6 +1446,189 @@ ol.alpha {
 }
 /* finance business end  */
 
+/* Get Funded */
+
+.allFunded .fundedBundle{
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 27px;
+  color: #000000;
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+}
+
+.fundedBundle span{
+  color: #131093;
+  font-weight: 800;
+}
+
+.getFunded{
+  height: 160px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 55px;
+  margin-top: 4rem;
+  color: var(--black);
+}
+
+.getFunded .row {
+  height: 160px;
+}
+
+.getFunded p {
+  font-family: 'montserratAlternates';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 60px;
+  line-height: 68px;
+  color: #000000;
+}
+
+.getFunded .clip {
+  background-color: #eb8e02;
+  color: #eb8e02;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.getFundedImage{}
+
+.getFundedImage .fundedImage {
+  object-fit: cover;
+  object-position: top; /* Trims the top portion of the image */
+  padding-top: 10rem;
+}
+
+.fundedImage{
+  height: 45rem;
+  background: rgba(235, 142, 2, 0.16);
+  background-image: url('../img/fundRaiser.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: -100px;
+  margin-top: 1.5rem;
+}
+
+.fundedBanner{
+  background-image: url('../img/rectangle.png');
+  height: 7rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 2rem;
+  
+}
+
+.fundedBanner h4{
+  color: white;
+  font-size: large;
+  margin-left: 5rem;
+  margin-top: 2rem;
+}
+
+.fundedBanner h3{
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  color: #000000;
+
+}
+.fundedBanner .fundedBanner-text{
+  padding-top: 2rem;
+}
+
+.fundedBanner .fundedBannerHR{
+  background: #EB8E02; 
+  margin-bottom: -0.7rem; 
+  height: 2px;
+}
+.fundedForm{
+  margin-top: 8rem;
+}
+
+.fundedForm h5{
+  font-family: 'montserratAlternates';
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.fundedForm p{
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #858585;
+  margin-top: 1rem;
+}
+
+.allFunded p{
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #000000;
+}
+
+.allFunded .first{
+  margin-bottom: 4rem;
+}
+
+.allFunded .first h4{
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  color: #000000;
+}
+
+
+.allFunded .second{
+  margin-bottom: 4rem;
+}
+
+.allFunded .second h4{
+  margin-bottom: 1.5rem;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+
+  color: #000000;
+}
+
+
+.allFunded .start{
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+  color: #000000;
+}
+
+.allFunded .images p{
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: #000000;
+}
+
+
+
 /* event */
 
 .upcoming-event {

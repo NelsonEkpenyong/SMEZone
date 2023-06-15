@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
 {
-    public function courses()
-    {
+    public function courses(){
 
         $courseCategoryId = Course::distinct()->pluck('course_category_id');
         $categories = CourseCategories::whereIn('id', $courseCategoryId)->get();
@@ -21,20 +20,20 @@ class CoursesController extends Controller
         return view('courses.courses', compact('courses', 'categories'));
     }
 
-    public function courses_by_category($category)
-    {
+    public function courses_by_category(int $category){
         $courseCategoryId  = Course::distinct()->pluck('course_category_id');
         $categories        = CourseCategories::whereIn('id', $courseCategoryId)->get();
-
         $coursesByCategory = CourseCategories::find($category)->courses;
-        // dd($coursesByCategory[0]->courseCategory->title);
         return view('courses.coursesByCategory', compact('categories', 'coursesByCategory'));
     }
 
-    public function course($id)
-    {
-        $course = Course::findOrFail($id);
+    public function course(int $id){
+        $courseCategoryId  = Course::distinct()->pluck('course_category_id');
+        $categories        = CourseCategories::whereIn('id', $courseCategoryId)->get();
+        $course            = Course::findOrFail($id);
+        $categoryId = $course->course_category_id;
+        $category   = CourseCategories::findOrFail($categoryId);
         $user_has_course = Enrollments::where(['user_id' => Auth::user()->id ?? '', 'course_id' => $course->id])->limit(1)->count();
-        return view('courses.course', compact(['course', 'user_has_course']));
+        return view('courses.course', compact(['course', 'user_has_course','category','categories']));
     }
 }

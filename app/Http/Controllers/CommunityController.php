@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\News;
 use Carbon\Carbon;
 
 class CommunityController extends Controller
@@ -75,7 +76,8 @@ class CommunityController extends Controller
     {
         $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
         $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
-        return view('community.news', compact('onlineUsers'));
+        $news         = News::select(['news_title','excerpt', 'description','created_at'])->get();
+        return view('community.news', compact('onlineUsers','news'));
     }
 
     public function webinars()

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\AdminAuthController;
 use App\Http\Controllers\ToolsController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrolmentController;
 
@@ -112,6 +113,10 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/a-news/{news}','a_news')->name('/a-news');
     Route::put('/update_news/{news}','update_news')->name('update_news');
 
+
+    Route::get('/manage-webinar','manage_webinar')->name('manage-webinar');
+    Route::get('/add-webinar','add_webinar')->name('add-webinar');
+    Route::post('/webinar-recordings','webinar_recordings')->name('webinar-recordings');
 });
 
 Route::controller(HomeController::class)->group( function(){
@@ -155,8 +160,9 @@ Route::controller(CoursesController::class)->group( function(){
 });
 
 
-Route::controller(EnrolmentController::class)->group( function(){
-    Route::post('/enrol', 'enrol')->name('enrol')->middleware('auth');
+Route::controller(EnrolmentController::class)->middleware('auth')->group( function(){
+    Route::post('/enrol', 'enrol')->name('enrol');
+    Route::get('/enrollment/{course_id}', 'enrollment')->name('enrollment');
 });
 
 
@@ -164,4 +170,12 @@ Route::controller(EventsController::class)->group( function(){
     Route::get('/events','events')->name('events');
     Route::get('/an-event/{id}','event')->name('an-event');
     Route::post('/fe-storeEvent','sore_event')->name('fe-storeEvent');
+});
+
+Route::controller(PartnerController::class)->group( function(){
+    Route::get('/getFundedAfrica','get_funded_africa')->name('getFundedAfrica');
+    Route::post('/fundedOne','funded_one')->name('fundedOne');
+
+    Route::get('/getFundedAfrica2','get_funded_africa2')->name('getFundedAfrica2');
+    Route::post('/fundedTwo','funded_two')->name('fundedTwo');
 });

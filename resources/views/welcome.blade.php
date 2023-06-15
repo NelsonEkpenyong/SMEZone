@@ -10,7 +10,7 @@
             <button type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
           <div class="carousel-inner">
-          @php $sliders = json_decode($heroSlider->slider);@endphp
+            @php $sliders = json_decode($heroSlider->slider);@endphp
             @forelse ($sliders as $i => $heroSlider)
               <div class="carousel-item {{ $i == 0 ? 'active': ''}}">
                 <div class="homeHero{{$i+1}}" style="background: url( '{{asset('images/'.$heroSlider)}}') no-repeat center; ">
@@ -43,37 +43,6 @@
                 </div>
               </div>
             @endforelse
-
-
-            {{-- <div class="carousel-item active">
-              <div class="homeHero">
-                <img src="{{asset('/images/'. $heroSlider->hero_slider1)}}" alt="">
-                <div class="container">
-                  <div class="contents">
-                    <h1>Small & Medium-Sized <span>Enterprise</span></h1>
-                    <p>
-                      Giving you all the tools to ensure your business
-                      flourishes
-                    </p>
-                    <button class="btn">Get Started</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="homeHero2">
-                <div class="container">
-                  <div class="contents">
-                    <h1>Small & Medium-Sized <span>Enterprise</span></h1>
-                    <p>
-                      Giving you all the tools to ensure your business
-                      flourishes
-                    </p>
-                    <button class="btn">Get Started</button>
-                  </div>
-                </div>
-              </div>
-            </div> --}}
 
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicatorsHero" data-bs-slide="prev">
