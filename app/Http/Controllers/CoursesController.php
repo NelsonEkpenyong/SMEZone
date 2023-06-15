@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
@@ -31,9 +32,10 @@ class CoursesController extends Controller
         $courseCategoryId  = Course::distinct()->pluck('course_category_id');
         $categories        = CourseCategories::whereIn('id', $courseCategoryId)->get();
         $course            = Course::findOrFail($id);
-        $categoryId = $course->course_category_id;
-        $category   = CourseCategories::findOrFail($categoryId);
-        $user_has_course = Enrollments::where(['user_id' => Auth::user()->id ?? '', 'course_id' => $course->id])->limit(1)->count();
+        $categoryId        = $course->course_category_id;
+        $category          = CourseCategories::findOrFail($categoryId);
+        $user_has_course   = Enrollments::where(['user_id' => Auth::user()->id ?? '', 'course_id' => $course->id])->limit(1)->count();
+
         return view('courses.course', compact(['course', 'user_has_course','category','categories']));
     }
 }
