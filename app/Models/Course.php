@@ -23,6 +23,7 @@ class Course extends Model
         'synopsis',
         'description',
         'image',
+        'pdf',
         'is_featured',
     ];
 

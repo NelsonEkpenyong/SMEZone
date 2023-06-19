@@ -11,17 +11,37 @@ use App\Models\State;
 use App\Models\Lga;
 use App\Models\Industries;
 use App\Models\Genders;
+use App\Models\Enrollments;
+use App\Models\CourseCategories;
+use App\Models\Course;
 
 class DashboardController extends Controller
 {
     public function dashboard(){
         $authUser = Auth::id();
+        $enrollments = Enrollments::where('user_id', auth()->user()->id)->count();
         $registeredEventCount = EventRegistration::where('user_id',$authUser)->count();
-        return view('community.dashboard.dashboard', compact('authUser','registeredEventCount'));
+        return view('community.dashboard.dashboard', compact('authUser','registeredEventCount','enrollments'));
     }
 
     public function courses(){
-        return view('community.dashboard.explore-courses');
+        $enrollments = Enrollments::where('user_id', auth()->user()->id)->get();
+        $categories = CourseCategories::all();
+
+        foreach ($categories as $category) {
+            $courses = $enrollments->filter(function ($enrollment) use ($category) {
+                return $enrollment->course->courseCategory->id == $category->id;
+            });
+    
+            $coursesByCategory[$category->id] = $courses;
+        }
+        // dd($coursesByCategory);
+        return view('community.dashboard.explore-courses', compact('enrollments','categories', 'coursesByCategory'));
+    }
+
+    public function explore_course(int $id){
+        $course = Course::findOrFail($id);
+        return view('community.dashboard.explore-course', compact('course'));
     }
 
     public function resources(){

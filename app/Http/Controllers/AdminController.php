@@ -150,7 +150,7 @@ class AdminController extends Controller
 
     }
 
-     public function update_featuredImage(int $id){
+    public function update_featuredImage(int $id){
         $featuredImage = FeaturedImage::findOrFail($id);
         return view('admin.update-featured-image',compact('featuredImage','id'));
     }
@@ -538,11 +538,22 @@ class AdminController extends Controller
 
     public function add_course(AddCourseRequest $request){
         $responded = Route::dispatch( Request::create('api/course/store-course', 'POST', $request->all()) );
-        if ($responded->status() == 200 ) {
+        $statusCode = $responded->status();
+
+        // if ($responded->status() == 200 ) {
+        //     flash()->addSuccess('Course Created Successfully!😃');
+        //     return redirect('/manage-course');
+        // }
+        // return redirect()->back()->with('error', 'Course Creation Failed 😞');
+
+        if ($statusCode == 200) {
             flash()->addSuccess('Course Created Successfully!😃');
             return redirect('/manage-course');
+        } elseif ($statusCode == 422) {
+            return redirect()->back()->withErrors($responded->getContent())->withInput();
+        } else {
+            return redirect()->back()->with('error', 'Course Creation Failed 😞')->setStatusCode($statusCode);
         }
-        return redirect()->back()->with('error', 'Course Creation Failed 😞');
     }
 
     public function edit_course(int $id){

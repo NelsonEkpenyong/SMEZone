@@ -33,6 +33,7 @@ class AddCourseRequest extends FormRequest
             'synopsis'           =>  'required',      
             'description'        =>  'required',    
             'image'              =>  'required',    
+            'pdf'                =>  'nullable',    
             'is_featured'        =>  'nullable',    
         ];
     }

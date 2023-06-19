@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Str;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CourseService {
 
@@ -22,7 +23,7 @@ class CourseService {
  
 
       if ($request->hasFile('image')) {
-          $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
+          $allowedfileExtension = ['jpg','png','docx','jpeg','gif','svg'];
 
           $image = $request->file('image');
 
@@ -33,10 +34,28 @@ class CourseService {
               $file_name = Str::random(4) . '.' . $extension;
               $image->move(public_path('images'), $file_name);
           }else{
-              return redirect()->back()->with('error', 'File type not supported');
+              // return response()->json(['status'  => false,'message' => 'The file type must either be jpg, png, docx, jpeg, gif or svg.'],422);
+               return redirect()->back()->with('error', 'The file type must either be jpg, png, docx, jpeg, gif or svg.');
           }
 
           $course->image = $file_name;
+      }
+
+      if ($request->hasFile('pdf')) {
+          $pdfExtension = ['pdf'];
+          
+          $pdf       = $request->file('pdf');
+          $extension = $pdf->getClientOriginalExtension();
+          $check     = in_array($extension, $pdfExtension);
+
+          if(!$check){
+            return redirect('/course')->with('error', 'The file type must be pdf.');
+            // return response()->json(['status'  => false,'message' => 'The file type must be pdf.'],422);
+          }
+
+          $fileName = $pdf->getClientOriginalName();
+          $pdf->move(public_path('pdf'), $fileName);
+          $course->pdf = $fileName; 
       }
       
       $course->save();

@@ -1783,6 +1783,10 @@ ol.alpha {
   padding-top: 10px;
   padding-bottom: 50px;
 }
+.pdf-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .event-info .col-lg-7 {
   border-right: 0.4px solid #000000;
 }

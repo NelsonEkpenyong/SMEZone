@@ -23,8 +23,8 @@
               </div>
               <div>
                 <p>Enrolled Courses</p>
-                <h4>15</h4>
-                <h6 onclick="linking('./dashboard/explore-courses.html')">
+                <h4>{{$enrollments}}</h4>
+                <h6 onclick="exploreCourse()">
                   Explore Courses
                   <img
                     src="{{asset('icons/chevron-right.svg')}}"
@@ -177,4 +177,9 @@
       </div>
     </div>
    </main>
+   <script>
+    const exploreCourse = () => {
+      window.location.href = `/explore-courses` 
+    }
+   </script>
   @endsection

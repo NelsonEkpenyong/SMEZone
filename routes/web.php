@@ -146,6 +146,7 @@ Route::controller(CommunityController::class)->group( function(){
 Route::controller(DashboardController::class)->middleware(['auth'])->group( function(){
     Route::get('/dashboard/home','dashboard')->middleware('checkProfile')->name('dashboard/home');
     Route::get('/explore-courses','courses')->name('explore-courses');
+    Route::get('/explore-course/{id}','explore_course')->name('explore-course');
     Route::get('/explore-webinars','webinars')->name('explore-webinars');
     Route::get('/explore-resources','resources')->name('explore-resources');
     Route::get('/settings-profile','profile_settings')->name('settings-profile');

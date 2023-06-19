@@ -72,6 +72,12 @@
 								</label>								
 								<input type="file" name="image" class="form-control">
 							</div>
+
+							<div class="form-group">
+								<label> PDF <small class="form-text text-muted">Maximum Size: 20MB</small>
+								</label>								
+								<input type="file" name="pdf" class="form-control">
+							</div>
 							
 							<button type="submit" class="btn btn-primary mr-2">Submit</button>
 						</form>
