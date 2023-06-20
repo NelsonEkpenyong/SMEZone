@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
     public function courses(){
         $enrollments = Enrollments::where('user_id', auth()->user()->id)->get();
-        $categories = CourseCategories::all();
+        $categories  = CourseCategories::all();
 
         foreach ($categories as $category) {
             $courses = $enrollments->filter(function ($enrollment) use ($category) {
@@ -35,7 +35,6 @@ class DashboardController extends Controller
     
             $coursesByCategory[$category->id] = $courses;
         }
-        // dd($coursesByCategory);
         return view('community.dashboard.explore-courses', compact('enrollments','categories', 'coursesByCategory'));
     }
 

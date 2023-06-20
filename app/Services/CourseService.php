@@ -20,6 +20,7 @@ class CourseService {
       $course->payment_type_id    = $request->payment_type_id;
       $course->synopsis           = $request->synopsis;
       $course->description        = $request->description;
+      $course->content            = $request->content;
  
 
       if ($request->hasFile('image')) {
@@ -83,6 +84,7 @@ class CourseService {
       $course->payment_type_id    = $request->payment_type_id;
       $course->synopsis           = $request->synopsis;
       $course->description        = $request->description;
+      $course->content            = $request->content;
 
 
       if ($request->hasFile('image')) {

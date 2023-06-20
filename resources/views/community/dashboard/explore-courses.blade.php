@@ -20,53 +20,24 @@
 
   
     @foreach ($categories as $category)
-      @foreach($enrollments as $enrollment)
-        @if ($category->id == $enrollment->course->courseCategory->id)
-          <div class="this-course">
-            <div class="d-flex justify-content-between subheader">
-              <h4>{{$enrollment->course->courseCategory->title}}</h4>
-              <div class="paging">
+    <div class="this-course">
+        <div class="d-flex justify-content-between subheader">
+            <h4>{{$category->title}}</h4>
+            <div class="paging">
                 <a href="#">
-                  <img src="{{asset('icons/backward.svg')}}" alt="backward" />
+                    <img src="{{asset('icons/backward.svg')}}" alt="backward" />
                 </a>
                 <span class="d-inline-block mx-2"> 4/15 </span>
                 <a href="#">
-                  <img src="{{asset('icons/forward.svg')}}" alt="forward" />
+                    <img src="{{asset('icons/forward.svg')}}" alt="forward" />
                 </a>
-              </div>
             </div>
+        </div>
 
-            {{-- <div class="d-flex mx-0">
-              <div class="d-flex courses-list pt-4 dash">
-                  @foreach ($coursesByCategory as $item)
-                  <div class="col-auto">
-                    <div class="card" onclick="linking('./dashboard/explore-course.html')">
-                      <img
-                        class="card-img-top"
-                        src="{{asset('img/explore-courses.png')}}"
-                        alt="course pics"
-                        style="width: 100%"
-                      />
-                      <div class="card-body">
-                        <a href="#" class="btn">{{$enrollment->course->cost->name}}</a>
-                        <h5 class="card-title">Course Title</h5>
-                        <h6 class="card-text">{{$enrollment->course->name}}</h6>
-                      </div>
-                    </div>
-                  </div>
-                  @endforeach
-                   
-
-              </div>
-            </div> --}}
-
-
-
-            <div class="d-flex mx-0">
-              <div class="d-flex courses-list pt-4 dash">
-                  {{-- @foreach($coursesByCategory[$category->id] as $enrollment) --}}
-                  
-                      <div class="col-auto">
+        <div class="d-flex mx-0">
+            <div class="d-flex courses-list pt-4 dash">
+                @foreach($coursesByCategory[$category->id] as $enrollment)
+                    <div class="col-auto">
                         <div class="card" onclick="showCourse(`{{$enrollment->course->id}}`)" data-id="{{$enrollment->course->id}}">
                             <img class="card-img-top" src="{{asset('images/'.$enrollment->course->image)}}" alt="course pics" style="width: 100%"/>
                             <div class="card-body">
@@ -75,15 +46,13 @@
                                 <h6 class="card-text">{{$enrollment->course->name}}</h6>
                             </div>
                         </div>
-                      </div>
-                   
-                  {{-- @endforeach --}}
-              </div>
-          </div>
-          </div>
-        @endif
-      @endforeach
-    @endforeach
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endforeach
+
       
 
  

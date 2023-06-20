@@ -13,20 +13,20 @@
          <div class="d-md-flex d-none justify-content-between subheader">
            <ul class="">
              <li>
-               <a href="/dashboard/explore-resources.html">Articles</a>
+               <a href="/news">Articles</a>
              </li>
              <li>
-               <a href="/dashboard/explore-resources-newsletter.html"
+               <a href="#"
                  >Newsletter</a
                >
              </li>
              <li>
-               <a href="/dashboard/explore-resources-zone.html"
+               <a href="/tools"
                  >Opportunity Zone</a
                >
              </li>
              <li>
-               <a href="/dashboard/explore-resources-faq.html">BET FAQ</a>
+               <a href="#">BET FAQ</a>
              </li>
              <li class="active"><a href="#">Event Gallery</a></li>
            </ul>
@@ -43,25 +43,25 @@
            </button>
            <ul class="dropdown-menu">
              <li>
-               <a class="dropdown-item" href="./explore-resources.html"
+               <a class="dropdown-item" href="/news"
                  >Articles</a
                >
              </li>
              <li>
                <a
                  class="dropdown-item"
-                 href="./explore-resources-newsletter.html"
+                 href="#"
                  >Newsletter</a
                >
              </li>
              <li>
-               <a class="dropdown-item" href="./explore-resources-zone.html"
+               <a class="dropdown-item" href="/tools"
                  >Opportunity Zone</a
                >
              </li>
 
              <li>
-               <a class="dropdown-item" href="./explore-resources-faq.html"
+               <a class="dropdown-item" href="#"
                  >BET FAQ</a
                >
              </li>

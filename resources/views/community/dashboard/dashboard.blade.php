@@ -51,7 +51,7 @@
               <div>
                 <p>Event Registered</p>
                 <h4>{{$registeredEventCount}}</h4>
-                <h6 onclick="linking('./dashboard/explore-events.html')">
+                <h6 onclick="exploreEvents()">
                   Explore Events
                   <img
                     src="{{asset('icons/chevron-right.svg')}}"
@@ -74,8 +74,8 @@
               </div>
               <div>
                 <p>Webinar</p>
-                <h4>50</h4>
-                <h6 onclick="linking('./dashboard/explore-webinars.html')">
+                <h4>0</h4>
+                <h6 onclick="exploreWebinars()">
                   Explore Webinars
                   <img
                     src="{{asset('icons/chevron-right.svg')}}"
@@ -89,9 +89,7 @@
         </div>
       </div>
 
-      <div
-        class="dash-hero dash-hero-mobile row justify-content-evenly align-items-center mx-0 d-flex d-md-none"
-      >
+      {{-- <div class="dash-hero dash-hero-mobile row justify-content-evenly align-items-center mx-0 d-flex d-md-none">
         <div class="col-auto">
           <div class="details">
             <div class="d-flex">
@@ -163,7 +161,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <h5 class="latest-information mt-5 mb-4">Latest Information</h5>
 
@@ -180,6 +178,14 @@
    <script>
     const exploreCourse = () => {
       window.location.href = `/explore-courses` 
+    }
+
+    const exploreWebinars = () => {
+      window.location.href = `/explore-webinars` 
+    }
+
+    const exploreEvents = () => {
+      window.location.href = `/events` 
     }
    </script>
   @endsection

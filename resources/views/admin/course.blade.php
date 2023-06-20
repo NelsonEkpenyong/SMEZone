@@ -31,7 +31,7 @@
 							</div>
        <div class="form-group">
 								<label>Embeded Link</label>
-								<textarea class="form-control editor" name="embed_link" rows="4"></textarea>
+								<textarea class="form-control editor" name="embed_link" rows="2"></textarea>
 							</div>
        <div class="form-group">
 								<label>Certificate</label>
