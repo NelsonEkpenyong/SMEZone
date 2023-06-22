@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('speaker_credential');
             $table->string('cost');
             $table->text('description');
+            $table->text('content')->nullable();
             $table->unsignedBigInteger('course_category_id');
             $table->timestamps();
 
