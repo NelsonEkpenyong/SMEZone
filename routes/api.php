@@ -11,6 +11,7 @@ use App\Http\Controllers\api\PostController;
 use App\Http\Controllers\api\WebinarController;
 use App\Http\Controllers\api\CourseCategoryController;
 use App\Http\Controllers\api\NewsController;
+use App\Http\Controllers\api\PartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::controller(CourseController::class)->prefix('course')->group( function(){
 Route::controller(CourseCategoryController::class)->prefix('courseCategory')->group( function(){
     Route::post('/store-course-category','store_course_category')->name('store-course-category');
     Route::post('/modify-course-category/{category}','modify_course_category')->name('modify-course-category');
+    Route::post('/getFunded','get_funded')->name('getFunded');
 });
 
 
@@ -73,3 +75,8 @@ Route::controller(PostController::class)->prefix('post')->group( function(){
     Route::post('/comment/{id}','store_comment')->name('comment');
     Route::post('/likes/{post_id}/{comment_id}','likes')->name('likes');
 });
+
+Route::controller(PartnerController::class)->prefix('partner')->group( function(){
+    Route::post('/getFunded','get_funded')->name('getFunded');
+});
+

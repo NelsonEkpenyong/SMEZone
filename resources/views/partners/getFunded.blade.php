@@ -255,45 +255,60 @@
         @csrf
         <div class="row mb-3">
           <div class="col-md-6">
-            <input type="text" name="fullname" class="form-control" id="exampleFormControlInput1" placeholder="Fullname" value="{{ isset( session()->get('admit')['fullname'] ) ? session()->get('admit')['fullname'] : " " }}" required>
+            <input type="text" name="fullname" class="form-control"  value="{{ isset( session()->get('admit')['fullname'] ) ? session()->get('admit')['fullname'] : "" }}" placeholder="Fullname" required>
+            @error('fullname')  <span class="error">{{ $message }}</span> @enderror
           </div>
           <div class="col-md-6">
-            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Email address" value="{{ isset( session()->get('admit')['email'] ) ? session()->get('admit')['email'] : " " }}" required>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <input type="text" name="phone" class="form-control" id="exampleFormControlInput1" placeholder="Phone number" value="{{ isset( session()->get('admit')['phone'] ) ? session()->get('admit')['phone'] : " " }}" required>
-          </div>
-          <div class="col-md-6">
-            <input type="text" name="whatsappId" class="form-control" id="exampleFormControlInput1" placeholder="Whatsapp ID" value="{{ isset( session()->get('admit')['whatsappId'] ) ? session()->get('admit')['whatsappId'] : " " }}" required>
+            <input type="email" name="email" class="form-control"  value="{{ isset( session()->get('admit')['email'] ) ? session()->get('admit')['email'] : "" }}" placeholder="Email address" required>
+            @error('email')  <span class="error">{{ $message }}</span> @enderror
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
-            <input type="text" name="jTitle" class="form-control" id="exampleFormControlInput1" placeholder="Job title" value="{{ isset( session()->get('admit')['jTitle'] ) ? session()->get('admit')['jTitle'] : " " }}" required>
+            <input type="text" name="phone" class="form-control"  value="{{ isset( session()->get('admit')['phone'] ) ? session()->get('admit')['phone'] : "" }}" placeholder="Phone number" required>
+            @error('phone')  <span class="error">{{ $message }}</span> @enderror
           </div>
           <div class="col-md-6">
-            <input type="text" name="gender" class="form-control" id="exampleFormControlInput1" placeholder="Gender" value="{{ isset( session()->get('admit')['gender'] ) ? session()->get('admit')['gender'] : " " }}" required>
+            <input type="text" name="whatsappId" class="form-control"  value="{{  isset( session()->get('admit')['whatsappId'] ) ? session()->get('admit')['whatsappId'] : "" }}" placeholder="Whatsapp ID" required>
+            @error('whatsappId')  <span class="error">{{ $message }}</span> @enderror
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
-            <input type="text" name="location" class="form-control" id="exampleFormControlInput1" placeholder="Location (Country, State, City)" value="{{ isset( session()->get('admit')['location'] ) ? session()->get('admit')['location'] : " " }}" required>
+            <input type="text" name="jTitle" class="form-control"  value="{{ isset( session()->get('admit')['jTitle'] ) ? session()->get('admit')['jTitle'] : "" }}" placeholder="Job title" required>
+            @error('jTitle')  <span class="error">{{ $message }}</span> @enderror
           </div>
           <div class="col-md-6">
-            <select class="form-select" name="ageRange" aria-label="Default select example" placeholder="Age range" value="{{ isset( session()->get('admit')['ageRange'] ) ? session()->get('admit')['ageRange'] : " " }}" required>
+            <select class="form-select" name="gender" aria-label="Default select example"  value="{{ isset( session()->get('admit')['ageRange'] ) ? session()->get('admit')['ageRange'] : ""  }}" placeholder="Age range" required>
+              <option selected readonly>- choose gender -</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            @error('gender')  <span class="error">{{ $message }}</span> @enderror
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <input type="text" name="location" class="form-control"  value="{{ isset( session()->get('admit')['location'] ) ? session()->get('admit')['location'] : ""  }}" placeholder="Location (Country, State, City)" required>
+            @error('location')  <span class="error">{{ $message }}</span> @enderror
+          </div>
+          <div class="col-md-6">
+            <select class="form-select" name="ageRange" aria-label="Default select example"  value="{{ isset( session()->get('admit')['ageRange'] ) ? session()->get('admit')['ageRange'] : "" }}" placeholder="Age range" required>
               <option selected readonly>Age range</option>
-              <option value="1">18 - 30</option>
-              <option value="2">31 - 55</option>
-              <option value="3">56 - 60</option>
-              <option value="3">51 - 80</option>
+              <option value="18-25">18 - 25</option>
+              <option value="26-35">26 - 35</option>
+              <option value="36-55">36 - 55</option>
+              <option value="56-65">56 - 65</option>
+              <option value="66-80">66 - 80</option>
             </select>
           </div>
         </div>
 
         <div class="mb-3">
-          <textarea class="form-control" name="bio" id="exampleFormControlTextarea1" rows="5" placeholder="Short personal bio"></textarea>
+          <textarea class="form-control" name="bio" rows="4" placeholder="Short personal bio">
+           {{ isset( session()->get('admit')['bio'] ) ? session()->get('admit')['bio'] : "" }}
+          </textarea>
+          @error('bio')  <span class="error">{{ $message }}</span> @enderror
         </div>
 
         <div class="d-flex justify-content-end">

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class GetFundedAfrica extends Model
 {
     use HasFactory;
+
+    protected $table = 'get_funded_africa';
     protected $fillable = [
         'fullname',
         'email',
@@ -20,9 +22,18 @@ class GetFundedAfrica extends Model
         'bio',
         'startupName',
         'businessStage',
-        'industry',
+        'industry_id',
         'foundYear',
         'annualRevenue',
-        'raiseAmount'
+        'raisedAmount',
+        'raiseDesire',
+        'founderExperience',
+        'helpWith',
+        'joiningGoal',
+        'specialExpertiseOrExperience',
+        'jobsToCreate',
+        'haveAccount',
+        'accountNumber',
+        'debitConfirmation'
     ];
 }

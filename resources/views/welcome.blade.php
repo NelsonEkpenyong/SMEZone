@@ -436,40 +436,46 @@
                 </div>
                 <div class="carousel-inner">
                   @forelse ($upcomingEvents as $i => $event)
+                       @php
+                                $addressArray = json_decode($event->venue_address);
+                                $firstAddress = is_array($addressArray) ? $addressArray[0] : $addressArray;
+
+                                $timeArray = json_decode($event->start_time);
+                                $firstTime = is_array($timeArray) ? $timeArray[0] : $timeArray;
+                       @endphp
                   <div class="carousel-item {{ $i == 0 ? 'active': ''}}">
                     <!-- Carousel contents -->
                     <div>
                       <div class="d-flex justify-content-between mb-4">
                         <div class="upcome">
-                          <img src="../icons/calendar.svg" alt="" class="img-fluid me-2"/>
-                          Upcoming Events
+                          <img src="../icons/calendar.svg" alt="" class="img-fluid me-2"/>Upcoming Events
                         </div>
                         <div>
                           <a href="/an-event/{{$event->id}}">View event</a>
                         </div>
                       </div>
-                      <h5 class="business-guru">{{'r'}}</h5>
-                      <p class="live-zoom mb-4">Live on zoom UTC 19:00hrs</p>
+                      <h5 class="business-guru">{{'Upcoming Event Title'}}</h5>
+                      <p class="live-zoom mb-4">{{ $firstAddress}}</p>
                       <div class="row">
                         <div class="col-4">
-                          <h4 class="dlt">28 JAN</h4>
+                          <h4 class="dlt">
+                            {{$event->start_date->format('j')}}
+                            {{substr($event->start_date->format('F'), 0, 3) }}
+                          </h4>
                           <p class="dlt-sub">Date</p>
                         </div>
                         <div
                           class="col-4 d-flex justify-content-center"
-                          style="
-                            border-left: 0.5px solid #000000;
-                            border-right: 0.5px solid #000000;
-                          "
-                        >
+                          style="border-left: 0.5px solid #000000; border-right: 0.5px solid #000000;">
                           <div>
-                            <h4 class="dlt">Lagos</h4>
+                            
+                           <h4 class="dlt">{{ $firstAddress }}</h4>  
                             <p class="dlt-sub">Location</p>
                           </div>
                         </div>
                         <div class="col-4 d-flex justify-content-center">
                           <div>
-                            <h4 class="dlt">19:00</h4>
+                            <h4 class="dlt">{{ $firstTime}}</h4>
                             <p class="dlt-sub">Time</p>
                           </div>
                         </div>
@@ -487,16 +493,16 @@
                           Upcoming Events
                         </div>
                         <div>
-                          <a href="/event.html">View all</a>
+                          <a href="#">View all</a>
                         </div>
                       </div>
                       <h5 class="business-guru">
-                        The Business Guru of the Century
+                        No Upcoming Event
                       </h5>
                       <p class="live-zoom mb-4">Live on zoom UTC 19:00hrs</p>
                       <div class="row">
                         <div class="col-4">
-                          <h4 class="dlt">28 JAN</h4>
+                          <h4 class="dlt">No Date</h4>
                           <p class="dlt-sub">Date</p>
                         </div>
                         <div
@@ -507,13 +513,13 @@
                           "
                         >
                           <div>
-                            <h4 class="dlt">Lagos</h4>
+                            <h4 class="dlt">No Location</h4>
                             <p class="dlt-sub">Location</p>
                           </div>
                         </div>
                         <div class="col-4 d-flex justify-content-center">
                           <div>
-                            <h4 class="dlt">19:00</h4>
+                            <h4 class="dlt">No Time</h4>
                             <p class="dlt-sub">Time</p>
                           </div>
                         </div>
@@ -522,7 +528,6 @@
                     <!-- #Carouse contents -->
                   </div>
                   @endforelse
-                  
                 </div>
                 <button class="carousel-control-prev index" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -533,12 +538,21 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-              <!-- #Carousel -->
+              <hr class="mt-5">
+              <div class="row">
+                <div class="col">
+                  <p class="live-zoom mb-4">Opportunity Zone</p>
+                </div>
+                <div class="col">
+                  <a href="https://" class="btn btn-primary justify-content-end" style="margin-left: 3.6rem;">View all opportuities</a>
+                </div>
+              </div>
             </div>
+            
           </div>
         </div>
       </div>
-      <!-- #section 4 -->
+      <!-- #End of section 4 -->
     <script>
       const counters = document.querySelectorAll('.count');
       const speed = 30;

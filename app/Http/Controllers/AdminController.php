@@ -608,6 +608,7 @@ class AdminController extends Controller
     }
     public function add_course_category(CourseCategoryRequest $request){
         $responded = Route::dispatch( Request::create('api/courseCategory/store-course-category', 'POST', $request->all()) );
+
         if ($responded->status() == 200 ) {
             flash()->addSuccess('Course Category Created Successfully!😃');
             return redirect('/course-categories');

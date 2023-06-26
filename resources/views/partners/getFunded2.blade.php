@@ -250,131 +250,172 @@
 
     <div class="container mb-5">
       <h3 class="mb-4">Page 2</h3>
+      <form action="/fundedTwo" method="POST">
+        @csrf
+          <input type="hidden"  name="{{'fullname'}}" value="{{ session('admit.fullname') }}">
+          <input type="hidden"  name="{{'email'}}" value="{{ session('admit.email') }}">
+          <input type="hidden"  name="{{'phone'}}" value="{{ session('admit.phone') }}">
+          <input type="hidden"  name="{{'whatsappId'}}" value="{{ session('admit.whatsappId') }}">
+          <input type="hidden"  name="{{'jTitle'}}" value="{{ session('admit.jTitle') }}">
+          <input type="hidden"  name="{{'gender'}}" value="{{ session('admit.gender') }}">
+          <input type="hidden"  name="{{'location'}}" value="{{ session('admit.location') }}">
+          <input type="hidden"  name="{{'ageRange'}}" value="{{ session('admit.ageRange') }}">
+          <input type="hidden"  name="{{'bio'}}" value="{{ session('admit.bio') }}">
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name of startup">
-        </div>
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>Stage of business</option>
-            <option value="1">Established</option>
-            <option value="2">Startup</option>
-          </select>
-        </div>
-      </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="startupName" placeholder="Name of startup">
+              @error('startupName')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="col-md-6">
+              <select class="form-select" name="businessStage" aria-label="Default select example" required>
+                <option selected readonly>Stage of business</option>
+                <option value="Idea">Idea</option>
+                <option value="MVP">MVP</option>
+                <option value="Paying Customers">Paying Customers</option>
+                <option value="Growth">Growth</option>
+              </select>
+              @error('businessStage')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+          </div>
 
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <select class="form-select" aria-label="Default select example" name="industry_id" required>
+                <option selected readonly>- choose industry -</option>
+                @foreach ($industries as $industry)
+                  <option value="{{$industry->id}}">{{$industry->name}}</option>
+                @endforeach
+              </select>
+              @error('industry_id')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-3">
+                  <input type="text" class="form-control"  disabled readonly placeholder="Year founded">
+                </div>
+                <div class="col-9">
+                  <input type="date" class="form-control"  name="foundYear" required>
+                  @error('foundYear')  <span class="error">{{ $message }}</span> @enderror
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <select class="form-select" name="raisedAmount" aria-label="Default select example" required>
+                <option selected readonly>Funding raised in Naira</option>
+                <option value="0-50m">0 - 50m</option>
+                <option value="50M-100M">50M - 100M</option>
+                <option value="Above 100m">Above 100m </option>
+              </select>
+              @error('raisedAmount')  <span class="error">{{ $message }}</span> @enderror
+            </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>Industry</option>
-            @foreach ($industries as $industry)
-              <option value="{{$industry->id}}">{{$industry->name}}</option>
-            @endforeach
-          </select>
-        </div>
-        <div class="col-md-6">
-          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Year founded">
-        </div>
-      </div>
+            <div class="col-md-6">
+              <select class="form-select" name="annualRevenue" aria-label="Default select example" required>
+                <option selected readonly>Annual revenue</option>
+                <option value="0-5m">0 - 5m</option>
+                <option value="5M-10M">5M - 10M</option>
+                <option value="10M-25M">10M - 25M</option>
+                <option value="25M-50M">25M - 50M</option>
+                <option value="50M-100M">50M - 100M</option>
+                <option value="Above 100m">Above 100m</option>
+              </select>
+              @error('annualRevenue')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+          </div>
 
-     
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>Funding raised</option>
-            <option value="1">Technology</option>
-            <option value="2">Agriculture</option>
-            <option value="2">Education</option>
-            <option value="2">Medical</option>
-          </select>
-        </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="raiseDesire" placeholder="After this course, how much would you like to raise?" required>
+              @error('raiseDesire')  <span class="error">{{ $message }}</span> @enderror
+            </div>
 
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>Annual revenue</option>
-            <option value="1">100,000,000</option>
-            <option value="2">20,000,000</option>
-            <option value="2">10,000,000</option>
-            <option value="2">3,000,000</option>
-          </select>
-        </div>
-      </div>
+            <div class="col-md-6">
+              <select class="form-select" name="founderExperience" aria-label="Default select example" required>
+                <option selected readonly>What level of experiance do you have as a founder?</option>
+                <option value="None">None</option>
+                <option value="First time founder">First time founder</option>
+                <option value="Second time founder">Second time founder</option>
+                <option value="Multiple experiences">Multiple experiences</option>
+              </select>
+              @error('founderExperience')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+          </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>After this course, how much would you like to raise?</option>
-            <option value="1">100,000,000</option>
-            <option value="2">20,000,000</option>
-            <option value="2">10,000,000</option>
-            <option value="2">3,000,000</option>
-          </select>
-        </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <select class="form-select" name="helpWith" aria-label="Default select example" required>
+                <option selected readonly>What do you need help with? Select options that apply?</option>
+                <option value="Funding/Fund raising">Funding/Fund raising</option>
+                <option value="Marketing/Sales">Marketing/Sales</option>
+                <option value="Marketing/Sales Strategy">Marketing/Sales Strategy</option>
+                <option value="Recruitment">Recruitment</option>
+                <option value="Budgeting">Budgeting</option>
+                <option value="Investing">Investing</option>
+                <option value="Nothing">Nothing</option>
+              </select>
+              @error('helpWith')  <span class="error">{{ $message }}</span> @enderror
+            </div>
 
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>What level of experiance do you have as a founder?</option>
-            <option value="1">100,000,000</option>
-            <option value="2">20,000,000</option>
-            <option value="2">10,000,000</option>
-            <option value="2">3,000,000</option>
-          </select>
-        </div>
-      </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="joiningGoal"  placeholder="What specific goals do you hope to achieve by joining?">
+              @error('joiningGoal')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+          </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>What do you need help with? Select options that apply?</option>
-            <option value="1">100,000,000</option>
-            <option value="2">20,000,000</option>
-            <option value="2">10,000,000</option>
-            <option value="2">3,000,000</option>
-          </select>
-        </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <textarea class="form-control" name="specialExpertiseOrExperience"  placeholder="What special expertise or experiences do you think you can share with other Founders? e.g. Refer customers, strategic advice, mentorship e.t.c"></textarea>
+            </div>
 
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>What specific goals do you hope to achieve by joining?</option>
-            <option value="1">100,000,000</option>
-            <option value="2">20,000,000</option>
-            <option value="2">10,000,000</option>
-            <option value="2">3,000,000</option>
-          </select>
-        </div>
-      </div>
+            <div class="col-md-6 mt-3">
+              <input type="text" class="form-control" name="jobsToCreate" placeholder="If accepted into the program, how many jobs do you think you will create, post-course?">
+              @error('jobsToCreate')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+          </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <textarea class="form-control" name="bio" id="exampleFormControlTextarea1" rows="5" placeholder="Short personal bio"></textarea>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <select class="form-select" name="haveAccount" aria-label="Default select example" required>
+                <option selected readonly>Do you have an Access account?(This program is only for Access Bank account holders)</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+              @error('haveAccount')  <span class="error">{{ $message }}</span> @enderror
+            </div>
 
+            <div class="col-md-6">
+              <input type="text" class="form-control" name="accountNumber" placeholder="Your Access Bank account number">
+              @error('accountNumber')  <span class="error">{{ $message }}</span> @enderror
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="form-check">
+                <label class="form-check-label text-muted">
+                  Please confirm that if accepted to this program, you authorize Access Bank to do a one-time direct debit of N20,000 to cover fees for this program.
+                  <input type="checkbox" name="debitConfirmation" class="form-check-input" required>
+                  @error('debitConfirmation')  <span class="error">{{ $message }}</span> @enderror
+                </label>
+              </div>
+            </div>
+          </div>
 
-          
-        </div>
-
-        <div class="col-md-6">
-          <select class="form-select" aria-label="Default select example" >
-            <option selected readonly>What specific goals do you hope to achieve by joining?</option>
-            <option value="1">100,000,000</option>
-            <option value="2">20,000,000</option>
-            <option value="2">10,000,000</option>
-            <option value="2">3,000,000</option>
-          </select>
-        </div>
-      </div>
-
-
-
-
-      <div class="d-flex justify-content-end">
-        <button class="btn" style="color: black; border-radius: 0.6rem; width: 7rem">Previous</button>
-      </div>
-      <div class="d-flex justify-content-end">
-        <button class="btn" style="background-color: #eb8e02; color: white; border-radius: 0.6rem; width: 7rem">Next</button>
-      </div>
-
+          <div class="row mb-3">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex justify-content-end">
+                <a class="btn" style="color: black; border-radius: 0.6rem; width: 7rem" href="{{'/getFundedAfrica'}}">Previous</a>
+              </div>
+              <div class="d-flex justify-content-end">
+                <button class="btn" style="background-color: #eb8e02; color: white; border-radius: 0.6rem; width: 7rem;">Next</button>
+              </div>
+            </div>
+      <form>          
     </div>
   </div>
 </section>

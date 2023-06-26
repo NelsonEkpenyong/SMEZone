@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class fundedAfricaRequest2 extends FormRequest
+class fundedAfricaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,18 @@ class fundedAfricaRequest2 extends FormRequest
     public function rules()
     {
         return [
+            'fullname'      => 'required',
+            'email'         => 'required',
+            'phone'         => 'required',
+            'whatsappId'    => 'required',
+            'jTitle'        => 'required',
+            'gender'        => 'required',
+            'location'      => 'required',
+            'ageRange'      => 'required',
+            'bio'           => 'required',
             'startupName'   => 'required',
             'businessStage' => 'required',
-            'industry_id'      => 'required',
+            'industry_id'   => 'required',
             'foundYear'     => 'required',
             'annualRevenue' => 'required',
             'raisedAmount'  => 'required',
@@ -37,8 +46,7 @@ class fundedAfricaRequest2 extends FormRequest
             'jobsToCreate'  => 'required',
             'haveAccount'   => 'required',
             'accountNumber' => 'required',
-            'debitConfirmation' => 'required',
-            
+            'debitConfirmation' => 'required'
         ];
     }
 }
