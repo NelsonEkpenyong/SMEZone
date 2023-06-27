@@ -19,8 +19,10 @@ class PartnerController extends Controller
             $request->gender,$request->location,$request->ageRange,$request->bio,$request->startupName,
             $request->businessStage,$request->industry_id,$request->foundYear,$request->raisedAmount,$request->annualRevenue,
             $request->raiseDesire,$request->helpWith,$request->joiningGoal,$request->specialExpertiseOrExperience,$request->jobsToCreate,
-            $request->haveAccount, $request->accountNumber,$request->debitConfirmationation
+            $request->haveAccount, $request->accountNumber,$request->debitConfirmation
         );
-        return response()->json(GetFundedService::getFunded($fundedDTO));
+        $getFunded = GetFundedService::getFunded($fundedDTO);
+
+        return response()->json($getFunded);
     }
 }

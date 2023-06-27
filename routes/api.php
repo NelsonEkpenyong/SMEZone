@@ -12,6 +12,9 @@ use App\Http\Controllers\api\WebinarController;
 use App\Http\Controllers\api\CourseCategoryController;
 use App\Http\Controllers\api\NewsController;
 use App\Http\Controllers\api\PartnerController;
+use App\Http\Controllers\api\OpportunityController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +59,10 @@ Route::controller(WebinarController::class)->prefix('webinarRecs')->group( funct
     Route::post('/add-recording','add_recording')->name('add-recording');
 });
 
+Route::controller(OpportunityController::class)->prefix('opportunity')->group( function(){
+    Route::post('/addOpportunity','save_opportunity')->name('addOpportunity');
+});
+
 
 Route::controller(CourseController::class)->prefix('course')->group( function(){
     Route::post('/store-course','store_course')->name('store-course');
@@ -66,7 +73,6 @@ Route::controller(CourseController::class)->prefix('course')->group( function(){
 Route::controller(CourseCategoryController::class)->prefix('courseCategory')->group( function(){
     Route::post('/store-course-category','store_course_category')->name('store-course-category');
     Route::post('/modify-course-category/{category}','modify_course_category')->name('modify-course-category');
-    Route::post('/getFunded','get_funded')->name('getFunded');
 });
 
 

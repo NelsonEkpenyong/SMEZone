@@ -544,7 +544,7 @@
                   <p class="live-zoom mb-4">Opportunity Zone</p>
                 </div>
                 <div class="col">
-                  <a href="https://" class="btn btn-primary justify-content-end" style="margin-left: 3.6rem;">View all opportuities</a>
+                  <a href="/opportunity-zone" class="btn btn-primary justify-content-end" style="margin-left: 3.6rem;">View all opportuities</a>
                 </div>
               </div>
             </div>
@@ -554,8 +554,8 @@
       </div>
       <!-- #End of section 4 -->
     <script>
-      const counters = document.querySelectorAll('.count');
-      const speed = 30;
+        const counters = document.querySelectorAll('.count');
+        const speed = 30;
         counters.forEach((counter) => {
             console.log(counters)
             const updateCount   = () => {

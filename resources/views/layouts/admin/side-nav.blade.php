@@ -235,8 +235,8 @@
           </a>
           <div class="collapse" id="zone">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-              <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+              <li class="nav-item"> <a class="nav-link" href="/opportunities">Opportunities </a></li>
+              <li class="nav-item"> <a class="nav-link" href="/add-opportunity">Add Opportunity</a></li>
             </ul>
           </div>
         </li>

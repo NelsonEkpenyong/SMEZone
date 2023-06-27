@@ -29,7 +29,7 @@ class HomeController extends Controller
         $featured_courses    = Course::where('is_featured',1)->get();
         $upcomingEventImage  = UpcomingEventImage::all()->first();
         $upcomingEvents      = Event::where('is_upcoming',1)->get();
-        return view('welcome', compact(
+        return view('home.welcome', compact(
             'featured_courses','heroSlider',
             'videoSliders','featuredImage',
             'FeaturedEventImage','upcomingEventImage',

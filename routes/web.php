@@ -117,6 +117,10 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/manage-webinar','manage_webinar')->name('manage-webinar');
     Route::get('/add-webinar','add_webinar')->name('add-webinar');
     Route::post('/webinar-recordings','webinar_recordings')->name('webinar-recordings');
+
+    Route::get('/opportunities','opportunities')->name('opportunities');
+    Route::get('/add-opportunity','add_opportunity')->name('add-opportunity');
+    Route::post('/store-opportunity','store_opportunity')->name('store-opportunity');
 });
 
 Route::controller(HomeController::class)->group( function(){
@@ -152,6 +156,7 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group( func
     Route::get('/settings-profile','profile_settings')->name('settings-profile');
     Route::post('/update-profile','update_profile')->name('update-profile');
     Route::get('/settings','settings')->name('settings');
+    Route::get('/opportunity-zone','opportunity_zone')->name('opportunity-zone');
 });
 
 Route::controller(CoursesController::class)->group( function(){

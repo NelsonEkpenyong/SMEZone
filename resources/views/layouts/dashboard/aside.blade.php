@@ -12,31 +12,37 @@
      </li>
      <li class="{{ (\Request::route()->getName() == 'explore-courses') ? 'active' : ''}}">
        <a href="/explore-courses">
-         <img src="{{asset('icons/Aside-courses.svg')}}" alt="dashboard" />
+         <img src="{{asset('icons/Aside-courses.svg')}}" alt="explore-courses" />
          Courses
        </a>
      </li>
      <li class="{{ (\Request::route()->getName() == 'explore-webinars') ? 'active' : ''}}">
        <a href="/explore-webinars">
-         <img src="{{asset('icons/Aside-webinars.svg')}}" alt="dashboard" />
+         <img src="{{asset('icons/Aside-webinars.svg')}}" alt="explore-webinars" />
          Webinars
        </a>
      </li>
      <li class="{{ (\Request::route()->getName() == 'explore-resources') ? 'active' : ''}}">
        <a href="/explore-resources">
-         <img src="{{asset('icons/Aside-resources.svg')}}" alt="dashboard" />
+         <img src="{{asset('icons/Aside-resources.svg')}}" alt="explore-resources" />
          Resources
        </a>
      </li>
+     <li class="{{ (\Request::route()->getName() == 'opportunity-zone') ? 'active' : ''}}">
+      <a href="/opportunity-zone">
+        <img src="{{asset('icons/Aside-community.svg')}}" alt="opportunity-zone" />
+        Opportunity Zone
+      </a>
+    </li>
      <li class="">
        <a href="/community">
-         <img src="{{asset('icons/Aside-community.svg')}}" alt="dashboard" />
+         <img src="{{asset('icons/Aside-community.svg')}}" alt="community" />
          Community
        </a>
      </li>
      <li class="{{ (\Request::route()->getName() == 'settings-profile') ? 'active' : ''}}">
        <a href="/settings-profile">
-         <img src="{{asset('icons/Aside-setting.svg')}}" alt="dashboard" />
+         <img src="{{asset('icons/Aside-setting.svg')}}" alt="settings-profile" />
          Settings
        </a>
      </li>

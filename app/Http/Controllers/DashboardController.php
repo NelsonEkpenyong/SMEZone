@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Models\State;
+use App\Models\OpportunityZone;
 use App\Models\Lga;
 use App\Models\Industries;
 use App\Models\Genders;
@@ -26,7 +27,7 @@ class DashboardController extends Controller
 
     public function courses(){
         $enrollments = Enrollments::where('user_id', auth()->user()->id)->get();
-
+        $categories  = CourseCategories::all();
         foreach ($categories as $category) {
             $courses = $enrollments->filter(function ($enrollment) use ($category) {
                 return $enrollment->course->courseCategory->id == $category->id;
@@ -93,5 +94,10 @@ class DashboardController extends Controller
 
     public function settings(){
         return view('community.dashboard.settings');
+    }
+
+    public function opportunity_zone(){
+        $opportunities = OpportunityZone::all();
+        return view('community.dashboard.opportunityList', compact('opportunities'));
     }
 }

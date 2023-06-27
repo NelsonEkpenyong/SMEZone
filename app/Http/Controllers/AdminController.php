@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddEventRequest;
 use App\Http\Requests\AddCourseRequest;
+use App\Http\Requests\OpportunityRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
 use App\Http\Requests\CourseCategoryRequest;
@@ -33,6 +34,7 @@ use App\Models\User;
 use App\Models\News; 
 use App\Models\Roles; 
 use App\Models\UserTypes;   
+use App\Models\OpportunityZone;   
 use Illuminate\Support\Str;
 use File;
 
@@ -702,6 +704,25 @@ class AdminController extends Controller
             return redirect('/manage-webinar');
         }
         return redirect()->back()->with('error', 'Baba,wu no fit add dat recording O. Call persin mek e epp u. 😞');
+    }
+
+    public function opportunities(){
+        $opportunities = OpportunityZone::orderBy('id','desc')->paginate(5);
+        return view('admin.opportunities', compact('opportunities'));
+    }
+
+    public function add_opportunity(){
+        return view('admin.add-opportunity');
+    }
+
+    public function store_opportunity(OpportunityRequest $request){
+        $responded = Route::dispatch( Request::create("api/opportunity/addOpportunity", 'POST') );
+        if ($responded->status() == 200 ) {
+            flash()->addSuccess('Opportunity added Successfully!😃');
+            return redirect('/opportunities');
+        }
+        return redirect()->back()->withInput()->with('error', 'Couldn\'t add that opportunity! 😞');
+        
     }
 
 }
