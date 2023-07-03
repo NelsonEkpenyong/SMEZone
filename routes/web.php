@@ -121,6 +121,8 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/opportunities','opportunities')->name('opportunities');
     Route::get('/add-opportunity','add_opportunity')->name('add-opportunity');
     Route::post('/store-opportunity','store_opportunity')->name('store-opportunity');
+
+    Route::get('/licenses', 'licenses')->name('licenses');
 });
 
 Route::controller(HomeController::class)->group( function(){

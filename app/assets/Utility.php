@@ -1,6 +1,8 @@
 <?php
 
 namespace App\assets;
+use App\Models\Licenses;
+use Carbon\Carbon;
 
 class Utility {
 
@@ -22,6 +24,20 @@ class Utility {
         }
         $arrayStore = array_unique($arrayStore);
         return $arrayStore;
+    }
+
+
+    public static function recordLicense($activityType, $user){
+        
+        $license = Licenses::where('user_id', $user->id)->first();
+        if(!$license){
+            Licenses::create([
+                'user_id'       => $user->id,
+                'activity_type' => $activityType,
+                'expires_at'    => Carbon::now()->addYear(),
+            ]);
+        }
+          
     }
 
     

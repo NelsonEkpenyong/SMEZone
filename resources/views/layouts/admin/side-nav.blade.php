@@ -78,8 +78,22 @@
           </div>
         </li>
 
-        {{-- News Management --}}
+        {{-- License Management --}}
         <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#licenses" aria-expanded="false" aria-controls="licenses">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">License Management</span>
+            <i class="menu-arrow" style="margin-left: 3.5rem"></i>
+          </a>
+          <div class="collapse" id="licenses">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/licenses">Licenses</a></li>
+            </ul>
+          </div>
+        </li>
+
+         {{-- News Management --}}
+         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">News Management</span>

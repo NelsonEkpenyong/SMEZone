@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\News;
 use Carbon\Carbon;
+use App\assets\Utility;
 
 class CommunityController extends Controller
 {
@@ -20,6 +21,10 @@ class CommunityController extends Controller
 
     public function dashboard()
     {
+        $user = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('In the dashboard',$user);
+        }
         return view('community.dashboard');
     }
 
@@ -32,6 +37,11 @@ class CommunityController extends Controller
             $posts        = Post::withCount(['comments', 'likes'])->orderBy('id', 'desc')->with('user:id,first_name', 'comments')->where('user_id', $id)->paginate(2);
             $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
             $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
+
+            $user = Auth::user();
+            if($user->last_activity){
+                Utility::recordLicense('Used the community',$user);
+            }
 
             return view('community.community', compact('onlineUsers', 'posts', 'id'));
         } else {
@@ -77,6 +87,10 @@ class CommunityController extends Controller
         $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
         $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
         $news         = News::select(['news_title','excerpt', 'description','created_at'])->get();
+        $user = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('Read an Article',$user);
+        }
         return view('community.news', compact('onlineUsers','news'));
     }
 
@@ -84,6 +98,10 @@ class CommunityController extends Controller
     {
         $lastActivity = Carbon::now()->subMinutes(10)->format('Y-m-d H:i:s');
         $onlineUsers  = User::where('last_activity', '>=', $lastActivity)->where('id', '!=', Auth::id())->get();
+        $user = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('Seen a webinar',$user);
+        }
         return view('community.webinars', compact('onlineUsers'));
     }
 }

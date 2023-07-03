@@ -15,6 +15,8 @@ use App\Models\Genders;
 use App\Models\Enrollments;
 use App\Models\CourseCategories;
 use App\Models\Course;
+use App\assets\Utility;
+
 
 class DashboardController extends Controller
 {
@@ -22,6 +24,10 @@ class DashboardController extends Controller
         $authUser = Auth::id();
         $enrollments = Enrollments::where('user_id', auth()->user()->id)->count();
         $registeredEventCount = EventRegistration::where('user_id',$authUser)->count();
+        $user = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('Seen the course list',$user);
+        }
         return view('community.dashboard.dashboard', compact('authUser','registeredEventCount','enrollments'));
     }
 
@@ -48,6 +54,10 @@ class DashboardController extends Controller
     }
 
     public function webinars(){
+        $user = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('explored webinars',$user);
+        }
         return view('community.dashboard.explore-webinars');
     }
 

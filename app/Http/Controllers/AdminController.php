@@ -36,6 +36,7 @@ use App\Models\Roles;
 use App\Models\UserTypes;   
 use App\Models\OpportunityZone;   
 use Illuminate\Support\Str;
+use App\Models\Licenses;
 use File;
 
 
@@ -723,6 +724,12 @@ class AdminController extends Controller
         }
         return redirect()->back()->withInput()->with('error', 'Couldn\'t add that opportunity! 😞');
         
+    }
+
+
+    public function licenses(){
+        $licenses = Licenses::orderBy('id', 'desc')->paginate();
+        return view('admin.licenses', compact('licenses'));
     }
 
 }

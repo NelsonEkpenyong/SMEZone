@@ -16,6 +16,7 @@
      <div class="event-info">
       <h1 class="title mb-2">{{$course->name}}</h1>
       <p>{{strip_tags($course->content)}}</p>
+      
      </div>
      
      @endif

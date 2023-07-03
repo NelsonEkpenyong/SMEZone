@@ -4,11 +4,13 @@ declare(strict_types = 1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\CourseCategories;
 use App\assets\Utility;
+
 use App\Models\Enrollments;
-use Illuminate\Support\Facades\Auth;
+
 
 class CoursesController extends Controller
 {
@@ -17,6 +19,11 @@ class CoursesController extends Controller
         $courseCategoryId = Course::distinct()->pluck('course_category_id');
         $categories = CourseCategories::whereIn('id', $courseCategoryId)->get();
         $courses = Course::all();
+        $user = Auth::user();
+      
+        if($user->last_activity){
+            Utility::recordLicense('Seen the course list',$user);
+        }
 
         return view('courses.courses', compact('courses', 'categories'));
     }

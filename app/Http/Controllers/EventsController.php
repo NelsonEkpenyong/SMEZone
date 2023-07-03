@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
+use App\assets\Utility;
 use App\Models\EventRegistration;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +23,10 @@ class EventsController extends Controller
 
     public function event($id){
         $event = Event::findOrFail($id);
+        $user = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('visited an event',$user);
+        }
         return view('events.event', compact('event'));
     }
 
