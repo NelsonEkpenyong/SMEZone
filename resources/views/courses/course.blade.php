@@ -94,9 +94,16 @@
             <div class="row finance-pics">
                 <div class="position-relative">
                     <img src="{{ asset('images/'. $course->image) }}" class="image" />
-
-                    <img src="{{ asset('icons/play-img.svg') }}" alt="play" class="play" />
+            
+                    @if ($course->embed_link)
+                        <a href="{{ $course->embed_link }}" target="_blank">
+                            <img src="{{ asset('icons/play-img.svg') }}" alt="play" class="play" id="play"/>
+                        </a>
+                    @else
+                        <img src="{{ asset('icons/play-img.svg') }}" alt="play" class="play" id="play"/>
+                    @endif
                 </div>
+            
                 <div class="actions">
                     <button class="btn" style="background: #ceee0a; border-radius: 4px">Free</button>
 

@@ -8,7 +8,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" href="#landing" aria-expanded="false" aria-controls="zon">
+          <a class="nav-link" data-toggle="collapse" href="#landing" aria-expanded="false" aria-controls="landing">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Landing</span>
             <i class="menu-arrow" style="margin-left: 9rem"></i>
@@ -137,13 +137,17 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories">
+
+
+
+
+        {{-- <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#cat" aria-expanded="false" aria-controls="cat">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">Category Management</span>
             <i class="menu-arrow ml-5" style="margin-right: 20rem"></i>
           </a>
-          <div class="collapse" id="categories">
+          <div class="collapse" id="cat">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="{{route('course-categories')}}">Course Categories</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{route('add-category')}}">Add Category</a></li>
@@ -162,7 +166,49 @@
               <li class="nav-item"> <a class="nav-link" href="{{route('course')}}">Add Course</a></li>
             </ul>
           </div>
+        </li> --}}
+
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#cat" aria-expanded="false" aria-controls="cat">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Category Management</span>
+            <i class="menu-arrow ml-5" style="margin-right: 20rem"></i>
+          </a>
+          <div class="collapse" id="cat">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() === 'course-categories' ? 'active' : '' }}" href="{{route('course-categories')}}">Course Categories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() === 'add-category' ? 'active' : '' }}" href="{{route('add-category')}}">Add Category</a>
+              </li>
+            </ul>
+          </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#course" aria-expanded="false" aria-controls="course">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">Course Management</span>
+            <i class="menu-arrow" style="margin-left: 3.8rem"></i>
+          </a>
+          <div class="collapse" id="course">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() === 'manage-course' ? 'active' : '' }}" href="{{route('manage-course')}}">Courses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() === 'course' ? 'active' : ''}}" href="{{route('course')}}">Add Course</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        
+
+
+
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
             <i class="icon-layout menu-icon"></i>

@@ -20,11 +20,11 @@ class CoursesController extends Controller
         $categories       = CourseCategories::whereIn('id', $courseCategoryId)->get();
         $courses          = Course::all();
         $user             = Auth::user();
-      
-        if($user->last_activity){
-            Utility::recordLicense('Seen the course list',$user);
+        if($user){
+            if($user->last_activity){
+                Utility::recordLicense('Seen the course list',$user);
+            }
         }
-
         return view('courses.courses', compact('courses', 'categories'));
     }
 
@@ -43,8 +43,10 @@ class CoursesController extends Controller
         $category          = CourseCategories::findOrFail($categoryId);
         $user_has_course   = Enrollments::where(['user_id' => Auth::user()->id ?? '', 'course_id' => $course->id])->limit(1)->count();
         $user              = Auth::user();
-        if($user->last_activity){
-            Utility::recordLicense('visited a course',$user);
+        if ($user) {
+            if($user->last_activity){
+                Utility::recordLicense('visited a course',$user);
+            }
         }
         
         $relatedCourses = Course::where('course_category_id',$categoryId)->where('id', '!=', $id)->take(3)->get();

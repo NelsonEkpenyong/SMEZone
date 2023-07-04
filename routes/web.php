@@ -163,7 +163,7 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group( func
 
 Route::controller(CoursesController::class)->group( function(){
     Route::get('/courses','courses')->name('courses');
-    Route::get('/acourse/{id}','course')->name('acourse');
+    Route::get('/acourse/{id}','course')->middleware('auth')->name('acourse');
     Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
 
