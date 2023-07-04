@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('embed_link');
             $table->unsignedBigInteger('certificate_id');
             $table->unsignedBigInteger('course_category_id');
-            $table->unsignedBigInteger('payment_type_id');
             $table->text('synopsis');
             $table->text('description');
             $table->string('image');

@@ -23,7 +23,7 @@ class EventsController extends Controller
 
     public function event($id){
         $event = Event::findOrFail($id);
-        $user = Auth::user();
+        $user  = Auth::user();
         if($user->last_activity){
             Utility::recordLicense('visited an event',$user);
         }

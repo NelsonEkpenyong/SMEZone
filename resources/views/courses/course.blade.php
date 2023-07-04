@@ -30,11 +30,7 @@
                         </div>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-                            {{-- <ul class="navbar-nav me-auto mb-2 mb-lg-0"> --}}
                             <ul class="navbar-nav mb-lg-0 me-auto mt-2" style="overflow: auto; white-space: nowrap;">
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Financial Management</a>
-                                </li> --}}
                                 @forelse ($categories as $cat)
                                 
                                     <li class="nav-item">
@@ -139,39 +135,23 @@
                 </div>
             </div>
             <div class="row courses-list py-4">
+                @forelse ($relatedCourses as $item)
                 <div class="col-auto">
                     <div class="card" style="max-width: 282px">
-                        <img class="card-img-top" src="{{ asset('img/course_pics.png') }}" alt="course pics"
-                            style="width: 100%" />
-                        <div class="card-body">
-                            <a href="#" class="btn">Free</a>
-                            <h5 class="card-title">Course Title</h5>
-                            <h6 class="card-text">How Do I Finance My Business? Part 2</h6>
-                        </div>
+                        <img class="card-img-top" src="{{ asset('images/' . $item->image) }}" alt="course pics" style="width: 100%" />
+                            <div class="card-body">
+                                <a href="#" class="btn" style="width: 15rem">{{$item->courseCategory->title}}</a>
+                                <a href="/acourse/{{$item->id}}" style="background: white !important"> 
+                                    <h5 class="card-title">Course Title</h5>
+                                    <h6 class="card-text">{{ $item->name}}</h6>
+                                </a>
+                            </div>
                     </div>
                 </div>
-                <div class="col-auto">
-                    <div class="card" style="max-width: 282px">
-                        <img class="card-img-top" src="{{ asset('img/course_pics.png') }}" alt="course pics"
-                            style="width: 100%" />
-                        <div class="card-body">
-                            <a href="#" class="btn">Free</a>
-                            <h5 class="card-title">Course Title</h5>
-                            <h6 class="card-text">How Do I Finance My Business? Part 2</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <div class="card" style="max-width: 282px">
-                        <img class="card-img-top" src="{{ asset('img/course_pics.png') }}" alt="course pics"
-                            style="width: 100%" />
-                        <div class="card-body">
-                            <a href="#" class="btn">Free</a>
-                            <h5 class="card-title">Course Title</h5>
-                            <h6 class="card-text">How Do I Finance My Business? Part 2</h6>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <p>No related course</p>
+                @endforelse
+                
             </div>
             <div class="row justify-content-center mb-5 d-none">
                 <div class="col-auto mb-0 mb-sm-3">

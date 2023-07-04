@@ -535,8 +535,7 @@ class AdminController extends Controller
         $courseType   = CourseType::all();
         $certificates = Certificates::all();
         $categories   = CourseCategories::all();
-        $price        = Price::all();
-        return view('admin.course', compact('courseType','certificates','categories','price'));
+        return view('admin.course', compact('courseType','certificates','categories'));
     }
 
     public function add_course(AddCourseRequest $request){

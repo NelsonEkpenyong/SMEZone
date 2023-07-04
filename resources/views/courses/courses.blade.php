@@ -87,7 +87,7 @@
               <div class="card" style="max-width: 282px">
                 <img class="card-img-top" src="{{ asset('images/'. $course->image)}}" alt="course pics" style="width: 100%"/>
                 <div class="card-body">
-                  <a href="#" class="btn">{{$course->cost->name}}</a>
+                  <a href="#" class="btn" style="width: 15rem">{{$course->courseCategory->title}}</a>
                   <a href="/acourse/{{$course->id}}" style="background: white !important"> 
                   <h5 class="card-title">Course Title</h5>
                   <h6 class="card-text">{{$course->name}}</h6>

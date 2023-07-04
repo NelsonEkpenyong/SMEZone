@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -59,26 +61,31 @@ class User extends Authenticatable
     ];
 
 
-    public function role(){
+    public function role(): BelongsTo
+    {
         return $this->belongsTo(Roles::class,'role_id');
     }
 
-    public function industry(){
+    public function industry(): BelongsTo
+    {
         return $this->belongsTo(Industries::class,'industry_id');
     }
-    public function gender(){
+    public function gender(): BelongsTo
+    {
         return $this->belongsTo(Genders::class,'gender_id');
     }
 
-    public function state(){
+    public function state(): BelongsTo
+    {
         return $this->belongsTo(State::class,'state_id');
     }
 
-    public function lga(){
+    public function lga(): BelongsTo
+    {
         return $this->belongsTo(Lga::class,'lga_id');
     }
 
-    public function sessions()
+    public function sessions() : HasMany
     {
         return $this->hasMany(Session::class);
     }

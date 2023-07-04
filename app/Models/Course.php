@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Course extends Model
 {
@@ -19,7 +20,6 @@ class Course extends Model
         'embed_link',
         'certificate_id',
         'course_category_id',
-        'payment_type_id',
         'synopsis',
         'description',
         'image',
@@ -27,19 +27,23 @@ class Course extends Model
         'is_featured',
     ];
 
-    public function courseType(){
+    public function courseType() : BelongsTo
+    {
         return $this->belongsto(CourseType::class, 'type_id');
     }
 
-    public function certificates(){
+    public function certificates() : BelongsTo
+    {
         return $this->belongsto(Certificates::class, 'certificate_id');
     }
 
-    public function courseCategory(){
+    public function courseCategory() : BelongsTo
+    {
         return $this->belongsto(CourseCategories::class, 'course_category_id');
     }
 
-    public function cost(){
+    public function cost() : BelongsTo
+    {
         return $this->belongsto(Price::class, 'payment_type_id');
     }
 

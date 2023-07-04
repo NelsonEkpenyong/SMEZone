@@ -29,8 +29,8 @@ class CheckUserProfile
                 empty($user->state_id) && 
                 empty($user->lga_id) && 
                 empty($user->account)
-           ) 
-        {
+           ){
+            flash()->addWarning('You need to complete your profile before accessing the dashboard. 😞');
              return redirect('/settings-profile');
         }
         return $next($request);

@@ -13,12 +13,12 @@
          </div>
          <iframe width="100%" height="1000" src="{{asset('pdf/'. $course->pdf .'?page=hsn#toolbar=0')}}" frameborder="0" download="disabled" id="pdf"></iframe>
      @else
-     <div class="event-info">
-      <h1 class="title mb-2">{{$course->name}}</h1>
-      <p>{{strip_tags($course->content)}}</p>
-      
-     </div>
-     
+      @if($course->)
+        <div class="event-info">
+          <h1 class="title mb-2">{{$course->name}}</h1>
+          <p>{{strip_tags($course->content)}}</p>
+        </div>
+      @endif
      @endif
      
     </div>

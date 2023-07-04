@@ -50,14 +50,6 @@
 								</select>
 							</div>
        <div class="form-group">
-								<label>Price</label>
-								<select class="form-control form-control-sm" name="payment_type_id">
-									@foreach($price as $i => $p)
-									 <option value="{{$p->id}}">{{$p->name}}</option>
-									@endforeach
-								</select>
-							</div>
-       <div class="form-group">
 								<label for="editor">Synopsis</label>
 								<textarea class="form-control editor" name="synopsis" rows="7"></textarea>
 							</div>

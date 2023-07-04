@@ -17,9 +17,9 @@ class CoursesController extends Controller
     public function courses(){
 
         $courseCategoryId = Course::distinct()->pluck('course_category_id');
-        $categories = CourseCategories::whereIn('id', $courseCategoryId)->get();
-        $courses = Course::all();
-        $user = Auth::user();
+        $categories       = CourseCategories::whereIn('id', $courseCategoryId)->get();
+        $courses          = Course::all();
+        $user             = Auth::user();
       
         if($user->last_activity){
             Utility::recordLicense('Seen the course list',$user);
@@ -42,7 +42,12 @@ class CoursesController extends Controller
         $categoryId        = $course->course_category_id;
         $category          = CourseCategories::findOrFail($categoryId);
         $user_has_course   = Enrollments::where(['user_id' => Auth::user()->id ?? '', 'course_id' => $course->id])->limit(1)->count();
-
-        return view('courses.course', compact(['course', 'user_has_course','category','categories']));
+        $user              = Auth::user();
+        if($user->last_activity){
+            Utility::recordLicense('visited a course',$user);
+        }
+        
+        $relatedCourses = Course::where('course_category_id',$categoryId)->where('id', '!=', $id)->take(3)->get();
+        return view('courses.course', compact(['course', 'user_has_course','category','categories','relatedCourses']));
     }
 }

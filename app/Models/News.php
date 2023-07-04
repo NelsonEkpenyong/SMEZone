@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class News extends Model
 {
@@ -20,7 +21,8 @@ class News extends Model
 
     protected $table = 'news';
 
-    public function role(){
+    public function role() : BelongsTo
+    {
         return $this->belongsTo(Roles::class, 'role_id');
     }
 }

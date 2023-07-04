@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class EmailNotification extends Model
 {
@@ -22,7 +23,8 @@ class EmailNotification extends Model
     ];
 
 
-    public function userType(){
+    public function userType() : BelongsTo
+    {
         return $this->belongsTo(UserTypes::class, 'user_type_id');
     }
 }

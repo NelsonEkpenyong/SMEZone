@@ -17,30 +17,15 @@
         </h4>
         </div>
         <h4>Enrolled Courses</h4>
-    
-        @foreach ($categories as $category)
             <div class="this-course">
-                <div class="d-flex justify-content-between subheader">
-                    <h4>{{$category->title}}</h4>
-                    <div class="paging">
-                        <a href="#">
-                            <img src="{{asset('icons/backward.svg')}}" alt="backward" />
-                        </a>
-                        <span class="d-inline-block mx-2"> 4/15 </span>
-                        <a href="#">
-                            <img src="{{asset('icons/forward.svg')}}" alt="forward" />
-                        </a>
-                    </div>
-                </div>
-
                 <div class="d-flex mx-0">
                     <div class="d-flex courses-list pt-4 dash">
-                        @foreach($coursesByCategory[$category->id] as $enrollment)
+                        @foreach($enrollments as $enrollment)
                             <div class="col-auto">
                                 <div class="card" onclick="showCourse(`{{$enrollment->course->id}}`)" data-id="{{$enrollment->course->id}}">
                                     <img class="card-img-top" src="{{asset('images/'.$enrollment->course->image)}}" alt="course pics" style="width: 100%"/>
                                     <div class="card-body">
-                                        <a href="#" class="btn">{{$enrollment->course->cost->name}}</a>
+                                        <a href="#" class="btn" style="width: 12rem">{{$enrollment->course->courseCategory->title}}</a>
                                         <h5 class="card-title">Course Title</h5>
                                         <h6 class="card-text">{{$enrollment->course->name}}</h6>
                                     </div>
@@ -50,8 +35,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach
-   </div>
+        </div>
  </main>
  <script>
 

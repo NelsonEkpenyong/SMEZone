@@ -11,17 +11,14 @@ class CourseService {
 
   public static function addCourse($request){
     try{
-      $course = new Course;
+      $course                     = new Course;
       $course->type_id            = $request->type_id;
       $course->name               = $request->name;
       $course->embed_link         = $request->embed_link;
       $course->certificate_id     = $request->certificate_id;
       $course->course_category_id = $request->course_category_id;
-      $course->payment_type_id    = $request->payment_type_id;
       $course->synopsis           = $request->synopsis;
       $course->description        = $request->description;
-      $course->content            = $request->content;
- 
 
       if ($request->hasFile('image')) {
           $allowedfileExtension = ['jpg','png','docx','jpeg','gif','svg'];
@@ -29,13 +26,12 @@ class CourseService {
           $image = $request->file('image');
 
           $extension = $image->getClientOriginalExtension();
-          $check = in_array($extension, $allowedfileExtension);
+          $check     = in_array($extension, $allowedfileExtension);
 
           if($check){
               $file_name = Str::random(4) . '.' . $extension;
               $image->move(public_path('images'), $file_name);
           }else{
-              // return response()->json(['status'  => false,'message' => 'The file type must either be jpg, png, docx, jpeg, gif or svg.'],422);
                return redirect()->back()->with('error', 'The file type must either be jpg, png, docx, jpeg, gif or svg.');
           }
 
@@ -51,7 +47,6 @@ class CourseService {
 
           if(!$check){
             return redirect('/course')->with('error', 'The file type must be pdf.');
-            // return response()->json(['status'  => false,'message' => 'The file type must be pdf.'],422);
           }
 
           $fileName = $pdf->getClientOriginalName();
@@ -81,7 +76,6 @@ class CourseService {
       $course->embed_link         = $request->embed_link;
       $course->certificate_id     = $request->certificate_id;
       $course->course_category_id = $request->course_category_id;
-      $course->payment_type_id    = $request->payment_type_id;
       $course->synopsis           = $request->synopsis;
       $course->description        = $request->description;
       $course->content            = $request->content;
