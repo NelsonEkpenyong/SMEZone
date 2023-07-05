@@ -169,7 +169,7 @@ Route::controller(CoursesController::class)->group( function(){
 
 
 Route::controller(EnrolmentController::class)->middleware('auth')->group( function(){
-    Route::post('/enrol', 'enrol')->name('enrol');
+    Route::post('/enrol', 'enroll')->name('enrol');
     Route::get('/enrollment/{course_id}', 'enrollment')->name('enrollment');
 });
 
