@@ -61,7 +61,7 @@ class EnrolmentController extends Controller
                 Log::info('The enrollment email has been sent.');
             }); */
 
-            Mail::to(auth()->user()->email)->queue(new EnrollmentEmail(auth()->user(), $course));
+            Mail::to(auth()->user()->email)->send(new EnrollmentEmail(auth()->user(), $course));
 
 
             // Mail::to($this->user->email)->send(new EnrollmentEmail($this->user));

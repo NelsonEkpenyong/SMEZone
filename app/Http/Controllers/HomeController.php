@@ -36,4 +36,10 @@ class HomeController extends Controller
             'upcomingEvents'
         ));
     }
+
+    
+    
+    public function email1(){
+        return view('mail.mail1');
+    }
 }

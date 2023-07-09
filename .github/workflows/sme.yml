@@ -3,21 +3,19 @@ on:
     branches:
       - master
 
-name: 🚀 Deploy SME Zone on push
+name: 🚀 Deploy SME on push
 jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
     - name: 🚚 Get latest code
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
+      uses: actions/checkout@v2
 
-    - name: 📂 Sync folders and files to the server
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: public_html/
+        server-dir: public_html/public

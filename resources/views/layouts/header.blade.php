@@ -1,9 +1,9 @@
 <header>
   <nav class="navbar navbar-expand-lg home-nav fixed-top">
     <div class="container px-lg-3">
-      <a class="navbar-brand" href="{{ url('/') }}"
-        ><img src="../icons/sme-logo.svg" alt="" class="img-fluid"
-      /></a>
+      <a class="navbar-brand" href="{{ url('/') }}">
+        <img src="../icons/sme-logo.svg" alt="" class="img-fluid"/>
+      </a>
       <button
         class="navbar-toggler"
         type="button"

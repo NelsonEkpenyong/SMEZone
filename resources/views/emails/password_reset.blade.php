@@ -9,33 +9,42 @@
    <div class="top_rectangle"></div>
 
    <h2 class="confirmation">
-     Confirmation of Course Enrollment
+     Password Reset Instructions
    </h2>
 
    <div class="confirmation_image">
-     <img src="{{ asset('img/handSign.png')}}" alt="">
+     <img src="{{ asset('img/password_reset.png')}}" alt="">
    </div>
 
    <div class="letter">
      <p>Dear [X,X,X],</p>
 
      <p class="letter_text">
-      Welcome to Access Bank SMEZone! 
-      We are delighted to have you join our community, and thank you for choosing us. 
+      We have received your request to reset the password for your account. To proceed with resetting your password, please follow the instructions below:
      </p>
-      
-     <p> We believe that you are about to embark on an incredible journey, and we are thrilled to be a part of it.</P>
-      
      <p>
-      We are excited to have you on board, and we are committed to providing you with a seamless and enriching experience. 
-      If you have any questions or need further assistance, please do not hesitate to contact us.
+      Click on the following link to access the password reset page: [Password Reset Link]
+     </p>
+     <p>
+      Note: The link provided is unique to your account and will expire after [expiration time] for security reasons. 
+      If the link expires, you will need to initiate the password reset process again.
      </p>
       
-      <p>Shortly, you will receive another mail from us, prompting you to confirm your email address.
-       Kindly click on it so we can have your data registered on our system.
+      <p>
+       Once you click on the link, you will be directed to a page where you can enter your new password.
       </p>
-      
-     <p> Once again, welcome to Access Bank SMEZone</p>
+
+      <p>
+       Choose a strong and memorable password and enter it in the provided fields. 
+       Please ensure your new password meets the specified password requirements 
+       (e.g., minimum length, use of special characters, etc.).
+      </p>
+      <p>
+       After entering your new password, click on the "Reset Password" button to confirm the changes.
+      </P>
+      <p>
+      Please disregard this email if you did not initiate this password reset request. Your account will remain secure, and no action is needed.
+     </p>
 
      <p class="letter_greeting">Regards</p>
 

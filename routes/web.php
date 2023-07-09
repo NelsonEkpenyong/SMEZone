@@ -127,6 +127,7 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
 
 Route::controller(HomeController::class)->group( function(){
     Route::get('/','index')->name('/');
+    Route::get('/email1','email1')->name('/email1');
 });
 
 Route::controller(ToolsController::class)->group( function(){
