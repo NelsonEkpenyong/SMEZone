@@ -397,7 +397,7 @@
               <div class="form-check">
                 <label class="form-check-label text-muted">
                   Please confirm that if accepted to this program, you authorize Access Bank to do a one-time direct debit of N20,000 to cover fees for this program.
-                  <input type="checkbox" name="debitConfirmation" class="form-check-input" required>
+                  <input type="checkbox" name="debitConfirmation" checked class="form-check-input" required>
                   @error('debitConfirmation')  <span class="error">{{ $message }}</span> @enderror
                 </label>
               </div>
@@ -409,12 +409,11 @@
             </div>
             <div class="col-md-6">
               <div class="d-flex justify-content-end">
-                <a class="btn" style="color: black; border-radius: 0.6rem; width: 7rem" href="{{'/getFundedAfrica'}}">Previous</a>
-              </div>
-              <div class="d-flex justify-content-end">
+                <a class="btn" style="color: black; border-radius: 0.6rem; width: 7rem; margin-right: 0.5rem;" href="{{'/getFundedAfrica'}}">Previous</a>
                 <button class="btn" style="background-color: #eb8e02; color: white; border-radius: 0.6rem; width: 7rem;">Next</button>
               </div>
             </div>
+            
       <form>          
     </div>
   </div>
