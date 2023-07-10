@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td colspan="2" style="text-align: center;">
-      <img src="{{asset('img/handSign.png')}}" alt="" style="display: block; width: 100%; height: auto;">
+      <img src="{{asset('img/handSign.png')}}" alt="" style="display: block; width: 100%; height: 50%; margin-left: calc((100vw - 1050px)/2); margin-right: calc((100vw - 600px)/2);">
     </td>
   </tr>
   <tr>
@@ -48,10 +48,10 @@
           </div>
         </div>
         <div style="position: absolute; bottom: 0; left: 0;">
-          <img src="{{asset('img/left.png')}}" alt="" style="display: block; width: 100%; height: auto;">
+          <img src="{{asset('img/left.png')}}" alt="" style="display: block; width: 100%; height: 10%;">
         </div>
         <div style="position: absolute; bottom: 0; right: 0;">
-          <img src="{{asset('img/right.png')}}" alt="" style="display: block; width: 100%; height: auto;">
+          <img src="{{asset('img/right.png')}}" alt="" style="display: block; width: 100%; height: 10%;">
         </div>
       </div>
     </td>
