@@ -18,9 +18,6 @@ class PartnerController extends Controller
     }
 
     public function funded_one(fundedAfricaRequest1 $request){
-        // $request->session()->put('admit', $request->all());
-        // return redirect('/getFundedAfrica2');
-
         if ($request->isMethod('post')) {
             $request->session()->put('admit', $request->all());
 

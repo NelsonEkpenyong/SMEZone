@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td colspan="2" style="text-align: center;">
-      <img src="../img/handSign.png" alt="" style="display: block; width: 100%; height: auto;">
+      <img src="{{asset('img/handSign.png')}}" alt="" style="display: block; width: 100%; height: auto;">
     </td>
   </tr>
   <tr>
@@ -29,7 +29,7 @@
   <tr>
     <td style="background-color: black; padding: 5rem;">
       <div style="position: relative;">
-        <img src="{{asset('/img/Socials.png')}}" alt="" style="display: block; max-width: 100%; height: auto; position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);">
+        <img src="{{asset('img/Socials.png')}}" alt="" style="display: block; max-width: 100%; height: auto; position: absolute; top: 10%; left: 50%; transform: translate(-50%, -50%);">
         <div style="padding-left: 1rem; padding-right: 0.5rem; padding-top: 10rem;">
           <h2 style="color: #FFF; font-family: Poppins; font-size: 20px; font-style: normal; font-weight: 400; line-height: 26px; margin-left: 16rem; margin-top: -3.5rem; padding-bottom: 0rem;">Email: hello@accesssmezone.com</h2>
           <div style="display: flex; margin: 3rem 1rem 5rem;">
@@ -41,17 +41,17 @@
             <p style="font-family: Poppins; font-size: 13px; font-weight: 500; line-height: 22px; letter-spacing: 0px; text-align: center; color: black">This email is for {{$user->email}}, if this is not you please <br><b><u>Unsubscribe</u></b> immediately</p>
           </div>
           <div style="width: 133px; height: 36px; margin-top: 2.5rem;">
-            <img src="{{asset('/img/sme_logo_footer.png')}}" alt="" style="display: block; width: 100%; height: auto;">
+            <img src="{{asset('img/sme_logo_footer.png')}}" alt="" style="display: block; width: 100%; height: auto;">
           </div>
           <div style="margin-top: 2.7rem;">
             <p style="font-family: Poppins; font-size: 13px; font-weight: 400; line-height: 22px; letter-spacing: 0px; text-align: center; color: black;">@2023 Access Bank - All Rights Reserved</p>
           </div>
         </div>
         <div style="position: absolute; bottom: 0; left: 0;">
-          <img src="{{asset('/img/left.png')}}" alt="" style="display: block; width: 100%; height: auto;">
+          <img src="{{asset('img/left.png')}}" alt="" style="display: block; width: 100%; height: auto;">
         </div>
         <div style="position: absolute; bottom: 0; right: 0;">
-          <img src="{{asset('/img/right.png')}}" alt="" style="display: block; width: 100%; height: auto;">
+          <img src="{{asset('img/right.png')}}" alt="" style="display: block; width: 100%; height: auto;">
         </div>
       </div>
     </td>
