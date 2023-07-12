@@ -106,6 +106,8 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/delete-post/{id}', 'delete_post')->name('delete-post');
 
     Route::get('/users','users')->name('users');
+    Route::get('/add-users','add_users')->name('add-users');
+    Route::post('/store-users','store_users')->name('store-users');
 
     Route::get('/manage-news','news')->name('/manage-news');
     Route::get('/to-add-news','to_add_news')->name('/to_add-news');

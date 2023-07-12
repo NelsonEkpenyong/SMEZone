@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Industries;
 use Illuminate\Http\Request;
-
+use App\Imports\UsersImport;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +38,7 @@ use App\Models\OpportunityZone;
 use Illuminate\Support\Str;
 use App\Models\Licenses;
 use File;
-
+use Excel;
 
 
 class AdminController extends Controller
@@ -322,7 +322,7 @@ class AdminController extends Controller
         }
     }
 
-     public function create_video_slider(){
+    public function create_video_slider(){
         return view('admin.add-video-slider');
     }
 
@@ -730,5 +730,26 @@ class AdminController extends Controller
         $licenses = Licenses::orderBy('id', 'desc')->paginate();
         return view('admin.licenses', compact('licenses'));
     }
+
+    public function add_users(){
+         return view('admin.add-users');
+    }
+
+    public function store_users(Request $request){
+        try{
+            $this->validate($request, ['users' => 'required|mimes:xls,xlsx, xlsm']);
+            $path =  $request->file('users')->getRealPath();
+            Excel::import(new UsersImport, $request->file('users'));
+
+            flash()->addSuccess('Bulk upload Successful!😃');
+            return redirect('/users');
+        }catch (\Exception$e) {
+            report($e);
+            report($e->getMessage());
+            flash()->addError('Something went wrong. Bulk upload failed!');
+            return redirect('/add-users');
+        }
+    }
+
 
 }

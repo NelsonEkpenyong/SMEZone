@@ -8,95 +8,76 @@
        <a href="#">Apply Here</a>
      </div>
    </div>
-
-   <div class="row mt-0 debit-card">
-     <div class="col-lg-3 col-md-6">
-       <div class="d-flex flex-column justify-content-between">
-         <div>
-           <img src="{{asset('img/debit-img1.png')}}" alt="" />
-           <h5 class="text-center">Payment Acceptance Service (SwiftPay)</h5>
-         </div>
-         <div class="d-flex flex-column align-items-center">
-           <p class="text-center">
-             Register as a merchant and get paid with or without a website.
-           </p>
-           <button
-             class="btn"
-             data-bs-toggle="modal"
-             data-bs-target="#exampleModal"
-           >
-             Register Now
-           </button>
-         </div>
-       </div>
-     </div>
-     <div class="col-lg-3 col-md-6">
-       <div class="d-flex flex-column justify-content-between">
-         <div>
-           <img src="{{asset('img/debit-img2.png')}}" alt="" />
-           <h5 class="text-center">Courier Service</h5>
-           <div class="text-center">
-             <img
-               src="{{asset('img/red-star.png')}}"
-               alt="red star"
-               class="red-star"
-             />
-           </div>
-         </div>
-         <div class="d-flex flex-column align-items-center">
-           <p class="text-center">
-             Get up to 20% off your delivery to your customers via Fedex,
-             DHL, GIG
-           </p>
-           <button
-             class="btn"
-             data-bs-toggle="modal"
-             data-bs-target="#exampleModal"
-           >
-             Register Now
-           </button>
-         </div>
-       </div>
-     </div>
-     <div class="col-lg-3 col-md-6">
-       <div class="d-flex flex-column justify-content-between">
-         <div>
-           <img src="{{asset('img/debit-img3.png')}}" alt="" />
-           <h5 class="text-center">Google Business Advisory</h5>
-         </div>
-         <div class="d-flex flex-column align-items-center">
-           <p class="text-center">
-             Get up to ₦5000 google advert campaign credit every month.
-           </p>
-           <button
-             class="btn"
-             data-bs-toggle="modal"
-             data-bs-target="#exampleModal"
-           >
-             Register Now
-           </button>
-         </div>
-       </div>
-     </div>
-     <div class="col-lg-3 col-md-6">
-       <div class="d-flex flex-column justify-content-between">
-         <div>
-           <img src="{{asset('img/debit-img4.png')}}" alt="" />
-           <h5 class="text-center">DocuSign</h5>
-         </div>
-         <div class="d-flex flex-column align-items-center">
-           <p class="text-center">Get up to 30% off on DocuSign</p>
-           <button
-             class="btn"
-             data-bs-toggle="modal"
-             data-bs-target="#exampleModal"
-           >
-             Register Now
-           </button>
-         </div>
-       </div>
-     </div>
-   </div>
+   <div style="margin-left: 10rem; margin-right: -5rem">
+    <div class="row mt-0 debit-card">
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <img src="{{asset('img/debit-img2.png')}}" alt="" />
+            <h5 class="text-center">Courier Service</h5>
+            <div class="text-center">
+              <img
+                src="{{asset('img/red-star.png')}}"
+                alt="red star"
+                class="red-star"
+              />
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <p class="text-center">
+              Get up to 20% off your delivery to your customers via Fedex,
+              DHL, GIG
+            </p>
+            <button
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <img src="{{asset('img/debit-img3.png')}}" alt="" />
+            <h5 class="text-center">Google Business Advisory</h5>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <p class="text-center">
+              Get up to ₦5000 google advert campaign credit every month.
+            </p>
+            <button
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex flex-column justify-content-between">
+          <div>
+            <img src="{{asset('img/debit-img4.png')}}" alt="" />
+            <h5 class="text-center">DocuSign</h5>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <p class="text-center">Get up to 30% off on DocuSign</p>
+            <button
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Register Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </section>
 
    <!-- modal  -->
@@ -174,4 +155,5 @@
      </div>
    </div>
    <!-- end of modal  -->
+   
   @endsection
