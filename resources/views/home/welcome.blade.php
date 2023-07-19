@@ -420,10 +420,10 @@
 
       <!-- section 4 -->
       <div class="home-section4 container" style="background: url('{{ asset('images/'.$upcomingEventImage->event_image) }} ') center left no-repeat;">
-        <div class="container py-5">
+        <div class="container py-5" style="height: 33rem">
           <div class="row">
             <div class="col-md-7">
-              @php $name = explode(' ', $upcomingEventImage->event->event_name,3); @endphp
+              @php $name = explode(' ', $upcomingEventImage->event->event_name,4); @endphp
                 <h1>{{$name[0]}} <span class="our-orange">{{isset($name[1]) ? $name[1] : $upcomingEventImage->event->event_name}}</span> {{isset($name[2]) ? $name[2] : $upcomingEventImage->event->event_name}} {{isset($name[3]) ? $name[3] : $upcomingEventImage->event->event_name}}</h1>
             </div>
             <div class="col-md-5 mt-5 mt-md-0 pt-5 pt-md-0 upcoming-event-landing">
@@ -539,12 +539,15 @@
                 </button>
               </div>
               <hr class="mt-5">
+              {{-- Opportunity zone and radio Digest --}}
               <div class="row">
                 <div class="col">
                   <p class="live-zoom mb-4">Opportunity Zone</p>
+                  <p class="live-zoom mb-4" style="margin-top: 1rem">Access SME Radio Digest</p>
                 </div>
                 <div class="col">
                   <a href="/opportunity-zone" class="btn btn-primary justify-content-end" style="margin-left: 3.6rem;">View all opportuities</a>
+                  <a href="/radio-digest" class="btn btn-primary justify-content-end" style="margin-left: 3.6rem; margin-top: 1rem; width: 11rem">Visit Podcasts</a>
                 </div>
               </div>
             </div>

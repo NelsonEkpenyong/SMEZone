@@ -34,6 +34,12 @@
         Opportunity Zone
       </a>
     </li>
+    <li class="{{ (\Request::route()->getName() == 'radio-digest') ? 'active' : ''}}">
+      <a href="/radio-digest">
+        <img src="{{asset('icons/Aside-community.svg')}}" alt="radio-digest" />
+        Access Radio Digest
+      </a>
+    </li>
      <li class="">
        <a href="/community">
          <img src="{{asset('icons/Aside-community.svg')}}" alt="community" />

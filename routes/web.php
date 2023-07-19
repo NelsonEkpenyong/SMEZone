@@ -162,6 +162,7 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group( func
     Route::post('/update-profile','update_profile')->name('update-profile');
     Route::get('/settings','settings')->name('settings');
     Route::get('/opportunity-zone','opportunity_zone')->name('opportunity-zone');
+    Route::get('/radio-digest','radio_digest')->name('radio-digest');
 });
 
 Route::controller(CoursesController::class)->group( function(){

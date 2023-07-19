@@ -111,4 +111,8 @@ class DashboardController extends Controller
         $opportunities = OpportunityZone::all();
         return view('community.dashboard.opportunityList', compact('opportunities'));
     }
+
+    public function radio_digest(){
+        return view('community.dashboard.radioDigest');
+    }
 }
