@@ -343,12 +343,16 @@ class AdminController extends Controller
      * @return \Illuminate\Contracts\View\View
     */
     public function admin_dashboard(){
-        $authUser   = Auth::user();
+        $authUser   = $this->user();
         $eventCount = Event::count();
         $courses    = Course::count();
         $users      = User::count();
+        $licenses   = Licenses::count();
+        $webinars   = Web::count();
+        $boys       = User::where('gender_id', 1)->count();
+        $girls      = User::where('gender_id', 2)->count();
 
-        return view('admin.dashboard',compact('authUser','eventCount','courses','users'));
+        return view('admin.dashboard',compact('authUser','eventCount','courses','users','licenses', 'boys', 'girls','webinars'));
     }
 
     public function manage_event(){

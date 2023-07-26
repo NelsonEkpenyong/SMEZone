@@ -28,8 +28,8 @@
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users">
             <i class="icon-layout menu-icon"></i>
-            <span class="menu-title">Users</span>
-            <i class="menu-arrow" style="margin-left: 10rem"></i>
+            <span class="menu-title">User Management</span>
+            <i class="menu-arrow" style="margin-left: 4.8rem"></i>
           </a>
           <div class="collapse" id="users">
             <ul class="nav flex-column sub-menu">
@@ -78,6 +78,21 @@
             </ul>
           </div>
         </li>
+
+        {{-- sme Digests --}}
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#digests" aria-expanded="false" aria-controls="digests">
+            <i class="icon-layout menu-icon"></i>
+            <span class="menu-title">SME Radio Digests</span>
+            <i class="menu-arrow" style="margin-left: 4.3rem"></i>
+          </a>
+          <div class="collapse" id="digests">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="#">Awaiting link</a></li>
+            </ul>
+          </div>
+        </li>
+
 
         {{-- License Management --}}
         <li class="nav-item">
@@ -262,7 +277,7 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="user">
             <i class="icon-layout menu-icon"></i>
             <span class="menu-title">User Management</span>
@@ -274,7 +289,7 @@
               <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
             </ul>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" data-toggle="collapse" href="#clinic" aria-expanded="false" aria-controls="clinic">
             <i class="icon-layout menu-icon"></i>

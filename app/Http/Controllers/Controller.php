@@ -37,4 +37,8 @@ class Controller extends BaseController
     public function email(){
         return auth()->user()->email;
     }
+
+    public function phone(){
+        return auth()->user()->phone;
+    }
 }
