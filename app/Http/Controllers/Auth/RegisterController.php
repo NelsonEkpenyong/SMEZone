@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeEmail;
+
 
 class RegisterController extends Controller
 {
@@ -80,7 +82,11 @@ class RegisterController extends Controller
             'account_type'             => $data['account_type']
         ]);
 
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        
+ 
+        event(new Registered($user));
+
+        // Mail::to($user->email)->send(new WelcomeEmail($user));
 
         return $user;
     }

@@ -25,14 +25,14 @@ use App\Http\Controllers\EnrolmentController;
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('admin',[AdminAuthController::class,'login'])->name('/admin');
 Route::post('/admin/logout',[AdminAuthController::class,'logout'])->name('/admin/logout');
 
 Route::post('/admin/handle-login',[AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
 
-Route::controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
+Route::  controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
     Route::get('/dashboard','admin_dashboard')->name('dashboard');
 
     Route::get('/event','event')->name('event');
@@ -127,12 +127,12 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/licenses', 'licenses')->name('licenses');
 });
 
-Route::controller(HomeController::class)->group( function(){
+Route::controller(HomeController::class)->middleware(['verified'])->group( function(){
     Route::get('/','index')->name('/');
     Route::get('/email1','email1')->name('/email1');
 });
 
-Route::controller(ToolsController::class)->group( function(){
+Route::controller(ToolsController::class)->middleware(['verified'])->group( function(){
     Route::get('/tools','tools')->name('tools');
     Route::get('/biz-debit-card','debit_card')->name('biz-debit-card');
     Route::get('/loans','loans')->name('loans');
@@ -140,7 +140,7 @@ Route::controller(ToolsController::class)->group( function(){
     Route::get('/proposition','proposition')->name('proposition');
 });
 
-Route::controller(CommunityController::class)->group( function(){
+Route::controller(CommunityController::class)->middleware(['verified'])->group( function(){
     Route::get('/community/{id?}','community')->middleware('onlineUser')->name('community');
     Route::get('/news','news')->name('news');
     Route::get('/webinars','webinars')->name('webinars');
@@ -166,25 +166,25 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group( func
 });
 
 Route::controller(CoursesController::class)->group( function(){
-    Route::get('/courses','courses')->name('courses');
+    Route::get('/courses','courses')->name('cocurses');
     Route::get('/acourse/{id}','course')->middleware('auth')->name('acourse');
     Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
 
 
-Route::controller(EnrolmentController::class)->middleware('auth')->group( function(){
+Route::controller(EnrolmentController::class)->middleware(['auth', 'verify'])->group( function(){
     Route::post('/enrol', 'enroll')->name('enrol');
     Route::get('/enrollment/{course_id}', 'enrollment')->name('enrollment');
 });
 
 
-Route::controller(EventsController::class)->group( function(){
+Route::controller(EventsController::class)->middleware(['verified'])->group( function(){
     Route::get('/events','events')->name('events');
     Route::get('/an-event/{id}','event')->name('an-event');
     Route::post('/fe-storeEvent','sore_event')->name('fe-storeEvent');
 });
 
-Route::controller(PartnerController::class)->group( function(){
+Route::controller(PartnerController::class)->middleware(['verified'])->group( function(){
     Route::get('/getFundedAfrica','get_funded_africa')->name('getFundedAfrica');
     Route::post('/fundedOne','funded_one')->name('fundedOne');
 

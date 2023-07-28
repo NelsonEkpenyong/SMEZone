@@ -1,300 +1,268 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Confirmation of Course Enrollment</title>
-    <style>
-
-      .container{
-      padding-left: calc((100vw - 800px)/2);
-      padding-right: calc((100vw - 800px)/2);
-      }
-  
-      .top_rectangle{
-      background: linear-gradient(93.66deg, rgba(235, 124, 2, 0.88) 14.42%, rgba(206, 238, 10, 0.59) 93.6%);
-      width: 770px;
-      height: 23px;
-      top: 83px;
-      margin-top: 1.6rem;
-      }
-  
-      .bottom_rectangle{
-      background: linear-gradient(93.66deg, rgba(235, 124, 2, 0.88) 14.42%, rgba(206, 238, 10, 0.59) 93.6%);
-      width: 767px;
-      height: 25px;
-      margin-top: 0rem;
-      }
-      .confirmation {
-      font-family: Nunito;
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 33px;
-      letter-spacing: 0em;
-      text-align: center;
-  
-      /* width: 389px;
-      height: 33px;
-      margin-top: 2.5rem;
-      margin-bottom: -0.6rem;
-      left: 52px; */
-      }
-  
-      .contact_us{
-      margin-top: 5rem;
-      }
-  
-      .confirmation_image{
-      margin-top: 0;
-      margin-left: calc((100vw - 1050px)/2);
-      margin-right: calc((100vw - 600px)/2);
-      }
-  
-      .letter_text{
-      font-family: Nunito;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 30px;
-      letter-spacing: 0px;
-      text-align: left;
-  
-      }
-  
-      .letter_greeting{
-      margin-top: 2.5rem
-      }
-  
-      .contact_us p {
-      font-family: Nunito;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 22px;
-      letter-spacing: 0px;
-      text-align: center;
-  
-      font-family: Nunito;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 22px;
-      letter-spacing: 0px;
-      text-align: center;
-  
-      font-family: Poppins;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 22px;
-      letter-spacing: 0px;
-      text-align: center;
-  
-      }
-  
-      .footer_banner{
-      background-image: url(../img/MailRectangle.png);
-      background-repeat: no-repeat;
-      background-size: 100% auto;
-      height: 498px;
-      }
-  
-  
-      .footer_banner {
-        position: relative;
-      }
-  
-      .left,
-      .right {
-        position: absolute; /* Position the elements absolutely */
-        bottom: 0;
-      } 
-  
-      .left {
-        left: 0; 
-      }
-  
-      .right {
-        right: 0; /* Position the right element on the right side */
-      }
-  
-      .socials {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      .section_text{
-      /* margin-top: rem; */
-      }
-  
-      .footer_banner img {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-  
-      .socials img {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-  
-      .footer_banner_mail{
-      color: #FFF;
-      font-family: Poppins;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 26px;
-      margin-left: 16rem;
-      margin-top: -3.5rem;
-      padding-bottom: 0rem;
-      /* padding-bottom: 20rem; */
-      /* bottom: 30%; */
-      }
-  
-      .group {
-      display: flex;
-      margin-left: calc((100vw - 900px)/2);
-      margin-right: calc((100vw - 900px)/2);
-      margin-top: 3rem;
-      margin-bottom: 5rem;
-      justify-content: space-between;
-      }
-      
-      
-  
-      .group .support,.legal, .faq {
-        margin: 0; /* Remove default margins for the <p> elements */
-        color:#FFF;
-      } 
-  
-      .for p {
-        font-family: Poppins;
-        font-size: 13px;
-        font-weight: 500;
-        line-height: 22px;
-        letter-spacing: 0px;
-        text-align: center;
-        color: #FFF
-  
-      }
-  
-      .all_rights p {
-        font-family: Poppins;
-        font-size: 13px;
-        font-weight: 400;
-        line-height: 22px;
-        letter-spacing: 0px;
-        text-align: center;
-        color: #FFF;
-        margin-top: 2.7rem;
-      }
-  
-      .footer_banner_logo{
-      width: 133px;
-      height: 36px;
-      margin-top: 2.5rem;
-      /* top: 1258px;
-      left: 234px; */
-      padding-left: calc((100vw - 900px)/2);
-      padding-right: calc((100vw - 800px)/2);
-      }
-  
-  
-    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="../icons/sme-logo.svg" alt=""/>
-    </a>
-    <div class="top_rectangle"></div>
-
-    <h2 class="confirmation">
-      Confirmation of Course Enrollment
-    </h2>
-
-    <div class="confirmation_image">
-      <img src="{{ asset('img/handSign.png')}}" alt="">
-    </div>
-
-    <div class="letter">
-      <p>Dear [X,X,X],</p>
-
-      <p class="letter_text">
-        Dear [New User's Name],
-      </p>
-
-      <p>
-        Welcome to Access Bank SMEZone! 
-        We are delighted to have you join our community, and thank you for choosing us.
-      </p> 
-
-      <p>
-        We believe that you are about to embark on an incredible journey, 
-        and we are thrilled to be a part of it.
-      </p>
-
-      <p>
-        We are excited to have you on board, and we are committed to providing you with a seamless and enriching experience. 
-        If you have any questions or need further assistance, please do not hesitate to contact us.
-      </p>
-
-      <p>
-        Kindly click on this link to verify your email address. Thanks
-      </p>
-
-        <p>
-          Once again, welcome to Access Bank SMEZone
-        </p>
-    </div>
-
-    <div class="contact_us">
-      <p>
-        If you have any complaints, please contact our contact support <br>or send us an email hello@accesssmezone.com
-      </p>
-    </div>
-
-    <div class="footer_banner">
-      <div class="socials">
-        <img src="{{asset('/img/Socials.png')}}" alt="">
-      </div>
-      <div class="section_text" style="padding-top: 10rem">
-        <h2 class="footer_banner_mail">Email: hello@accesssmezone.com</h2>
-        <div class="group">
-          <p class="legal">Legal</p>
-          <p class="support">Support</p>
-          <p class="faq">Faq</p>
-        </div>
-
-        <div class="for">
-          <p>
-            This email is for XXX@gmail.com, if this is not you please <br><b><u>Unsubscribe</u></b> immediately
-          </p>
-        </div>
-
-        <div class="footer_banner_logo">
-          <img src="{{asset('/img/sme_logo_footer.png')}}" alt=""/>
-        </div>
-
-        <div class="all_rights">
-          <p>
-            @2023 Access Bank - All Rights Reserved
-          </p>
-        </div>
-      </div>
-      
-      
-      <aside>
-        <div class="left">
-          <div class="aside">
-            <img src="{{asset('/img/left.png')}}" alt="">
+    <table
+      style="
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+        border-collapse: collapse;
+        background-color: #f7f7f7;
+      "
+    >
+      <tr>
+        <td colspan="2">
+          <img
+            src="http://davtonlab.tech/img/smelogo.png"
+            alt="smeLogo"
+            style="
+              height: 36px;
+              width: 134.77px;
+              margin-top: 29px;
+              margin-left: 56px;
+            "
+          />
+        </td>
+      </tr>
+      <tr>
+        <td
+          colspan="2"
+          style="
+            background: linear-gradient(
+              93.66deg,
+              rgba(235, 124, 2, 0.88) 14.42%,
+              rgba(206, 238, 10, 0.59) 93.6%
+            );
+            height: 23px;
+            margin-top: 1.6rem;
+          "
+        ></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center; padding: 2.5rem 0">
+          <h2
+            style="
+              font-family: Nunito;
+              font-size: 24px;
+              font-weight: 700;
+              line-height: 33px;
+              letter-spacing: 0em;
+              margin: 0;
+            "
+          >
+            Welcome to Access Bank SMEZone
+          </h2>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center">
+          <div>
+            <img
+              src="http://davtonlab.tech/img/welcome_image.png"
+              alt="The hand image"
+              top="183"
+              style="
+                display: block;
+                width: 324px;
+                height: 324px;
+                margin-left: 250px;
+                margin-right: calc((100vw - 600px) / 2);
+              "
+            />
           </div>
-        </div>
-        <div class="right">
-          <div class="aside">
-            <img src="{{asset('/img/right.png')}}" alt="">
-          </div>
-        </div>
+        </td>
+      </tr>
+      <tr>
+        <td
+          colspan="2"
+          style="
+            font-family: Nunito;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 30px;
+            letter-spacing: 0px;
+            text-align: left;
+            padding: 0 1rem;
+          "
+        >
+          <p>Dear <b>{{ $user->first_name }}</b>,</p>
           
-      </aside>
-    </div>
-    <div class="bottom_rectangle"></div>
-    </div>
+          <p style="margin-top: 1.5rem">
+            Welcome to Access Bank SMEZone Community!
+          </p>
+
+          <p style="margin-top: 1.5rem">
+            We believe that as an SME you require all the support you can get and we are here for you.
+          </p>
+
+          <p style="margin-top: 1.5rem">
+            We are excited to have you on board, and we are committed to providing you with a seamless and enriching experience. 
+          </P>
+          
+          <p style="margin-top: 1.5rem">
+            Please confirm your email address by clicking on the link below:
+          </p>
+
+          <p style="margin-top: 2.5rem; font-weight: bold">Regards</p>
+          <p>Access Bank SMEZone</p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: center; padding: 3rem 1rem">
+          <p>If you have any complaints, please contact our support team</p>
+          <p>
+            or send us an email at
+            <a href="mailto:waitingforWale@accesssmezone.com" ><b>waitingforWale@accesssmezone.com</b></a>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="background-color: black; padding-top: 5rem">
+          <div>
+            <div style="position: relative">
+              <div style="text-align: center; width: 100%">
+                <img
+                  src="http://davtonlab.tech/img/Socials.png"
+                  alt=""
+                  style="
+                    max-width: 100%;
+                    height: auto;
+                    width: 150px;
+                    margin: auto;
+                  "
+                />
+              </div>
+
+              <div
+                style="
+                  padding-left: 1rem;
+                  padding-right: 0.5rem;
+                  padding-top: 5rem;
+                  align-items: center;
+                "
+              >
+                <h2
+                  style="
+                    color: #fff;
+                    font-family: Poppins;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px;
+                    padding-bottom: 0rem;
+                    text-align: center;
+                  "
+                >
+                  Email:
+                  <span style="color: #fff; font-weight: 700">waitingforWale@accesssmezone.com</span>
+                </h2>
+
+                <div style="width: 100%; text-align: center">
+                  <span style="margin: 0; color: #fff">Legal</span>
+                  <span style="margin: 0; color: #fff; margin-left: 2.5rem">
+                    Support
+                  </span>
+                  <span style="margin: 0; color: #fff; margin-left: 2.5rem"
+                    >FAQ</span
+                  >
+                </div>
+
+                <div>
+                  <p
+                    style="
+                      font-family: Poppins;
+                      font-size: 13px;
+                      font-weight: 500;
+                      line-height: 22px;
+                      letter-spacing: 0px;
+                      text-align: center;
+                      color: white;
+                      width: 387px;
+                      max-width: 100%;
+                      margin-left: auto;
+                      margin-right: auto;
+                    "
+                  >
+                    This email is for {{$user->email}}, if this is not you
+                    please
+                    <br /><b><u>Unsubscribe</u></b> immediately
+                  </p>
+                </div>
+
+                <div
+                  style="
+                    width: 133px;
+                    height: 36px;
+                    margin-top: 2.5rem;
+                    text-align: center;
+                    width: 100%;
+                  "
+                >
+                  <img
+                    src="http://davtonlab.tech/img/sme_logo_footer.png"
+                    alt=""
+                    style="height: auto; width: 133px; margin: auto"
+                  />
+                </div>
+
+                <div style="margin-top: 2.7rem">
+                  <p
+                    style="
+                      font-family: Poppins;
+                      font-size: 13px;
+                      font-weight: 400;
+                      line-height: 22px;
+                      letter-spacing: 0px;
+                      text-align: center;
+                      color: white;
+                      margin-bottom: 0px;
+                    "
+                  >
+                    @2023 Access Bank - All Rights Reserved
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-end justify-content-between">
+                <img
+                  src="http://davtonlab.tech/img/left.png"
+                  alt=""
+                  style="width: 153px; height: auto"
+                />
+
+                <img
+                  src="http://davtonlab.tech/img/right.png"
+                  alt=""
+                  style="width: 148px; height: auto; margin-left: 30.8rem" 
+                />
+              </div>
+            </div>
+
+            <div
+              style="
+                width: 100%;
+                height: 31px;
+                flex-shrink: 0;
+                background: linear-gradient(
+                  142deg,
+                  rgba(235, 124, 2, 0.88) 0%,
+                  rgba(206, 238, 10, 0.59) 100%
+                );
+              "
+            ></div>
+          </div>
+        </td>
+      </tr>
+    </table>
   </body>
-  </html>
+</html>

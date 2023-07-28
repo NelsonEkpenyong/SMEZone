@@ -3,10 +3,7 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 
@@ -20,23 +17,21 @@ class WelcomeEmail extends Mailable
      * @var User
      */
     private $user;
+    private $url;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, string $url)
     {
         $this->user = $user;
+        $this->url  = $url;
     }
 
     public function build(){
-        $email = $this->subject('SMEZONE NEW REGISTRATION')
-                    ->view('emails.welcome')
-                    ->with([
-                        'user' => $this->user
-                    ]);
+        $email = $this->subject('SMEZONE NEW REGISTRATION')->view('emails.welcome')->with(['user' => $this->user, 'url' => $this->url]);
         return $email;
     }
 }

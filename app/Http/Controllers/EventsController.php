@@ -10,6 +10,8 @@ use App\assets\Utility;
 use App\Models\EventRegistration;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EventEmail;
 
 
 
@@ -34,14 +36,30 @@ class EventsController extends Controller
       try{  
 
         if (User::where('email', $request->email)->exists()) {
+
+            $check = EventRegistration::where(['user_id' => $this->id(), 'event_id' => $request->event_id])->exists();
+
+            if ($check) {
+              return redirect()->back()->with('warning', 'You have already registered for this event.😞');
+            }
+
             $user = User::where("email", $request->email)->first()->id;
             $registration             = new EventRegistration;
             $registration->user_id    = $user;
             $registration->venue_name = $request->venue_name;
             $registration->event_id   = $request->event_id;
             $registration->save(); 
+
+            $event = Event::findOrFail($request->event_id);
+
+            Mail::to($this->email())->send(new EventEmail(  
+                      $this->user(),         $event->event_name,
+                      $event->start_date,    $event->end_date,
+                      $event->start_time,    $event->end_time,
+                      $event->venue_address, $event->description,
+                    ));
             
-            return redirect("/an-event/$request->event_id")->with('success','Event registration was successful');
+            return redirect("/events")->with('success','Event registration was successful');
         } else {
             $user = new User;
             $user->first_name = $request->first_name;

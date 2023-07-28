@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Log;
 
 class EnrolmentController extends Controller
 {
-
-
     public function enroll(Request $request){
         try {
             $user_id   = $request->user_id;
