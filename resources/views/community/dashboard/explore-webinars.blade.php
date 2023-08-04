@@ -17,204 +17,28 @@
 
        <div class="d-flex mx-0">
          <div class="d-flex courses-list py-4 dash">
-           <div class="col-auto">
-             <div
-               class="card"
-               onclick="linking('./dashboard/explore-course.html')"
-             >
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars1.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div
-               class="card"
-               onclick="linking('./dashboard/explore-course-paid.html')"
-             >
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars2.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div class="card" onclick="linking('./events.html')">
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars3.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div class="card" onclick="linking('./events.html')">
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars4.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div
-               class="card"
-               onclick="linking('./dashboard/explore-course.html')"
-             >
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars5.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div
-               class="card"
-               onclick="linking('./dashboard/explore-course-paid.html')"
-             >
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars6.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div class="card" onclick="linking('./events.html')">
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars4.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div class="card" onclick="linking('./events.html')">
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars8.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div
-               class="card"
-               onclick="linking('./dashboard/explore-course.html')"
-             >
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars9.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div
-               class="card"
-               onclick="linking('./dashboard/explore-course-paid.html')"
-             >
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars3.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div class="card" onclick="linking('./events.html')">
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars3.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
-           <div class="col-auto">
-             <div class="card" onclick="linking('./events.html')">
-               <img
-                 class="card-img-top"
-                 src="{{asset('img/webinars3.png')}}"
-                 alt="course pics"
-                 style="width: 100%"
-               />
-               <div class="card-body">
-                 <a href="#" class="btn">Webinars</a>
-                 <h5 class="card-title">Course Title</h5>
-                 <h6 class="card-text">The Business Guru of the Century</h6>
-               </div>
-             </div>
-           </div>
+          @forelse ($webinars as $webinar)
+          <div class="col-auto">
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="{{asset('images/' . $webinar->webinar_thumbnail )}}"
+                alt="course pics"
+                style="width: 100%"
+              />
+              <div class="card-body">
+                <a href="{{$webinar->webinar_link}}" class="btn">Webinars</a>
+                <h5 class="card-title">Course Title</h5>
+                <h6 class="card-text">{{$webinar->webinar_name}}</h6>
+              </div>
+            </div>
+          </div>
+
+          @empty
+              
+          @endforelse
+           
+
          </div>
        </div>
 

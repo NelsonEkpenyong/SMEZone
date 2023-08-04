@@ -17,21 +17,21 @@ class WelcomeEmail extends Mailable
      * @var User
      */
     private $user;
-    private $url;
+    private $code;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, string $url)
+    public function __construct(User $user, string $code)
     {
         $this->user = $user;
-        $this->url  = $url;
+        $this->code  = $code;
     }
 
     public function build(){
-        $email = $this->subject('SMEZONE NEW REGISTRATION')->view('emails.welcome')->with(['user' => $this->user, 'url' => $this->url]);
+        $email = $this->subject('SMEZONE NEW REGISTRATION')->view('emails.welcome')->with(['user' => $this->user, 'code' => $this->code]);
         return $email;
     }
 }

@@ -410,7 +410,7 @@
             <div class="col-md-6">
               <div class="d-flex justify-content-end">
                 <a class="btn" style="color: black; border-radius: 0.6rem; width: 7rem; margin-right: 0.5rem;" href="{{'/getFundedAfrica'}}">Previous</a>
-                <button class="btn" style="background-color: #eb8e02; color: white; border-radius: 0.6rem; width: 7rem;">Next</button>
+                <button class="btn" style="background-color: #eb8e02; color: white; border-radius: 0.6rem; width: 7rem;">Submit</button>
               </div>
             </div>
             

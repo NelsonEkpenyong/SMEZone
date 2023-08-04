@@ -126,7 +126,7 @@
            We look forward to seeing you at {{$event}}. It promises to be an engaging and insightful occasion. 
            Remember to add this event to your calendar: 
            <a href="{{$googleCalendarLink }}">Google.</a> 
-           <a>Outlook.</a> 
+           <a href="{{$outlookCalendarLink}}">Outlook.</a> 
            <a>iCal.</a> 
            <a href="{{$yahooCalendarLink }}">Yahoo</a>
           </p>
@@ -140,7 +140,7 @@
           <p>If you have any complaints, please contact our support team</p>
           <p>
             or send us an email at
-            <a href="mailto:waitingforWale@accesssmezone.com"><b>waitingforWale@accesssmezone.com</b></a>.
+            <a href="mailto:info@accesssmezone"><b>info@accesssmezone</b></a>.
           </p>
         </td>
       </tr>
@@ -182,7 +182,7 @@
                   "
                 >
                   Email:
-                  <span style="color: #fff; font-weight: 700">waitingforWale@accesssmezone.com</span>
+                  <span style="color: #fff; font-weight: 700">info@accesssmezone</span>
                 </h2>
 
                 <div style="width: 100%; text-align: center">

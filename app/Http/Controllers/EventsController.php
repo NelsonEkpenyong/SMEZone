@@ -29,7 +29,7 @@ class EventsController extends Controller
         if($user->last_activity){
             Utility::recordLicense('visited an event',$user);
         }
-        return view('events.event', compact('event'));
+        return view('events.event', compact('event','user'));
     }
 
     public function sore_event(Request $request){
