@@ -144,6 +144,9 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::post('/store-opportunity','store_opportunity')->name('store-opportunity');
 
     Route::get('/licenses', 'licenses')->name('licenses');
+
+    Route::get('/download-template', 'download_bulk_upload_template')->name('download-template');
+    
 });
 
 Route::controller(HomeController::class)->group( function(){
@@ -209,3 +212,5 @@ Route::controller(PartnerController::class)->middleware(['auth'])->group( functi
     Route::get('/getFundedAfrica2','get_funded_africa2')->name('getFundedAfrica2');
     Route::post('/fundedTwo','funded_two')->name('fundedTwo');
 });
+
+

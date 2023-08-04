@@ -802,6 +802,11 @@ class AdminController extends Controller
         return view('admin.add-users');
     }
 
+    public function download_bulk_upload_template(){
+        $filePath = storage_path('app/users.xlsx');
+        return response()->download($filePath, 'users.xlsx');
+    }
+
     public function store_users(Request $request)
     {
         try {
