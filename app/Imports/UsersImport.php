@@ -12,7 +12,7 @@ class UsersImport implements ToModel, WithHeadingRow
     /**
     * @param array $row
     *
-    * @return \Illuminate\Database\Eloquent\Model|null
+    * @return \App\Models\User|null
     */
     public function model(array $row)
     {
