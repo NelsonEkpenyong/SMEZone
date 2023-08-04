@@ -7,10 +7,13 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeEmail;
+use Illuminate\Support\Str;
+use App\Http\Requests\registrationRequest;
 
 
 class RegisterController extends Controller
@@ -45,49 +48,37 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function register_form()
     {
-        return Validator::make($data, [
-            'first_name'   => ['required', 'string', 'max:255'],
-            'last_name'    => ['required', 'string', 'max:255'],
-            'phone'        => ['required', 'string', 'max:11', 'unique:users'],
-            'email'        => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'     => ['required', 'string', 'min:6', 'confirmed'],
-            'have_account' => ['required']
-        ]);
+        return view('auth.register');
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Create a new user.
      *
-     * @param  array  $data
-     * @return \App\Models\User
+     * @param  array  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    protected function create(array $data)
+    protected function registration(registrationRequest $request)
     {
         $user = User::create([
-            'first_name'               => $data['first_name'],
-            'last_name'                => $data['last_name'],
-            'phone'                    => $data['phone'],
-            'email'                    => $data['email'],
-            'role_id'                  => 4,
-            'password'                 => Hash::make($data['password']),
-            'have_access_bank_account' => $data['have_account'],
-            'account_type'             => $data['account_type']
+            'first_name'   => $request->first_name,
+            'last_name'    => $request->last_name,
+            'phone'        => $request->phone,
+            'email'        => $request->email,
+            'role_id'      => 4,
+            'password'     => Hash::make($request->password),
+            'have_access_bank_account' => $request->have_access_bank_account,
+            'account_type' => $request->account_type,
+            'email_verification_code' => Str::random(40)
         ]);
 
-        
- 
-        event(new Registered($user));
+        Mail::to($user->email)->send(new WelcomeEmail($user, $user->email_verification_code));
+        session()->put('email', $request->email);
 
-        // Mail::to($user->email)->send(new WelcomeEmail($user));
-
-        return $user;
+        return redirect('verification-notification');
     }
+
+
+
 }

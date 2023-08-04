@@ -15,6 +15,8 @@ use App\Models\Genders;
 use App\Models\Enrollments;
 use App\Models\CourseCategories;
 use App\Models\Course;
+use App\Models\RadioDigest;
+use App\Models\WebinarRecordings;
 use App\assets\Utility;
 
 
@@ -59,7 +61,8 @@ class DashboardController extends Controller
         if($user->last_activity){
             Utility::recordLicense('explored webinars',$user);
         }
-        return view('community.dashboard.explore-webinars');
+        $webinars = WebinarRecordings::orderBy('id', 'desc')->paginate(15);
+        return view('community.dashboard.explore-webinars', compact('webinars'));
     }
 
     public function profile_settings(){
@@ -113,6 +116,7 @@ class DashboardController extends Controller
     }
 
     public function radio_digest(){
-        return view('community.dashboard.radioDigest');
+        $digests = RadioDigest::all();
+        return view('community.dashboard.radioDigest', compact('digests'));
     }
 }

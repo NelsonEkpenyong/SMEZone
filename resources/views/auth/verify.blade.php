@@ -37,7 +37,7 @@
               <p>If you did not receive the email.</p>
             </div>
             <div>
-                <form method="POST" action="{{ route('verification.resend') }}">
+                <form method="POST" action="{{ route('resend.link') }}">
                     @csrf
                 <div>
                   <button type="submit" class="btn">click here to request another link</button>

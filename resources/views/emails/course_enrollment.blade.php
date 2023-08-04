@@ -112,7 +112,7 @@
           <p>If you have any complaints, please contact our support team</p>
           <p>
             or send us an email at
-            <a href="mailto:waitingforWale@accesssmezone.com" ><b>waitingforWale@accesssmezone.com</b></a>.
+            <a href="mailto:info@accesssmezone" ><b>info@accesssmezone</b></a>.
           </p>
         </td>
       </tr>
@@ -154,7 +154,7 @@
                   "
                 >
                   Email:
-                  <span style="color: #fff; font-weight: 700">waitingforWale@accesssmezone.com</span>
+                  <span style="color: #fff; font-weight: 700">info@accesssmezone</span>
                 </h2>
 
                 <div style="width: 100%; text-align: center">

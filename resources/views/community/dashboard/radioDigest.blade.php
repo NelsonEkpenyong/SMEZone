@@ -25,20 +25,27 @@
        <div class="d-flex mx-0">
          <div class="d-flex courses-list py-4 dash">
           
-
-
+          @forelse ($digests as $digest)
           <div class="col-auto">
-            <a href="#" target="_blank" class="card-link">
-              <div class="card">
-                <img class="card-img-top" src="{{asset('img/Access-bank.png' )}}" alt="Radio Digest podcasts" style="width: 100%"/>
-                <div class="card-body">
-                  <span class="btn" style="font-weight: 800; font-size: 16px; line-height: 16px; color: #ffffff; background: #eb8e02; border-radius: 4px; padding: 3px 20px; font-family: 'nunito-bold'; cursor: pointer;s">Podcast name</span>
-                  <h5 class="card-title">Podcast Title</h5>
-                  <h6 class="card-text">Dealing with debts</h6>
-                </div>
+            <div class="card">
+              <img
+                class="card-img-top"
+                src="{{asset('images/' . $digest->digest_thumbnail )}}"
+                alt="course pics"
+                style="width: 100%"
+              />
+              <div class="card-body">
+                <a href="{{$digest->digest_link}}" class="btn" style="width: 7rem">Radio Digest</a>
+                <h5 class="card-title">Digest Name</h5>
+                <h6 class="card-text">{{$digest->digest_name}}</h6>
               </div>
-            </a>
+            </div>
           </div>
+          @empty
+              
+          @endforelse
+
+          
           
          
            

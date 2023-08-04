@@ -11,6 +11,8 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrolmentController;
+use App\Http\Controllers\Auth\EmailController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,14 +27,27 @@ use App\Http\Controllers\EnrolmentController;
 
 
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
-Route::get('admin',[AdminAuthController::class,'login'])->name('/admin');
-Route::post('/admin/logout',[AdminAuthController::class,'logout'])->name('/admin/logout');
+Route::controller(RegisterController::class)->group( function(){
+    Route::get('/registerForm',  'register_form')->name('registerForm');
+    Route::post('/registration', 'registration')->name('registration');
+    Route::get('/email/verify',  'registration')->name('email/verify');
+});
 
-Route::post('/admin/handle-login',[AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
+Route::controller(EmailController::class)->group( function(){
+    Route::get('/verification-notification', 'verification_notification')->name('verification-notification');
+    Route::get('/verify-email/{code}',       'verify_email')->name('verify-email');
+    Route::post('/resend.link',              'resend_link')->name('resend.link');
+});
 
-Route::  controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
+Route::controller(AdminAuthController::class)->group(function(){
+    Route::get('admin',                      [AdminAuthController::class,'login'])->name('/admin');
+    Route::post('/admin/logout',             [AdminAuthController::class,'logout'])->name('/admin/logout');
+    Route::post('/admin/handle-login',       [AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
+});
+
+Route::controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
     Route::get('/dashboard','admin_dashboard')->name('dashboard');
 
     Route::get('/event','event')->name('event');
@@ -120,6 +135,10 @@ Route::  controller(AdminController::class)->middleware(['adminAuth'])->group( f
     Route::get('/add-webinar','add_webinar')->name('add-webinar');
     Route::post('/webinar-recordings','webinar_recordings')->name('webinar-recordings');
 
+    Route::get('/manage-digest','manage_digest')->name('manage-digest');
+    Route::get('/add-digest','add_digest')->name('add-digest');
+    Route::post('/store-digest','store_digest')->name('store-digest');
+
     Route::get('/opportunities','opportunities')->name('opportunities');
     Route::get('/add-opportunity','add_opportunity')->name('add-opportunity');
     Route::post('/store-opportunity','store_opportunity')->name('store-opportunity');
@@ -127,12 +146,12 @@ Route::  controller(AdminController::class)->middleware(['adminAuth'])->group( f
     Route::get('/licenses', 'licenses')->name('licenses');
 });
 
-Route::controller(HomeController::class)->middleware(['verified'])->group( function(){
+Route::controller(HomeController::class)->group( function(){
     Route::get('/','index')->name('/');
     Route::get('/email1','email1')->name('/email1');
 });
 
-Route::controller(ToolsController::class)->middleware(['verified'])->group( function(){
+Route::controller(ToolsController::class)->group( function(){
     Route::get('/tools','tools')->name('tools');
     Route::get('/biz-debit-card','debit_card')->name('biz-debit-card');
     Route::get('/loans','loans')->name('loans');
@@ -140,10 +159,10 @@ Route::controller(ToolsController::class)->middleware(['verified'])->group( func
     Route::get('/proposition','proposition')->name('proposition');
 });
 
-Route::controller(CommunityController::class)->middleware(['verified'])->group( function(){
+Route::controller(CommunityController::class)->group( function(){
     Route::get('/community/{id?}','community')->middleware('onlineUser')->name('community');
-    Route::get('/news','news')->name('news');
-    Route::get('/webinars','webinars')->name('webinars');
+    Route::get('/news','news')->middleware(['auth'])->name('news');
+    Route::get('/webinars','webinars')->middleware(['auth'])->name('webinars');
     Route::post('/store-post','store_post')->name('store-post');
     Route::post('/store-comment/{id}','store_comment')->name('store-comment');
     Route::post('/post-likes/{post_id}/{comment_id}','post_likes')->name('post-likes');
@@ -167,24 +186,23 @@ Route::controller(DashboardController::class)->middleware(['auth'])->group( func
 
 Route::controller(CoursesController::class)->group( function(){
     Route::get('/courses','courses')->name('cocurses');
-    Route::get('/acourse/{id}','course')->middleware('auth')->name('acourse');
+    Route::get('/acourse/{id}','course')->middleware(['auth'])->name('acourse');
     Route::get('/category-courses/{id}','courses_by_category')->name('category-courses');
 });
 
-
-Route::controller(EnrolmentController::class)->middleware(['auth', 'verify'])->group( function(){
+Route::controller(EnrolmentController::class)->middleware(['auth'])->group( function(){
     Route::post('/enrol', 'enroll')->name('enrol');
     Route::get('/enrollment/{course_id}', 'enrollment')->name('enrollment');
 });
 
-
-Route::controller(EventsController::class)->middleware(['verified'])->group( function(){
+Route::controller(EventsController::class)->group( function(){
     Route::get('/events','events')->name('events');
-    Route::get('/an-event/{id}','event')->name('an-event');
+    Route::get('/an-event/{id}','event')->middleware(['auth'])->name('an-event');
+    // Route::get('/an-event/{id}','event')->middleware(['auth'])->name('an-event');
     Route::post('/fe-storeEvent','sore_event')->name('fe-storeEvent');
 });
 
-Route::controller(PartnerController::class)->middleware(['verified'])->group( function(){
+Route::controller(PartnerController::class)->middleware(['auth'])->group( function(){
     Route::get('/getFundedAfrica','get_funded_africa')->name('getFundedAfrica');
     Route::post('/fundedOne','funded_one')->name('fundedOne');
 
