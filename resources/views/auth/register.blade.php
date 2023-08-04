@@ -84,9 +84,9 @@
                       <option value="1">Yes</option>
                     </select>
                   </div>
-                  <div class="col-lg-6" id="yes" style="display: none;">
+                  <div class="col-lg-6" id="yes">
                     <label for="" class="lbl">What's the Account Type?</label>
-                    <select class="form-select set" id="account_type" name="account_type" required>
+                    <select class="form-select set" id="account_type" name="account_type">
                       <option value="" selected="">-select option-</option>
                       <option value="0">Individual</option>
                       <option value="1">Corporate</option>
@@ -180,6 +180,12 @@
     const haveAccountDropdown = document.getElementById('have_account');
     const choiceDiv = document.getElementById('choice');
     const yesDiv = document.getElementById('yes');
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var divYes = document.getElementById("yes");
+      divYes.style.display = "none";
+    });
 
     haveAccountDropdown.addEventListener('change', () => {
       if (haveAccountDropdown.value === '1') {
