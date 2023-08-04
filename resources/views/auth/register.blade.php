@@ -79,7 +79,7 @@
                   <div class="col-lg-12" id="choice">
                     <label for="" class="lbl">Have Access Bank Account?</label>
                     <select class="form-select set" id="have_account" name="have_access_bank_account" required>
-                      <option value="" selected readonly>-select option-</option>
+                      <option value="" selected="">-select option-</option>
                       <option value="0">No</option>
                       <option value="1">Yes</option>
                     </select>
@@ -87,14 +87,12 @@
                   <div class="col-lg-6" id="yes" style="display: none;">
                     <label for="" class="lbl">What's the Account Type?</label>
                     <select class="form-select set" id="account_type" name="account_type" required>
-                      <option value="" selected readonly>-select option-</option>
+                      <option value="" selected="">-select option-</option>
                       <option value="0">Individual</option>
                       <option value="1">Corporate</option>
                     </select>
                   </div>
                 </div>
-                
-
                 <div>
                   <button class="btn">Sign up</button>
                 </div>

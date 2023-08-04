@@ -362,14 +362,14 @@ class AdminController extends Controller
      */
     public function admin_dashboard()
     {
-        $authUser = $this->user();
+        $authUser   = $this->user();
         $eventCount = Event::count();
-        $courses = Course::count();
-        $users = User::count();
-        $licenses = Licenses::count();
-        $webinars = Web::count();
-        $boys = User::where('gender_id', 1)->count();
-        $girls = User::where('gender_id', 2)->count();
+        $courses    = Course::count();
+        $users      = User::count();
+        $licenses   = Licenses::count();
+        $webinars   = Web::count();
+        $boys       = User::where('gender_id', 1)->count();
+        $girls      = User::where('gender_id', 2)->count();
 
         return view('admin.dashboard', compact('authUser', 'eventCount', 'courses', 'users', 'licenses', 'boys', 'girls', 'webinars'));
     }
