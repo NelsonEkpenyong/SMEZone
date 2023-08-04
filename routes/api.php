@@ -9,6 +9,7 @@ use App\Http\Controllers\api\CourseController;
 use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\PostController;
 use App\Http\Controllers\api\WebinarController;
+use App\Http\Controllers\api\RadioDigestController;
 use App\Http\Controllers\api\CourseCategoryController;
 use App\Http\Controllers\api\NewsController;
 use App\Http\Controllers\api\PartnerController;
@@ -57,6 +58,10 @@ Route::controller(NewsController::class)->prefix('news')->group( function(){
 
 Route::controller(WebinarController::class)->prefix('webinarRecs')->group( function(){
     Route::post('/add-recording','add_recording')->name('add-recording');
+});
+
+Route::controller(RadioDigestController::class)->prefix('digests')->group( function(){
+    Route::post('/save-digest','save_digest')->name('save-digest');
 });
 
 Route::controller(OpportunityController::class)->prefix('opportunity')->group( function(){

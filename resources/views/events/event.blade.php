@@ -103,16 +103,16 @@
               <form action="/fe-storeEvent" method="POST">
                 @csrf
                 <div class="form-group">
-                  <input type="text" class="form-control" id="FirstName" name="first_name" placeholder="First Name"/>
+                  <input type="text" class="form-control" value="{{$user->first_name}}" id="FirstName" name="first_name" placeholder="First Name"/>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" id="LastName" name="last_name" placeholder="Last Name"/>
+                  <input type="text" class="form-control" value="{{$user->last_name}}" id="LastName" name="last_name" placeholder="Last Name"/>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" id="EmailAddress" name="email" placeholder="Email address"/>
+                  <input type="email" class="form-control" value="{{$user->email}}" id="EmailAddress" name="email" placeholder="Email address"/>
                 </div>
                 <div class="form-group">
-                  <input type="number" class="form-control" id="PhoneNumber" placeholder="Phone Number"/>
+                  <input type="number" class="form-control" value="{{$user->phone}}" id="PhoneNumber" placeholder="Phone Number"/>
                 </div>
 
                 <input type="hidden" name="role_id"   value="4">

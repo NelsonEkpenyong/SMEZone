@@ -88,7 +88,8 @@
           </a>
           <div class="collapse" id="digests">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="#">Awaiting link</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/manage-digest">Manage</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/add-digest">Add</a></li>
             </ul>
           </div>
         </li>

@@ -30,7 +30,16 @@
               </p>
             </div>
             <div>
-             <form method="POST" action="{{ route('register') }}">
+              @if ($errors->any())
+              <div class="alert alert-danger" style="border-radius: 10px">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+           @endif
+             <form method="POST" action="{{ route('registration') }}">
                     @csrf
                 <div class="row">
                   <div class="col-lg-6">
@@ -69,7 +78,7 @@
                 <div class="row">
                   <div class="col-lg-12" id="choice">
                     <label for="" class="lbl">Have Access Bank Account?</label>
-                    <select class="form-select set" id="have_account" name="have_account" required>
+                    <select class="form-select set" id="have_account" name="have_access_bank_account" required>
                       <option value="" selected readonly>-select option-</option>
                       <option value="0">No</option>
                       <option value="1">Yes</option>
