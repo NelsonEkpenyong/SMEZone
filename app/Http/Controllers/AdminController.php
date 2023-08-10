@@ -807,7 +807,7 @@ class AdminController extends Controller
     }
 
     public function download_bulk_upload_template(){
-        $filePath = storage_path('app/users.xlsx');
+        $filePath = storage_path('app/Users.xlsx');
         return response()->download($filePath, 'Users.xlsx');
     }
 
