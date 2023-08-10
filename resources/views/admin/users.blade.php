@@ -52,11 +52,43 @@
                                     <td>{{$user->first_name.' '.$user->last_name}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{ ($user->have_business == 1) ? "Yes" : "No" }}</td>
-                                    <td>{{ ($user->have_access_bank_account == 1) ? "Yes" : "No" }}</td>
+                                    <td>
+                                        @if ($user->have_business === 1)
+                                            {{"Yes"}}
+                                        @elseif($user->have_business === 0)
+                                            {{"No"}}
+                                        @else
+                                            {{"Not set by user"}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($user->have_access_bank_account === 1)
+                                            {{"Yes"}}
+                                        @elseif($user->have_access_bank_account === 0)
+                                            {{"No"}}
+                                        @else
+                                            {{"Not set by user"}}
+                                        @endif
+                                    </td>
                                     <td>{{$user->account}}</td>
-                                    <td>{{ ($user->account_status == 1) ? "Active" : "Dormant" }}</td>
-                                    <td>{{ ($user->account_type == 0) ? "Individual" : "Corporate" }}</td>
+                                    <td>
+                                        @if ($user->account_type === 1)
+                                            {{"Individual"}}
+                                        @elseif($user->account_type === 0)
+                                            {{"Corporate"}}
+                                        @else
+                                            {{"Not set by user"}}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($user->account_status === 1)
+                                            {{"Active"}}
+                                        @elseif($user->account_status === 0)
+                                            {{"Dormant"}}
+                                        @else
+                                            {{"Not set by user"}}
+                                        @endif
+                                    </td>
                                     <td>{{$user->created_at->toFormattedDateString()}}  </td>
                                     <td>
                                         <div class="dropdown">
@@ -64,9 +96,9 @@
                                             <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                            <a class="dropdown-item" href="#">action 1</a>
+                                            <a class="dropdown-item" href="/edit-user/{{$user->id}}">Edit</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">action 2</a>
+                                            <a class="dropdown-item" href="/delete-user/{{$user->id}}">Delete</a>
                                             </div>
                                         </div>
                                     </td>

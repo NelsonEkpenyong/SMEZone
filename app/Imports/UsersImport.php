@@ -21,9 +21,7 @@ class UsersImport implements ToModel, WithHeadingRow
             'last_name'   => $row['last_name'],
             'phone'       => $row['phone'],
             'email'       => $row['email'],
-            'password'    => Hash::make($row['password']),
-            'gender_id'   => $row['gender'],
-            'role_id'     => $row['role']
+            'gender_id'   => strtolower($row['gender']) === 'female' ? 2 : 1,
         ]);
     }
 }

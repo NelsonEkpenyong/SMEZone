@@ -10,6 +10,7 @@ use App\Imports\UsersImport;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AddEventRequest;
 use App\Http\Requests\AddCourseRequest;
 use App\Http\Requests\OpportunityRequest;
@@ -21,6 +22,8 @@ use App\Http\Requests\NewsRequest;
 use App\Http\Requests\DigestRequest;
 use App\Models\EventType;
 use App\Models\Event;
+use App\Models\State;
+use App\Models\Lga;
 use App\Models\HeroSlider;
 use App\Models\FeaturedImage;
 use App\Models\CourseType;
@@ -35,6 +38,7 @@ use App\Models\User;
 use App\Models\News;
 use App\Models\Roles;
 use App\Models\UserTypes;
+use App\Models\Genders;
 use App\Models\OpportunityZone;
 use Illuminate\Support\Str;
 use App\Models\Licenses;
@@ -804,14 +808,13 @@ class AdminController extends Controller
 
     public function download_bulk_upload_template(){
         $filePath = storage_path('app/users.xlsx');
-        return response()->download($filePath, 'users.xlsx');
+        return response()->download($filePath, 'Users.xlsx');
     }
 
     public function store_users(Request $request)
     {
         try {
             $this->validate($request, ['users' => 'required|mimes:xls,xlsx, xlsm']);
-            $path = $request->file('users')->getRealPath();
             Excel::import(new UsersImport, $request->file('users'));
 
             flash()->addSuccess('Bulk upload Successful!😃');
@@ -824,7 +827,65 @@ class AdminController extends Controller
         }
     }
 
+    public function edit_user($id){
+        $user       = User::findOrFail($id);
+        $genders    = Genders::all();
+        $industries = Industries::all();
+        $states     = State::all();
+        $lgas       = Lga::all();
+        return view('admin.edit-user', compact('user', 'genders','industries','id','states','lgas'));
+    }
 
+    public function update_user(Request $request, int $id){
+        try {
+            $user = User::findOrFail($id); 
+            $user->first_name = $request->first_name;
+            $user->last_name  = $request->last_name;
+            $user->phone      = $request->phone;
+            $user->email      = $request->email;
+
+            $user->password          = $request->password ? $request->password : Hash::make("admin");
+            $user->dob               = $request->dob ? date('Y-m-d', strtotime($request->dob)) : null;
+            $user->gender_id         = $request->gender_id ? $request->gender_id : "";
+
+            $user->have_business     = $request->have_business ? $request->have_business[0] : null;
+            $user->have_access_bank_account  = $request->have_access_bank_account ? $request->have_access_bank_account[0] : null;
+            $user->account_status    = $request->account_status ? $request->account_status[0] : null;
+            $user->account_type      = $request->account_type ? $request->account_type[0] : null;
+
+            $user->industry_id       = $request->industry_id ? $request->industry_id : "";
+            $user->years_in_business = $request->years_in_business ? $request->years_in_business : "";
+            $user->account           = $request->account ? $request->account : "";
+            $user->address           = $request->address ? $request->address : "";
+            $user->state_id          = $request->state_id;
+            $user->lga_id            = $request->lga_id;
+            $user->role_id           = $request->role_id;
+        
+            $user->save();
+
+            flash()->addSuccess('User updated Successfully!😃');
+            return redirect('/users');
+        } catch (\Exception $e) {
+            report($e);
+            report($e->getMessage());
+            flash()->addError('Something went wrong. We could not update that user!');
+            return redirect('/users');
+        }
+    }
+
+    public function delete_user($id){
+        try{
+            User::findOrFail($id)->delete();
+            flash()->addSuccess('User suspended Successfully!😃');
+            return redirect('/users');
+
+        } catch (\Exception $e) {
+            report($e);
+            report($e->getMessage());
+            flash()->addError('Something went wrong. We couldn\'t suspend the user!');
+            return redirect('/users');
+        }
+    }
     public function manage_digest()
     {
         $digests = RadioDigest::orderBy('id', 'desc')->paginate(10);
