@@ -123,6 +123,9 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/users','users')->name('users');
     Route::get('/add-users','add_users')->name('add-users');
     Route::post('/store-users','store_users')->name('store-users');
+    Route::get('edit-user/{id}', 'edit_user')->name('edit-user');
+    Route::post('update-user/{id}', 'update_user')->name('update-user');
+    Route::get('/delete-user/{id}', 'delete_user')->name('delete-user');
 
     Route::get('/manage-news','news')->name('/manage-news');
     Route::get('/to-add-news','to_add_news')->name('/to_add-news');
