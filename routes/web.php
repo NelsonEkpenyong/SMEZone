@@ -28,7 +28,8 @@ use App\Http\Controllers\Auth\RegisterController;
 
 
 Auth::routes();
-Route::get('/radio-digest','radio_digest')->name('radio-digest');
+Route::get('/radio-digest', [DashboardController::class,'radio_digest'])->name('radio-digest');
+
 Route::controller(RegisterController::class)->group( function(){
     Route::get('/registerForm',  'register_form')->name('registerForm');
     Route::post('/registration', 'registration')->name('registration');
