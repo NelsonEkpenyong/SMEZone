@@ -77,7 +77,7 @@
                 With our periodical webinars, you get first hand tips for your
                 business advancement.
               </p>
-              <button class="btn">Get Insights &gt;</button>
+              <a href="/webinars" class="btn">Get Insights &gt;</a>
             </div>
             <div class="col-md-3 insights">
               <img
@@ -85,12 +85,12 @@
                 alt=""
                 class="img-fluid"
               />
-              <h6>Insightful Webinars</h6>
+              <h6>Access SME Digest</h6>
               <p>
                 With our periodical webinars, you get first hand tips for your
                 business advancement.
               </p>
-              <button class="btn">Get Insights &gt;</button>
+              <a href="/radio-digest" class="btn">Get Insights &gt;</a>
             </div>
             <div class="col-md-3 insights">
               <img
@@ -98,12 +98,12 @@
                 alt=""
                 class="img-fluid"
               />
-              <h6>Insightful Webinars</h6>
+              <h6>Impactful Events</h6>
               <p>
                 With our periodical webinars, you get first hand tips for your
                 business advancement.
               </p>
-              <button class="btn">Get Insights &gt;</button>
+              <a href="/events" class="btn">Get Insights &gt;</a>
             </div>
             <div class="col-md-3 insights">
               <img
@@ -111,12 +111,12 @@
                 alt=""
                 class="img-fluid"
               />
-              <h6>Insightful Webinars</h6>
+              <h6>Instructive Courses </h6>
               <p>
                 With our periodical webinars, you get first hand tips for your
                 business advancement.
               </p>
-              <button class="btn">Get Insights &gt;</button>
+              <a href="/courses" class="btn">Get Insights &gt;</a>
             </div>
           </div>
         </div>
@@ -393,9 +393,9 @@
               business advancement, webinars, you get first hand tips for your
               business advancement.
             </p>
-            <button class="btn explore-btn ps-0">
+            <a href="/courses" class="btn explore-btn ps-0">
               Explore courses &nbsp; &gt;
-            </button>
+            </a>
           </div>
           <div class="col-md-7 mt-md-0 mt-5">
             <p class="featured ps-md-4 text-md-start text-center">
@@ -419,7 +419,7 @@
       <!-- #Section 3 -->
 
       <!-- section 4 -->
-      <div class="home-section4 container" style="background: url('{{ asset('images/'.$upcomingEventImage->event_image) }} ') center left no-repeat;">
+      <div class="home-section4 container mb-5" style="background: url('{{ asset('images/'.$upcomingEventImage->event_image) }} ') center left no-repeat;">
         <div class="container py-5" style="height: 33rem">
           <div class="row">
             <div class="col-md-7">
