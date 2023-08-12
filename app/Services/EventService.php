@@ -32,12 +32,12 @@ class EventService {
             $temporaryFilePath = $image->getPathname();
             $image_info = getimagesize( $temporaryFilePath);
 
-            /*$image_width  = $image_info[0];
+            $image_width  = $image_info[0];
             $image_height = $image_info[1];
 
-            if ($image_width !== 1440 && !$image_height !== 326) {
-                return redirect()->back()->with('error', 'Event Image must be 1440 X 326 in dimension.');
-            }*/
+            if ($image_width >= 1440 && $image_height > 326) {
+                return redirect()->back()->with('error', 'Event Image must be less than 1440 X 326 in dimension.');
+            }
             $allowedfileExtension=['pdf','jpg','png','docx','jpeg','gif','svg'];
   
             $extension = $image->getClientOriginalExtension();

@@ -62,6 +62,8 @@ Route::controller(WebinarController::class)->prefix('webinarRecs')->group( funct
 
 Route::controller(RadioDigestController::class)->prefix('digests')->group( function(){
     Route::post('/save-digest','save_digest')->name('save-digest');
+    Route::post('/change-digest/{id}','change_digest')->name('change-digest');
+    Route::get('/del-digest/{id}','delete_digest')->name('del-digest');
 });
 
 Route::controller(OpportunityController::class)->prefix('opportunity')->group( function(){

@@ -907,5 +907,28 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Baba,wu no fit add dat digest O. Call persin mek e epp u. 😞');
     }
 
+    public function edit_digest($id){
+        $digest = RadioDigest::findOrFail($id);
+        return view('admin.edit-digest', compact('digest'));
+    }
+
+    public function update_digest(Request $request, int $id){
+        $responded = Route::dispatch(Request::create("api/digests/change-digest/$id", 'POST', $request->all()));
+    if ($responded->status() == 200) {
+        flash()->addSuccess('Digest Updated Successfully!😃');
+        return redirect('/manage-digest');
+    }
+    return redirect()->back()->with('error', 'Digest Updation Failed 😞');
+    }
+
+    public function delete_digest(int $id){
+        $responded = Route::dispatch(Request::create("api/digests/del-digest/$id", 'GET'));
+        if ($responded->status() == 200) {
+            flash()->addSuccess('Digest deleted Successfully!😃');
+            return redirect('/manage-digest');
+        }
+        return redirect()->back()->with('error', 'Event deletion Failed 😞');
+    }
+
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\EventRegistration;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\State;
 use App\Models\OpportunityZone;

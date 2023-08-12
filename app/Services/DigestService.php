@@ -32,7 +32,7 @@ class DigestService
     $image_width       = $image_info[0];
     $image_height      = $image_info[1];
 
-    if ($image_width > 601 && !$image_height > 260) {
+    if ($image_width >= 601 && !$image_height > 260) {
      return redirect()->back()->with('error', 'Radio Digest thumbnail must not be greater than 601 in width and 260 in height.');
     }
     $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
@@ -73,7 +73,7 @@ class DigestService
   * @param  int  $id
   * @return \App\DataTransferObject\DigestDTO|\Illuminate\Http\RedirectResponse
   */
- public static function updateRadioDigest(DigestDTO $digestDTO, $id)
+ public static function updateRadioDigest(DigestDTO $digestDTO, int $id)
  {
   try {
    $digest = Rd::findOrFail($id);
@@ -88,7 +88,7 @@ class DigestService
     $image_width  = $image_info[0];
     $image_height = $image_info[1];
 
-    if ($image_width !== 601 && !$image_height !== 260) {
+    if ($image_width >= 601 && !$image_height > 260) {
      return redirect()->back()->with('error', 'Webinar thumbnail must be 601 X 260 in dimension.');
     }
     $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];

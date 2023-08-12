@@ -142,6 +142,9 @@ Route::controller(AdminController::class)->middleware(['adminAuth'])->group( fun
     Route::get('/manage-digest','manage_digest')->name('manage-digest');
     Route::get('/add-digest','add_digest')->name('add-digest');
     Route::post('/store-digest','store_digest')->name('store-digest');
+    Route::get('/edit-digest/{id}', 'edit_digest')->name('edit-digest');
+    Route::post('/update-digest/{id}','update_digest')->name('update_digest');
+    Route::get('/delete-digest/{id}', 'delete_digest')->name('delete-digest');
 
     Route::get('/opportunities','opportunities')->name('opportunities');
     Route::get('/add-opportunity','add_opportunity')->name('add-opportunity');

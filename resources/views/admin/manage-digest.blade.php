@@ -22,10 +22,9 @@
                     <div class="row">
                         <div class="col-lg-10 col-md-11 col-sm-11">
                             <h4 class="card-title">Manage Digests</h4>
-                            <button type="button" class="btn btn-success btn-icon-text">
-                                <i class="ti-bar-chart-alt text-white"></i>                                                    
-                                Download Excel
-                            </button>
+                            <a href="/add-digest" class="btn btn-success btn-icon-text">
+                                Add Digest
+                            </a>
                         </div>
                         <div class="col-lg-2 col-md-1 col-sm-1">
                             <div class="form-group">
@@ -54,7 +53,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{$digest->digest_name}}</td>
-                                    <td>{{$digest->digest_link}}</td>
+                                    <td>{{ substr($digest->digest_link, 0, 25)}}...</td>
                                     <td>{{$digest->digest_thumbnail}}</td>
                                     <td>
                                         <div class="dropdown">
@@ -62,7 +61,8 @@
                                              <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                             <a class="dropdown-item" href="#">Periods</a>
+                                             <a class="dropdown-item" href="/edit-digest/{{$digest->id}}">Edit</a>
+                                             <a class="dropdown-item" href="/delete-digest/{{$digest->id}}">Delete</a>
                                             </div>
                                         </div>
                                     </td>
