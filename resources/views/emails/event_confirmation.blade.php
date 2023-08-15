@@ -23,7 +23,7 @@
       <tr>
         <td colspan="2">
           <img
-            src="http://davtonlab.tech/img/smelogo.png"
+            src="https://davtonlab.tech/img/smelogo.png"
             alt="smeLogo"
             style="
               height: 36px;
@@ -68,7 +68,7 @@
         <td colspan="2" style="text-align: center">
           <div>
             <img
-              src="http://davtonlab.tech/img/registration_confirmation.png"
+              src="https://davtonlab.tech/img/registration_confirmation.png"
               alt="Event Registration Image"
               top="183"
               style="
@@ -150,7 +150,7 @@
             <div style="position: relative">
               <div style="text-align: center; width: 100%">
                 <img
-                  src="http://davtonlab.tech/img/Socials.png"
+                  src="https://davtonlab.tech/img/Socials.png"
                   alt=""
                   style="
                     max-width: 100%;
@@ -227,7 +227,7 @@
                   "
                 >
                   <img
-                    src="http://davtonlab.tech/img/sme_logo_footer.png"
+                    src="https://davtonlab.tech/img/sme_logo_footer.png"
                     alt=""
                     style="height: auto; width: 133px; margin: auto"
                   />
@@ -253,13 +253,13 @@
 
               <div class="d-flex align-items-end justify-content-between">
                 <img
-                  src="http://davtonlab.tech/img/left.png"
+                  src="https://davtonlab.tech/img/left.png"
                   alt=""
                   style="width: 153px; height: auto"
                 />
 
                 <img
-                  src="http://davtonlab.tech/img/right.png"
+                  src="https://davtonlab.tech/img/right.png"
                   alt=""
                   style="width: 148px; height: auto; margin-left: 30.8rem" 
                 />

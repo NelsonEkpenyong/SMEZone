@@ -67,7 +67,7 @@
              <a href="#">
                <img src="{{asset('icons/backward.svg')}}" alt="backward" />
              </a>
-             <span class="d-inline-block mx-2"> 4/15 </span>
+             <span class="d-inline-block mx-2"> 0/0 </span>
              <a href="#">
                <img src="{{asset('icons/forward.svg')}}" alt="forward" />
              </a>

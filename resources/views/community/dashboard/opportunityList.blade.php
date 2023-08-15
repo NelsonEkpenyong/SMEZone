@@ -59,31 +59,12 @@
        </div>
 
        <div class="row conta">
-         <nav aria-label="Page navigation example">
-           <ul class="pagination justify-content-center">
-             <li class="page-item">
-               <a class="page-link" href="#" tabindex="-1"
-                 ><img src="icons/previous.svg" alt="prev"
-               /></a>
-             </li>
-             <li class="page-item">
-               <a class="page-link active" href="#">1</a>
-             </li>
-             <li class="page-item"><a class="page-link" href="#">2</a></li>
-             <li class="page-item"><a class="page-link" href="#">3</a></li>
-             <li class="page-item">
-               <a class="page-link" href="#"
-                 ><img src="icons/next.svg" alt="next"
-               /></a>
-             </li>
-           </ul>
-         </nav> 
          <div class="d-flex justify-content-center subheader">
            <div class="paging">
              <a href="#">
                <img src="{{asset('icons/backward.svg')}}" alt="backward" />
              </a>
-             <span class="d-inline-block mx-2"> 4/15 </span>
+             <span class="d-inline-block mx-2"> 0/0 </span>
              <a href="#">
                <img src="{{asset('icons/forward.svg')}}" alt="forward" />
              </a>

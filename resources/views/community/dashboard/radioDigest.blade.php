@@ -93,7 +93,7 @@
                   style="width: 100%"
                 />
                 <div class="card-body">
-                  <a href="{{$digest->digest_link}}" class="btn" style="width: 7rem" data-bs-toggle="modal" data-bs-target="#exampleModal{{$digest->id}}">Radio Digest</a>
+                  <a class="btn" style="width: 7rem" data-bs-toggle="modal" data-bs-target="#exampleModal{{$digest->id}}">Radio Digest</a>
       
                   <h5 class="card-title">Digest Name</h5>
                   <h6 class="card-text">{{$digest->digest_name}}</h6>
@@ -141,7 +141,7 @@
              <a href="#">
                <img src="{{asset('icons/backward.svg')}}" alt="backward" />
              </a>
-             <span class="d-inline-block mx-2"> 4/15 </span>
+             <span class="d-inline-block mx-2"> 0/0 </span>
              <a href="#">
                <img src="{{asset('icons/forward.svg')}}" alt="forward" />
              </a>
