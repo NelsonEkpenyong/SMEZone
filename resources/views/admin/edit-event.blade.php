@@ -130,7 +130,7 @@
 								</div>
 								<div class="">
 									<label class="form-check-label">
-										<input type="checkbox" class="form-check-input radioCheck" name="invite_user" id="c03" onclick="check(this);" value="3" {{ ($event->invite_user == "3")? "checked" : "" }}>
+										<input type="checkbox" class="form-check-input radioCheck" name="invite_user" id="c03" onclick="check(this);" value="3" {{ ($event->invite_user == "3")? "checked" : "checked" }}>
 										Invite All Users
 									</label>
 								</div>

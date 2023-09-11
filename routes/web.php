@@ -48,7 +48,7 @@ Route::controller(AdminAuthController::class)->group(function(){
     Route::post('/admin/handle-login',       [AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
 });
 
-Route::controller(AdminController::class)->middleware(['adminAuth'])->group( function(){
+Route::controller(AdminController::class)->prefix('admin')->middleware(['adminAuth'])->group( function(){
     Route::get('/dashboard','admin_dashboard')->name('dashboard');
 
     Route::get('/event','event')->name('event');
