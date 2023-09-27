@@ -9,21 +9,18 @@
     </button>
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-          <img src="img/expert2.png" alt="profile"/>
+        <a class="nav-link dropdown-toggle" href="#" id="profileDropdownToggle">
+          <img src="https://asset.brandfetch.io/idPXJmyni4/idYP3xad9_.png?updated=1667560957752" alt="profile"/>
         </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdownToggle">
+          <a class="dropdown-item" href="#">
             <i class="ti-settings text-primary"></i>
             Settings
           </a>
-          <form action="/admin/logout" method="POST" id="logout">
-            @csrf
-            <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout').submit();">
-              <i class="ti-power-off text-primary"></i> 
-              Logout          
-            </a>
-          </form>
+          <a class="dropdown-item" href="/admin/logout">
+            <i class="ti-power-off text-primary"></i> 
+            Logout          
+          </a>
         </div>
       </li>
     </ul>
@@ -33,9 +30,20 @@
   </div>
 </nav>
 
-<form action="/admin/logout" method="POST" id="logout">
-  @csrf
-  <button onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="ti-power-off text-primary"></i>Logout</button>
-  <a onclick="event.preventDefault(); document.getElementById('logout').submit();"><i class="ti-power-off text-primary"></i>Logout</a>
-</form>  
+<!-- No need for the second logout form, you can remove it -->
 
+<script>
+  // JavaScript to toggle the dropdown menu
+  $(document).ready(function () {
+    $("#profileDropdownToggle").click(function () {
+      $(".navbar-dropdown").toggleClass("show");
+    });
+
+    // Close the dropdown when clicking outside of it
+    $(document).on("click", function (event) {
+      if (!$(event.target).closest(".navbar-dropdown").length && !$(event.target).closest("#profileDropdownToggle").length) {
+        $(".navbar-dropdown").removeClass("show");
+      }
+    });
+  });
+</script>
