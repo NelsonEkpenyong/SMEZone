@@ -44,7 +44,7 @@ Route::controller(EmailController::class)->group( function(){
 
 Route::controller(AdminAuthController::class)->group(function(){
     Route::get('admin',                      [AdminAuthController::class,'login'])->name('/admin');
-    Route::post('/admin/logout',             [AdminAuthController::class,'logout'])->name('/admin/logout');
+    Route::get('/admin/logout',             [AdminAuthController::class,'logout'])->name('/admin/logout');
     Route::post('/admin/handle-login',       [AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
 });
 

@@ -17,10 +17,13 @@
             <i class="ti-settings text-primary"></i>
             Settings
           </a>
-          <a class="dropdown-item" href="/admin/logout">
-            <i class="ti-power-off text-primary"></i> 
-            Logout          
-          </a>
+          <form action="/admin/logout" method="GET" id="logout">
+            @csrf
+            <a class="dropdown-item" href="/admin/logout">
+              <i class="ti-power-off text-primary"></i> 
+              Logout          
+            </a>
+          </form>
         </div>
       </li>
     </ul>
@@ -30,7 +33,6 @@
   </div>
 </nav>
 
-<!-- No need for the second logout form, you can remove it -->
 
 <script>
   // JavaScript to toggle the dropdown menu
@@ -47,3 +49,4 @@
     });
   });
 </script>
+
