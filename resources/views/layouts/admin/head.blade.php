@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css')}}">
   <!-- endinject -->
   <!-- Plugin css for this page -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="{{ asset('vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
   <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
