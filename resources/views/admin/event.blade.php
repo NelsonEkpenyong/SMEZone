@@ -15,7 +15,7 @@
 									</ul>
 							</div>
       @endif
-						<form  method="post" action="/store-event" enctype="multipart/form-data" onsubmit="return validateForm()" id="eventForm">
+						<form  method="post" action="/admin/store-event" enctype="multipart/form-data" onsubmit="return validateForm()" id="eventForm">
 							@csrf
 
 							<div class="row">

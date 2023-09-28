@@ -15,7 +15,7 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/store-digest" enctype="multipart/form-data">
+						<form  method="post" action="/admin/store-digest" enctype="multipart/form-data">
 							@csrf
        
 							<div class="form-group">

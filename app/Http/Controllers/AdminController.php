@@ -329,13 +329,13 @@ class AdminController extends Controller
             $upcomingEventImage->save();
 
             flash()->addSuccess('Featured Upcoming Event image updated Successfully!😃');
-            return redirect('/manage');
+            return redirect('/admin/manage');
         } catch (\Exception $e) {
             report($e);
             report($e->getMessage());
 
             flash()->addError('Featured Upcoming Event image was not updated!😞');
-            return redirect('/manage');
+            return redirect('/admin/manage');
         } catch (\Throwable $e) {
             report($e->getMessage());
             return back()->withError($e->getMessage())->withInput();
@@ -395,7 +395,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create('api/admin/add-event', 'POST', $request->all()));
         if ($responded->status() == 200) {
             flash()->addSuccess('Event Created Successfully!😃');
-            return redirect('/manage');
+            return redirect('/admin/manage');
         }
         return redirect()->back()->with('error', 'Event Creation Failed. Please check Image dimension and try again. 😞');
     }
@@ -423,7 +423,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/admin/deleteEvent/$event", 'GET'));
         if ($responded->status() == 200) {
             flash()->addSuccess('Event deleted Successfully!😃');
-            return redirect('/manage');
+            return redirect('/admin/manage');
         }
         return redirect()->back()->with('error', 'Event deletion Failed 😞');
     }
@@ -442,7 +442,7 @@ class AdminController extends Controller
             }
 
             flash()->addSuccess('Event status changed Successfully!😃');
-            return redirect('/manage');
+            return redirect('/admin/manage');
 
         } catch (\Exception $e) {
             report($e);
@@ -469,7 +469,7 @@ class AdminController extends Controller
             }
 
             flash()->addSuccess('Event upcoming status changed Successfully!😃');
-            return redirect('/manage');
+            return redirect('/admin/manage');
 
         } catch (\Exception $e) {
             report($e);
@@ -596,7 +596,7 @@ class AdminController extends Controller
 
         if ($statusCode == 200) {
             flash()->addSuccess('Course Created Successfully!😃');
-            return redirect('/manage-course');
+            return redirect('/admin/manage-course');
         } elseif ($statusCode == 422) {
             return redirect()->back()->withErrors($responded->getContent())->withInput();
         } else {
@@ -746,7 +746,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/news/addNews", 'POST'));
         if ($responded->status() == 200) {
             flash()->addSuccess('news added Successfully!😃');
-            return redirect('/manage-news');
+            return redirect('/admin/manage-news');
         }
         return redirect()->back()->with('error', 'Baba, dat news fit be fake O. d tin no go 😞');
     }
@@ -767,7 +767,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/webinarRecs/add-recording", 'POST'));
         if ($responded->status() == 200) {
             flash()->addSuccess('Webinar Recordings added Successfully!😃');
-            return redirect('/manage-webinar');
+            return redirect('/admin/manage-webinar');
         }
         return redirect()->back()->with('error', 'Baba,wu no fit add dat recording O. Call persin mek e epp u. 😞');
     }
@@ -902,7 +902,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/digests/save-digest", 'POST'));
         if ($responded->status() == 200) {
             flash()->addSuccess('Radio Digest added Successfully!😃');
-            return redirect('/manage-digest');
+            return redirect('/admin/manage-digest');
         }
         return redirect()->back()->with('error', 'Baba,wu no fit add dat digest O. Call persin mek e epp u. 😞');
     }
@@ -916,7 +916,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/digests/change-digest/$id", 'POST', $request->all()));
     if ($responded->status() == 200) {
         flash()->addSuccess('Digest Updated Successfully!😃');
-        return redirect('/manage-digest');
+        return redirect('/admin/manage-digest');
     }
     return redirect()->back()->with('error', 'Digest Updation Failed 😞');
     }
@@ -925,7 +925,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/digests/del-digest/$id", 'GET'));
         if ($responded->status() == 200) {
             flash()->addSuccess('Digest deleted Successfully!😃');
-            return redirect('/manage-digest');
+            return redirect('/admin/manage-digest');
         }
         return redirect()->back()->with('error', 'Event deletion Failed 😞');
     }

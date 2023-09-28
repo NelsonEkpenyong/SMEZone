@@ -15,7 +15,7 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/add-course-category" enctype="multipart/form-data">
+						<form  method="post" action="/admin/add-course-category" enctype="multipart/form-data">
 							@csrf
 							
 							<div class="form-group">

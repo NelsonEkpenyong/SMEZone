@@ -15,7 +15,7 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/update-course-category/{{$category->id}}" enctype="multipart/form-data">
+						<form  method="post" action="/admin/update-course-category/{{$category->id}}" enctype="multipart/form-data">
 							@csrf
 							
 							<div class="form-group">

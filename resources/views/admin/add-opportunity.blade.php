@@ -15,7 +15,7 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/store-opportunity" enctype="multipart/form-data">
+						<form  method="post" action="/admin/store-opportunity" enctype="multipart/form-data">
 							@csrf
 							<div class="form-group">
 								<label>Title</label>

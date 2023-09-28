@@ -20,7 +20,7 @@
               </ul>
             </div>
          @endif
-         <form  method="post" action="/update-featured-courses/{{$featuredCourse->id}}" enctype="multipart/form-data">
+         <form  method="post" action="/admin/update-featured-courses/{{$featuredCourse->id}}" enctype="multipart/form-data">
           @csrf
             <div class="form-group">
               <label>Featured Course Image

@@ -15,7 +15,7 @@
 									</ul>
 							</div>
             @endif
-						<form  method="post" action="/add-news" enctype="multipart/form-data">
+						<form  method="post" action="/admin/add-news" enctype="multipart/form-data">
 							@csrf
        <div class="form-group">
 								<label>News Title</label>

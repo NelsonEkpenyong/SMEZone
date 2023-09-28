@@ -15,7 +15,7 @@
 									</ul>
 							</div>
       @endif
-						<form  id="editUser" method="POST" action="{{ url('/update-user/' . $user->id) }}" enctype="multipart/form-data">
+						<form  id="editUser" method="POST" action="/admin/update-user/{{$user->id}}" enctype="multipart/form-data">
 							@csrf
 
        <div class="row">

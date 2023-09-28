@@ -15,7 +15,7 @@
             </ul>
           </div>
                @endif
-         <form  method="post" action="/update-upcoming-event/{{$upcomingEventImage->id}}" enctype="multipart/form-data">
+         <form  method="post" action="/admin/update-upcoming-event/{{$upcomingEventImage->id}}" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label>Choose an upcoming event</label>

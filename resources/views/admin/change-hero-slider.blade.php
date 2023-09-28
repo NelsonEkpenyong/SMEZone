@@ -24,7 +24,7 @@
               </ul>
             </div>
          @endif
-         <form  method="post" action="/slider/{{$id}}" enctype="multipart/form-data">
+         <form  method="post" action="/admin/slider/{{$id}}" enctype="multipart/form-data">
           @csrf
           
             <div class="form-group">

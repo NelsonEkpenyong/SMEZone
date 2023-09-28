@@ -15,7 +15,7 @@
             </ul>
           </div>
                @endif
-         <form  method="post" action="/store-featured-image" enctype="multipart/form-data">
+         <form  method="post" action="/admin/store-featured-image" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
            <label for="exampleInputUsername1">Person's Name</label>
