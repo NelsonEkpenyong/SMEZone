@@ -118,18 +118,7 @@
             <div class="row speaker-details mb-0">
                     <h6>Brief Description</h6>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum
-                        amet commodo ultricies lacinia ipsum tempus et. Eu, id pellentesque
-                        sit ultricies cras adipiscing. Platea adipiscing tempus dui dui ac
-                        venenatis ut odio. Suspendisse nisi viverra senectus amet, eu
-                        aliquet a velit faucibus. Sed ultrices neque, eget tincidunt sit.
-                        Aenean tincidunt nulla praesent ullamcorper. Justo, diam ultrices
-                        tellus dictumst. Non, pulvinar eu, imperdiet bibendum lectus rutrum
-                        tincidunt diam, velit. Accumsan tortor faucibus eu lobortis id
-                        rhoncus. Feugiat felis, urna, lacus ut bibendum nibh. Amet arcu,
-                        orci, malesuada lacus volutpat pulvinar quis pretium. Praesent in
-                        convallis at cras malesuada. Nam dapibus augue vitae pellentesque
-                        urna velit. Diam mi id posuere velit tristique mi.
+                        {{$course->description}}
                     </p>
             </div>
         </div>
