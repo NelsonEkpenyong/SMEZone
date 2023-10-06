@@ -20,6 +20,7 @@ class EventService {
         $event->end_date              = $request->end_date;
         $event->description           = $request->description;
         $event->invite_user           = $request->invite_user;
+        $event->speaker               = $request->speaker;
 
         $event->venue_address         = json_encode($request->venue_address);
         $event->start_time            = json_encode($request->start_time);

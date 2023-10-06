@@ -428,6 +428,16 @@ class AdminController extends Controller
         return redirect()->back()->with('error', 'Event deletion Failed 😞');
     }
 
+    public function delete_course(int $course)
+    {
+        $responded = Route::dispatch(Request::create("api/admin/deleteCourse/$course", 'GET'));
+        if ($responded->status() == 200) {
+            flash()->addSuccess('Course deleted Successfully!😃');
+            return redirect('/admin/manage-course');
+        }
+        return redirect()->back()->with('error', 'Course deletion Failed 😞');
+    }
+
     public function feature_event(int $id)
     {
         try {

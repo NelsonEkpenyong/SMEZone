@@ -43,9 +43,9 @@ Route::controller(EmailController::class)->group( function(){
 });
 
 Route::controller(AdminAuthController::class)->group(function(){
-    Route::get('admin',                      [AdminAuthController::class,'login'])->name('/admin');
+    Route::get('admin',                     [AdminAuthController::class,'login'])->name('/admin');
     Route::get('/admin/logout',             [AdminAuthController::class,'logout'])->name('/admin/logout');
-    Route::post('/admin/handle-login',       [AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
+    Route::post('/admin/handle-login',      [AdminAuthController::class,'handleLogin'])->name('/admin/handle-login');
 });
 
 Route::controller(AdminController::class)->prefix('admin')->middleware(['adminAuth'])->group( function(){
@@ -85,6 +85,7 @@ Route::controller(AdminController::class)->prefix('admin')->middleware(['adminAu
     Route::get('/course','course')->name('course');
     Route::post('/add-course','add_course')->name('add-course');
     Route::get('/edit-course/{course}','edit_course')->name('edit-course');
+    Route::get('/delete-course/{course}','delete_course')->name('delete-course');
     Route::post('/update-course/{course}','update_course')->name('update-course');
     
 

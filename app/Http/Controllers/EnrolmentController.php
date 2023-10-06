@@ -23,7 +23,7 @@ class EnrolmentController extends Controller
                 return redirect()->back()->with('error', 'you have already enroled for this course  😞');
             }
 
-            Enrollments::create([ 'course_id' => $course_id, 'user_id'   => $user_id, 'enrrolled' => 1 ]);
+            Enrollments::create([ 'course_id' => $course_id, 'user_id'   => $user_id, 'enrolled' => 1 ]);
 
             flash()->addSuccess('you have enrolled Successfully!😃');
             return redirect()->back();
@@ -43,7 +43,7 @@ class EnrolmentController extends Controller
                 return redirect()->back()->with('warning', 'You have already enrolled for this course.😞');
             }
 
-            Enrollments::create(['course_id' => $course_id, 'user_id' => $user_id,'enrrolled' => 1 ]);
+            Enrollments::create(['course_id' => $course_id, 'user_id' => $user_id,'enrolled' => 1 ]);
 
             $course = Course::findOrFail($course_id)->name;
            

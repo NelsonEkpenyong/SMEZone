@@ -28,7 +28,8 @@ class Event extends Model
         'event_image',
         'thumbnail',
         'invitation_email_banner',
-        'invite_user'
+        'invite_user',
+        'speaker'
     ];
 
 

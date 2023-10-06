@@ -38,7 +38,8 @@ class AddEventRequest extends FormRequest
             'thumbnail'                => 'nullable',
             'invitation_email_banner'  => 'nullable',
             // 'invite_user'              => 'required|min:1'
-            'invite_user'              => 'nullable'
+            'invite_user'              => 'nullable',
+            'speaker'              => 'required',
         ];
     }
 }

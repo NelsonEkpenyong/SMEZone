@@ -44,6 +44,7 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
     Route::post('/change-event/{event}','change_event')->name('change-event');
     Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
     Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
+    Route::get('/deleteCourse/{course}','delete_course')->name('deleteCourse');
 
     Route::get('/deletePost/{post}','delete_post')->name('deletePost');
 

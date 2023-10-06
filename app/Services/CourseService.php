@@ -140,5 +140,19 @@ class CourseService {
     }
   }
 
+  public static function deleteCourse($course){
+    try{
+        Course::find($course)->delete();
+        
+        return response()->json(['status'  => true,'message' => 'Course deleted succesfully'],200);
+    }catch (\Exception$e) {
+        report($e);
+        report($e->getMessage());
+    } catch (\Throwable $e) {
+        report($e->getMessage());
+        return back()->withError($e->getMessage())->withInput();
+    }
+}
+
 
 }

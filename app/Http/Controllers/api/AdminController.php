@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Http\Requests\AddIndustryRequest;
 use App\Http\Requests\AddCourseTypeRequest;
 use App\Services\EventService;
+use App\Services\CourseService;
 use App\Services\AddIndustryService;
 use App\Services\AddCourseTypeService;
 use App\Services\PostService;
@@ -75,6 +76,11 @@ class AdminController extends Controller
     public function delete_event($event ){
         return EventService::deleteEvent($event);
     }
+
+    public function delete_course($course ){ 
+        return CourseService::deleteCourse($course);
+    }
+
 
     public function delete_post($post){
         return PostService::deletePost($post);

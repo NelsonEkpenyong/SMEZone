@@ -72,7 +72,7 @@
                                             <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                                            <a class="dropdown-item" href="/edit-course/{{$course->id}}">Edit</a>
+                                            <a class="dropdown-item" href="/admin/edit-course/{{$course->id}}">Edit</a>
                                             <a class="dropdown-item" href="#">Manage Feedback</a>
                                             <a class="dropdown-item" href="#">Comments</a>
                                             <a class="dropdown-item" href="#">Analytics</a>
@@ -80,7 +80,7 @@
                                                 {{$course->is_featured == 0 ? 'Feature Course' : 'Unfeature Course'}}
                                             </a>
                                             <a class="dropdown-item" href="#">Outlines</a>
-                                            <a class="dropdown-item" href="#">Delete</a>
+                                            <a class="dropdown-item" href="/admin/delete-course/{{$course->id}}">Delete</a>
                                             </div>
                                         </div>
                                     </td>
