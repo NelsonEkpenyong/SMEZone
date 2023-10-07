@@ -57,10 +57,10 @@
                                   <td>{{$featuredImage->updated_at}}</td>
                                   <td>
                                    <div class="dropdown">
-                                       <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       <button class="btn btn-danger dropdown-toggle dropbtn" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                        <i class="ti-settings"></i>
                                        </button>
-                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
+                                       <div class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuIconButton6">
                                        <a class="dropdown-item" href="/update-featuredImage/{{$featuredImage->id}}">change Featured Image</a>
                                        <div class="dropdown-divider"></div>
                                        {{-- <a class="dropdown-item" href="#">Delete Event</a> --}}
@@ -86,5 +86,49 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .dropdown {
+            position:relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #2980b9;
+        }
+
+    </style> 
     @endsection
     
