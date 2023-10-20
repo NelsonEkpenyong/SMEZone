@@ -26,6 +26,7 @@ class AddEventRequest extends FormRequest
         return [
             //
             'event_name'               => 'required',
+            'speakers'                 => 'required',
             'expected_participants'    => 'required',
             'event_type_id'            => 'required',
             'event_link'               => 'nullable',
@@ -39,7 +40,6 @@ class AddEventRequest extends FormRequest
             'invitation_email_banner'  => 'nullable',
             // 'invite_user'              => 'required|min:1'
             'invite_user'              => 'nullable',
-            'speaker'              => 'required',
         ];
     }
 }

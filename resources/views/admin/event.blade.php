@@ -33,6 +33,13 @@
 									</div>
 							 </div>
 							</div>
+							<div class="form-group">
+								<div class="form-group">
+									<label for="editor">Speakers</label>
+									<textarea class="form-control editor" name="speakers" placeholder="comma saperated list of speakers. E.g. Mark Anthony, John Doe"></textarea>
+								</div>
+							</div>
+
 							<div class="wrapper" id="venue_container">
 								<div class="row" id="row[0]">
 									<div class="col-md-11">

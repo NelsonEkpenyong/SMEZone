@@ -7,18 +7,23 @@
    </div>
    <div class="container-fluid px-lg-4">
     <div class="container">
-      <h1 class="title mb-2">{{$course->name}}</h1>
-      {{$course->description}}
+      <div class="card mt-1">
+        <div class="card-header">
+          {{$course->name}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{$course->description}}</p>
+          @if($course->embed_link)
+            <a class="btn btn-primary mt-5" href="{{  $course->embed_link}}"  target="_blank">Watch course</a>
+          @endif
+        </div>
+      </div>
+      
 
       @if ($course->pdf)
           <iframe width="100%" height="1000" src="{{asset('pdf/'. $course->pdf .'?page=hsn#toolbar=0')}}" frameborder="0" download="disabled" id="pdf"></iframe>
       @endif
       
-      @if($course->embed_link)
-          <div class="event-info">
-            <p>{{strip_tags($course->content)}}</p>
-          </div>
-      @endif
     </div>
    
     

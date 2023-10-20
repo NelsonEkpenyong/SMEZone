@@ -15,7 +15,7 @@ class Event extends Model
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'start_date', 'end_date'];
     protected $fillable = [
         'event_name',
-        // 'venue_name',
+        'speakers',
         'expected_participants',
         'venue_address',
         'event_type_id',
