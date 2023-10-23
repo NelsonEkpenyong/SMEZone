@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\api\AdminController;
+use App\Http\Controllers\api\EventController;
 use App\Http\Controllers\api\CourseController;
 use App\Http\Controllers\api\LocationController;
 use App\Http\Controllers\api\PostController;
@@ -40,10 +41,6 @@ Route::post('/admin/process-login',[AdminController::class,'handleLogin'])->name
 
 
 Route::controller(AdminController::class)->prefix('admin')->group( function(){
-    Route::post('/add-event','add_event')->name('add-event');
-    Route::post('/change-event/{event}','change_event')->name('change-event');
-    Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
-    Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
     Route::get('/deleteCourse/{course}','delete_course')->name('deleteCourse');
 
     Route::get('/deletePost/{post}','delete_post')->name('deletePost');
@@ -51,6 +48,13 @@ Route::controller(AdminController::class)->prefix('admin')->group( function(){
     Route::post('/add-industry','add_industry')->name('add-industry');
     Route::post('/add-course-type','add_course_type')->name('add-course-type');
     
+});
+
+Route::controller(EventController::class)->prefix('event')->group( function(){
+    Route::post('/add-event','add_event')->name('add-event');
+    Route::post('/change-event/{event}','change_event')->name('change-event');
+    Route::post('/postpone-an-event/{event}','postpone_event')->name('postpone-an-event');
+    Route::get('/deleteEvent/{event}','delete_event')->name('deleteEvent');
 });
 
 Route::controller(NewsController::class)->prefix('news')->group( function(){

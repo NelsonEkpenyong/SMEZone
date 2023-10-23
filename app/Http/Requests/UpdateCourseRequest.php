@@ -29,7 +29,6 @@ class UpdateCourseRequest extends FormRequest
             'embed_link'         =>  'required',     
             'certificate_id'     =>  'required',  
             'course_category_id' =>  'required',
-            'payment_type_id'    =>  'required',
             'synopsis'           =>  'required',      
             'description'        =>  'required',    
             'image'              =>  'nullable',    

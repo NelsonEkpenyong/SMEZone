@@ -61,8 +61,8 @@
                                              <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuIconButton6">
-                                             <a class="dropdown-item" href="/edit-digest/{{$digest->id}}">Edit</a>
-                                             <a class="dropdown-item" href="/delete-digest/{{$digest->id}}">Delete</a>
+                                             <a class="dropdown-item" href="/admin/edit-digest/{{$digest->id}}">Edit</a>
+                                             <a class="dropdown-item" href="/admin/delete-digest/{{$digest->id}}">Delete</a>
                                             </div>
                                         </div>
                                     </td>

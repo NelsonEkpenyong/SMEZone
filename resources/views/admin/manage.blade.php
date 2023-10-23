@@ -72,7 +72,7 @@
                                             <i class="ti-settings"></i>
                                             </button>
                                             <div class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuIconButton6">
-                                            <a class="dropdown-item" href="/edit-event/{{$event->id}}">Edit</a>
+                                            <a class="dropdown-item" href="/admin/edit-event/{{$event->id}}">Edit</a>
                                             <a class="dropdown-item" href="/analyse-event/{{$event->id}}">Analytics</a>
                                             <a class="dropdown-item" href="/upcome-event/{{$event->id}}" onclick="return confirm('Are you sure?');">
                                                 {{$event->is_upcoming == 0 ? 'Make upcoming' : 'Upcoming Event'}}

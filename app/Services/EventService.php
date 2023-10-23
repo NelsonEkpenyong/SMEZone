@@ -105,84 +105,82 @@ class EventService {
 
 
   public static function addEvent($request){
-        try{
-            $eventData = [
-                'event_name' => $request->event_name,
-                'expected_participants' => $request->expected_participants,
-                'speakers' => $request->speakers,
-                'event_type_id' => $request->event_type_id,
-                'event_link' => $request->event_link,
-                'start_date' => $request->start_date,
-                'end_date' => $request->end_date,
-                'description' => $request->description,
-                'invite_user' => $request->invite_user,
-                'speaker' => $request->speaker,
-                'venue_address' => json_encode($request->venue_address),
-                'start_time' => json_encode($request->start_time),
-                'end_time' => json_encode($request->end_time),
-            ];
-            
+    try{
+        $eventData = [
+            'event_name' => $request->event_name,
+            'expected_participants' => $request->expected_participants,
+            'speakers' => $request->speakers,
+            'event_type_id' => $request->event_type_id,
+            'event_link' => $request->event_link,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'description' => $request->description,
+            'invite_user' => $request->invite_user,
+            'venue_address' => json_encode($request->venue_address),
+            'start_time' => json_encode($request->start_time),
+            'end_time' => json_encode($request->end_time),
+        ];
+        
+        if ($request->hasFile('event_image')) {
+            $image = $request->file('event_image');
+            $image_info = getimagesize($image->getPathname());
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
 
-            if ($request->hasFile('event_image')) {
-                $image = $request->file('event_image');
-                $image_info = getimagesize($image->getPathname());
-                $image_width = $image_info[0];
-                $image_height = $image_info[1];
-
-                if ($image_width >= 1440 && $image_height > 326) {
-                    return redirect()->back()->with('error', 'Event Image must be less than 1440 X 326 in dimension.');
-                }
-
-                $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
-                $extension = $image->getClientOriginalExtension();
-
-                if (in_array($extension, $allowedfileExtension)) {
-                    $file_name = Str::random(4) . '.' . $extension;
-                    $image->move(public_path('images'), $file_name);
-                    $eventData['event_image'] = $file_name;
-                } else {
-                    return redirect()->back()->with('error', 'File type not supported');
-                }
+            if ($image_width >= 1440 && $image_height > 326) {
+                return redirect()->back()->with('error', 'Event Image must be less than 1440 X 326 in dimension.');
             }
 
-            if ($request->hasFile('thumbnail')) {
-                $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
-                $image = $request->file('thumbnail');
-                $extension = $image->getClientOriginalExtension();
+            $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
+            $extension = $image->getClientOriginalExtension();
 
-                if (in_array($extension, $allowedfileExtension)) {
-                    $file_name = Str::random(4) . '.' . $extension;
-                    $image->move(public_path('images'), $file_name);
-                    $eventData['thumbnail'] = $file_name;
-                } else {
-                    return redirect()->back()->with('error', 'File type not supported');
-                }
+            if (in_array($extension, $allowedfileExtension)) {
+                $file_name = Str::random(4) . '.' . $extension;
+                $image->move(public_path('images'), $file_name);
+                $eventData['event_image'] = $file_name;
+            } else {
+                return redirect()->back()->with('error', 'File type not supported');
             }
-
-            if ($request->hasFile('invitation_email_banner')) {
-                $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
-                $image = $request->file('invitation_email_banner');
-                $extension = $image->getClientOriginalExtension();
-
-                if (in_array($extension, $allowedfileExtension)) {
-                    $file_name = Str::random(4) . '.' . $extension;
-                    $image->move(public_path('images'), $file_name);
-                    $eventData['invitation_email_banner'] = $file_name;
-                } else {
-                    return redirect()->back()->with('error', 'File type not supported');
-                }
-            }
-
-            Event::create($eventData);
-
-            return response()->json(['status' => true, 'message' => 'Event created successfully'], 200);
-        } catch (\Exception $e) {
-            report($e);
-            report($e->getMessage());
-        } catch (\Throwable $e) {
-            report($e->getMessage());
-            return back()->withError($e->getMessage())->withInput();
         }
+
+        if ($request->hasFile('thumbnail')) {
+            $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
+            $image = $request->file('thumbnail');
+            $extension = $image->getClientOriginalExtension();
+
+            if (in_array($extension, $allowedfileExtension)) {
+                $file_name = Str::random(4) . '.' . $extension;
+                $image->move(public_path('images'), $file_name);
+                $eventData['thumbnail'] = $file_name;
+            } else {
+                return redirect()->back()->with('error', 'File type not supported');
+            }
+        }
+
+        if ($request->hasFile('invitation_email_banner')) {
+            $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
+            $image = $request->file('invitation_email_banner');
+            $extension = $image->getClientOriginalExtension();
+
+            if (in_array($extension, $allowedfileExtension)) {
+                $file_name = Str::random(4) . '.' . $extension;
+                $image->move(public_path('images'), $file_name);
+                $eventData['invitation_email_banner'] = $file_name;
+            } else {
+                return redirect()->back()->with('error', 'File type not supported');
+            }
+        }
+
+        Event::create($eventData);
+
+        return response()->json(['status' => true, 'message' => 'Event created successfully'], 200);
+    } catch (\Exception $e) {
+        report($e);
+        report($e->getMessage());
+    } catch (\Throwable $e) {
+        report($e->getMessage());
+        return back()->withError($e->getMessage())->withInput();
+    }
   }
 
   public static function updateEvent($request,$event){

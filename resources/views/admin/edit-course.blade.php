@@ -58,17 +58,6 @@
          @endforeach
 								</select>
 							</div>
-       {{-- <div class="form-group">
-								<label>Price</label>
-								<select class="form-control form-control-sm" name="payment_type_id">
-									<option value="{{ $course->payment_type_id }}"  selected> {{ $course->cost->name}}</option>
-									@foreach($paymentType as $price)
-          @if($course->payment_type_id != $price->id)
-           <option value="{{$price->id }}"> {{ $price->name}}</option>
-          @endif
-         @endforeach
-								</select>
-							</div> --}}
        <div class="form-group">
 								<label for="editor">Synopsis</label>
 								<textarea class="form-control editor" name="synopsis" rows="15">{{$course->synopsis}}</textarea>

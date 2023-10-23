@@ -392,7 +392,7 @@ class AdminController extends Controller
 
     public function store_event(AddEventRequest $request)
     {
-        $responded = Route::dispatch(Request::create('api/admin/add-event', 'POST', $request->all()));
+        $responded = Route::dispatch(Request::create('api/event/add-event', 'POST', $request->all()));
         if ($responded->status() == 200) {
             flash()->addSuccess('Event Created Successfully!😃');
             return redirect('/admin/manage');
@@ -410,7 +410,7 @@ class AdminController extends Controller
 
     public function update_event(UpdateEventRequest $request, int $event)
     {
-        $responded = Route::dispatch(Request::create("api/admin/change-event/$event", 'POST', $request->all()));
+        $responded = Route::dispatch(Request::create("api/event/change-event/$event", 'POST', $request->all()));
         if ($responded->status() == 200) {
             flash()->addSuccess('Event Updated Successfully!😃');
             return redirect('/admin/manage');
@@ -420,7 +420,7 @@ class AdminController extends Controller
 
     public function delete_event(int $event)
     {
-        $responded = Route::dispatch(Request::create("api/admin/deleteEvent/$event", 'GET'));
+        $responded = Route::dispatch(Request::create("api/event/deleteEvent/$event", 'GET'));
         if ($responded->status() == 200) {
             flash()->addSuccess('Event deleted Successfully!😃');
             return redirect('/admin/manage');
@@ -598,12 +598,6 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create('api/course/store-course', 'POST', $request->all()));
         $statusCode = $responded->status();
 
-        // if ($responded->status() == 200 ) {
-        //     flash()->addSuccess('Course Created Successfully!😃');
-        //     return redirect('/manage-course');
-        // }
-        // return redirect()->back()->with('error', 'Course Creation Failed 😞');
-
         if ($statusCode == 200) {
             flash()->addSuccess('Course Created Successfully!😃');
             return redirect('/admin/manage-course');
@@ -620,9 +614,8 @@ class AdminController extends Controller
         $courseTypes = CourseType::all();
         $certificates = Certificates::all();
         $categories = CourseCategories::all();
-        $paymentType = Price::all();
 
-        return view('admin.edit-course', compact('course', 'courseTypes', 'certificates', 'categories', 'paymentType'));
+        return view('admin.edit-course', compact('course', 'courseTypes', 'certificates', 'categories'));
     }
 
     public function update_course(Request $request, int $id)
@@ -630,7 +623,7 @@ class AdminController extends Controller
         $responded = Route::dispatch(Request::create("api/course/modify-course/$id", 'POST', $request->all()));
         if ($responded->status() == 200) {
             flash()->addSuccess('Course updated Successfully!😃');
-            return redirect('/manage-course');
+            return redirect('/admin/manage-course');
         }
         return redirect()->back()->with('error', 'Course updation Failed 😞');
     }
@@ -716,7 +709,6 @@ class AdminController extends Controller
     public function post_comment(int $id)
     {
         $post = Post::with('comments')->findOrFail($id);
-        // dd($post);
         return view('admin.post_comments', compact('post', 'id'));
     }
 

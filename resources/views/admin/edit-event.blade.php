@@ -25,7 +25,7 @@
 								<div class="col-md-6">
 										<div class="form-group">
 											<label for="exampleInputUsername1">Venue Name</label>
-											<input type="text" name="venue_name" value="{{$event->venue_name}}" class="form-control"  placeholder="e.g Miami Hall" required>
+											<input type="text" name="venue_name" value="{{$event->venue_address}}" class="form-control"  placeholder="e.g Miami Hall" required>
 										</div>
 								</div>
 								<div class="col-md-6">

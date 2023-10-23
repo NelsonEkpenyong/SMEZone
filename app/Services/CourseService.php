@@ -68,53 +68,51 @@ class CourseService {
 
 
   public static function updateCourse($request, $id){
-    try{
+    try {
       $course = Course::findOrFail($id);
 
-      $course->type_id            = $request->type_id;
-      $course->name               = $request->name;
-      $course->embed_link         = $request->embed_link;
-      $course->certificate_id     = $request->certificate_id;
-      $course->course_category_id = $request->course_category_id;
-      $course->synopsis           = $request->synopsis;
-      $course->description        = $request->description;
-      $course->content            = $request->content;
-
+      $courseData = [
+          'type_id' => $request->type_id,
+          'name' => $request->name,
+          'embed_link' => $request->embed_link,
+          'certificate_id' => $request->certificate_id,
+          'course_category_id' => $request->course_category_id,
+          'synopsis' => $request->synopsis,
+          'description' => $request->description,
+          'content' => $request->content,
+      ];
 
       if ($request->hasFile('image')) {
-          $allowedfileExtensions = ['pdf','jpg','png','docx','jpeg','gif','svg'];
+          $allowedfileExtensions = ['pdf', 'jpg', 'png', 'docx', 'jpeg', 'gif', 'svg'];
           $image = $request->file('image');
-
           $extension = $image->getClientOriginalExtension();
-          $check = in_array($extension, $allowedfileExtensions);
-          if($check){
+
+          if (in_array($extension, $allowedfileExtensions)) {
               $file_name = Str::random(4) . '.' . $extension;
               $image->move(public_path('images'), $file_name);
-          }else{
+
+              $old_photo = $course->image;
+
+              if ($old_photo) {
+                  unlink(public_path('images/') . $old_photo);
+              }
+
+              $courseData['image'] = $file_name;
+          } else {
               return redirect()->back()->with('error', 'File type not supported');
           }
-
-        $old_photo = $course->image;
-
-        if($old_photo){
-            // unlink(storage_path('app/public/images/' . $picture));
-            unlink(public_path('images/') . $old_photo);
-            $course->image = $file_name;
-        }else{
-          $course->image = $course->image;
-        }
       }
-    
-      $course->save();
-      
-      return response()->json(['status'  => true,'message' => 'Course updated succesfully'],200);
-    }catch (\Exception$e) {
-        report($e);
-        report($e->getMessage());
-    } catch (\Throwable $e) {
-        report($e->getMessage());
-        return back()->withError($e->getMessage())->withInput();
-    }
+
+      $course->update($courseData);
+
+      return response()->json(['status' => true, 'message' => 'Course updated successfully'], 200);
+  } catch (\Exception $e) {
+      report($e);
+      report($e->getMessage());
+  } catch (\Throwable $e) {
+      report($e->getMessage());
+      return back()->withError($e->getMessage())->withInput();
+  }
   }
 
   public static function featureCourse($id){
